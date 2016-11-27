@@ -1,0 +1,11 @@
+{
+    "name": "darkwebdesign/symfony-addon-pack",
+    "type": "library",
+    "description": "Symfony Add-on Pack",
+    "keywords": ["symfony"],
+    "homepage": "http://www.darkwebdesign.nl/",
+    "license": "MIT",
+    "authors": [
+        {"name": "Raymond Schouten"}
+    ]
+}
