@@ -11,7 +11,7 @@
 
 Symfony Add-on Validators is a collection of extra Symfony validation constraints that you can use in your applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/1.0/doc/index.md).
+Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/1.0/doc/reference/constraints.md).
 
 ## Features
 

@@ -1,4 +1,4 @@
-[Home](../../../) / [Documentation](../../index.md) / [Reference Documents](../index.md) / [Validation Constraints Reference](../constraints.md) / Bsn
+[Home](../../index.md) / [Reference Documents](../index.md) / [Validation Constraints Reference](../constraints.md) / Bsn
 
 # Bsn
 
