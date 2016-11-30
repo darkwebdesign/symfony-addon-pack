@@ -2,7 +2,7 @@
     "name": "darkwebdesign/symfony-addon-validators",
     "type": "library",
     "description": "Symfony Add-on Validators",
-    "keywords": ["symfony", "validators"],
+    "keywords": ["constraints", "symfony", "validators"],
     "homepage": "http://www.darkwebdesign.nl/",
     "license": "MIT",
     "authors": [
