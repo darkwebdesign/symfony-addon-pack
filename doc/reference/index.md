@@ -1,7 +1,8 @@
-[Home](../index.md) / Reference Documents
+[Home](../index.md) /
+Reference Documents
 
 # The Symfony Add-on Pack Reference
 
-## Validations
+## Validation
 
 * [Validation Constraints Reference](constraints.md)
