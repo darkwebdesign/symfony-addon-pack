@@ -22,6 +22,12 @@ namespace DarkWebDesign\SymfonyAddon\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 
+/**
+ * BSN constraint.
+ *
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
+ */
 class Bsn extends Constraint
 {
     /** @var string */
