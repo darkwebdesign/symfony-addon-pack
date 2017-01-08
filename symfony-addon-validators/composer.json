@@ -1,7 +1,7 @@
 {
-    "name": "darkwebdesign/symfony-addon-pack",
+    "name": "darkwebdesign/symfony-addon-validators",
     "type": "library",
-    "description": "Symfony Add-on Pack",
+    "description": "Symfony Add-on Validators",
     "keywords": ["constraints", "symfony", "validators"],
     "homepage": "http://www.darkwebdesign.nl/",
     "license": "MIT",
@@ -16,17 +16,17 @@
         "codeclimate/php-test-reporter": "^0.3.2",
         "phpunit/phpunit": "^4.8"
     },
-    "replace": {
-        "darkwebdesign/symfony-addon-validators": "1.0.0"
+    "suggest": {
+        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together"
     },
     "autoload": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Validator\\": "symfony-addon-validators/src/"
+            "DarkWebDesign\\SymfonyAddon\\Validator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Validator\\Tests\\": "symfony-addon-validators/tests/"
+            "DarkWebDesign\\SymfonyAddon\\Validator\\Tests\\": "tests/"
         }
     }
 }
