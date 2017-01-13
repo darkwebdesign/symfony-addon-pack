@@ -1,4 +1,4 @@
-[Home](../index.md) /
+[Home](index.md) /
 Installing & Setting up
 
 # Installing & Setting up
