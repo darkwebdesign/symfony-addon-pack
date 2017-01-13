@@ -11,6 +11,10 @@ not be burned". In Symfony, constraints are similar: They are assertions that a 
 
 The following constraints are available:
 
+### String Constraints
+
+* [Json](constraints/json.md)
+
 ### Number Constraints
 
 * [Bsn](constraints/bsn.md)
