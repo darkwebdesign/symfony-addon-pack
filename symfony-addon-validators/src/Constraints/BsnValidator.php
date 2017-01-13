@@ -22,6 +22,7 @@ namespace DarkWebDesign\SymfonyAddon\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * BSN validator.
@@ -43,14 +44,22 @@ class BsnValidator extends ConstraintValidator
      *
      * @param mixed $value
      * @param \Symfony\Component\Validator\Constraint $constraint
+     *
+     * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function isValid($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
         if (null === $value || '' === $value) {
             return;
         }
 
-        if (is_numeric($value) && '000000000' !== $value && preg_match('/^\d{9}$/', $value)) {
+        if (!is_scalar($value) && !(is_object($value) && method_exists($value, '__toString'))) {
+            throw new UnexpectedTypeException($value, 'string');
+        }
+
+        $value = (string) $value;
+
+        if ('000000000' !== $value && preg_match('/^\d{9}$/', $value)) {
             list($a, $b, $c, $d, $e, $f, $g, $h, $i) = str_split($value);
 
             $sum = (9 * $a) + (8 * $b) + (7 * $c) + (6 * $d) + (5 * $e) + (4 * $f) + (3 * $g) + (2 * $h) + (-1 * $i);
@@ -60,6 +69,6 @@ class BsnValidator extends ConstraintValidator
             }
         }
 
-        $this->context->addViolation($constraint->message, array(), $value);
+        $this->context->addViolation($constraint->message, array('{{ value }}' => $value));
     }
 }

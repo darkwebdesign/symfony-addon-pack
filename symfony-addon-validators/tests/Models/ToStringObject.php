@@ -18,18 +18,26 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Validator\Constraints;
+namespace DarkWebDesign\SymfonyAddon\Validator\Tests\Models;
 
-use Symfony\Component\Validator\Constraint;
-
-/**
- * BSN constraint.
- *
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- */
-class Bsn extends Constraint
+class ToStringObject
 {
     /** @var string */
-    public $message = 'This value is not a valid Dutch social security number (BSN).';
+    private $value;
+
+    /**
+     * @param string $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->value;
+    }
 }
