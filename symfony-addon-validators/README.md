@@ -16,6 +16,7 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 ## Features
 
 * BsnValidator, validates that a value is a valid Dutch social security number (BSN).
+* JsonValidator, validates that a value is valid JSON.
 
 ## Installing via Composer
 
