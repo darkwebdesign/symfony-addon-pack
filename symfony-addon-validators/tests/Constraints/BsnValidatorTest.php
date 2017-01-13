@@ -22,6 +22,7 @@ namespace DarkWebDesign\SymfonyAddon\Validator\Tests\Constraints;
 
 use DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn;
 use DarkWebDesign\SymfonyAddon\Validator\Constraints\BsnValidator;
+use DarkWebDesign\SymfonyAddon\Validator\Tests\Models\ToStringObject;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
@@ -47,80 +48,104 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @param string $bsn
      *
-     * @dataProvider providerIsValid
+     * @dataProvider providerValidate
      */
-    public function testIsValid($bsn)
+    public function testValidate($bsn)
     {
         $this->context
             ->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->isValid($bsn, $this->constraint);
+        $this->validator->validate($bsn, $this->constraint);
     }
 
     /**
      * @return array[]
      */
-    public function providerIsValid()
+    public function providerValidate()
     {
         return array(
             'valid1' => array('111222333'),
             'valid2' => array('123456782'),
+            'objectToString' => array(new ToStringObject('270590791')),
         );
     }
 
-    public function testIsValidNull()
+    public function testValidateNull()
     {
         $this->context
             ->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->isValid(null, $this->constraint);
+        $this->validator->validate(null, $this->constraint);
     }
 
-    public function testIsValidEmptyString()
+    public function testValidateEmptyString()
     {
         $this->context
             ->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->isValid('', $this->constraint);
+        $this->validator->validate('', $this->constraint);
     }
 
     /**
      * @param string $bsn
      *
-     * @dataProvider providerIsValidViolation
+     * @dataProvider providerValidateNoScalar
+     *
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function testIsValidViolation($bsn)
+    public function testValidateNoScalar($bsn)
+    {
+        $this->context
+            ->expects($this->never())
+            ->method('addViolation');
+
+        $this->validator->validate($bsn, $this->constraint);
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerValidateNoScalar()
+    {
+        return array(
+            'array'    => array(array('foo', 'bar')),
+            'object'   => array(new stdClass()),
+            'resource' => array(tmpfile()),
+            'callable' => array(function () {}),
+        );
+    }
+
+    /**
+     * @param string $bsn
+     *
+     * @dataProvider providerValidateViolation
+     */
+    public function testValidateViolation($bsn)
     {
         $this->context
             ->expects($this->once())
             ->method('addViolation')
             ->with(
                 $this->identicalTo($this->constraint->message),
-                $this->identicalTo(array()),
-                $this->identicalTo($bsn)
+                $this->identicalTo(array('{{ value }}' => (string) $bsn))
             );
 
-        $this->validator->isValid($bsn, $this->constraint);
+        $this->validator->validate($bsn, $this->constraint);
     }
 
     /**
      * @return array[]
      */
-    public function providerIsValidViolation()
+    public function providerValidateViolation()
     {
         return array(
             'zeros'    => array('000000000'),
             'invalid1' => array('999999999'),
             'invalid2' => array('876543242'),
-            'bool'     => array(true),
-            'string'   => array('mybsn'),
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
+            'toStringObject' => array(new ToStringObject('597944111')),
         );
     }
 }

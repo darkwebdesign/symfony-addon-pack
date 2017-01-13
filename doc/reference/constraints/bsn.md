@@ -9,20 +9,19 @@ This constraint is used to ensure that a value has the proper format of a Dutch 
 
 Applies to:
 
-* [properties](http://symfony.com/doc/2.0/book/validation.html#properties)
-* [methods](http://symfony.com/doc/2.0/book/validation.html#getters)
+* [properties](http://symfony.com/doc/2.3/book/validation.html#properties)
+* [methods](http://symfony.com/doc/2.3/book/validation.html#getters)
 
 Options:
 
 * [message](#message)
-* [payload](#payload)
 
 ## Basic Usage
 
 ### Annotations
 
 ```php
-// src/AppBundle/Entity/Transaction.php
+// src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
 use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
@@ -50,11 +49,17 @@ AppBundle\Entity\Person:
 
 ```xml
 <!-- src/AppBundle/Resources/config/validation.xml -->
-<class name="AppBundle\Entity\Person">
-    <property name="socialSecurityNumber">
-        <constraint name="DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn" />
-    </property>
-</class>
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="AppBundle\Entity\Person">
+        <property name="socialSecurityNumber">
+            <constraint name="DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn" />
+        </property>
+    </class>
+</constraint-mapping>
 ```
 
 ### PHP
@@ -81,18 +86,6 @@ class Person
 
 ### message
 
-**type**: `string` **default**: `This is not a valid Dutch social security number (BSN).`
+**type**: `string` **default**: `This value is not a valid Dutch social security number (BSN).`
 
 The default message supplied when the value does not pass the BSN check.
-
----
-
-### payload
-
-**type**: `mixed` **default**: `null`
-
-This option can be used to attach arbitrary domain-specific data to a constraint. The configured payload is not used by the
-Validator component, but its processing is completely up to you.
-
-For example, you may want to use several error levels to present failed constraints differently in the front-end depending on
-the severity of the error.
