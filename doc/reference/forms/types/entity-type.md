@@ -7,6 +7,12 @@ EntityType
 
 This form field type is used to transform user entered data to Doctrine entities.
 
+```text
+Note: In contradiction to the EntityType provided by symfony/doctrine-bridge, this form field type does *not*
+      retrieve all entities to display them in your forms, which is particulary usefull when your working with
+      large data sets, or if you are using a custom search/select field that retrieves the data via an API.
+```
+
 Rendered as:
 
 * input text field
