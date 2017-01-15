@@ -12,7 +12,7 @@
 Symfony Add-on Transformers is a collection of extra Symfony data transformers that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/2.3/doc/reference/transformers.md).
+Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/2.3/doc/reference/transformers/index.md).
 
 ## Features
 
