@@ -1,6 +1,6 @@
 [Home](../../index.md) /
 [Reference Documents](../index.md) /
-[Data Transformer Reference](../transformers.md) /
+[Data Transformer Reference](index.md) /
 EntityToIdentifierTransformer
 
 # EntityToIdentifierTransformer

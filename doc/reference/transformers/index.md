@@ -1,5 +1,5 @@
 [Home](../index.md) /
-[Reference Documents](index.md) /
+[Reference Documents](../index.md) /
 Data Transformer Reference
 
 # Data Transformer Reference
@@ -15,4 +15,4 @@ The following transformers are available:
 
 ### Other Transformers
 
-* [EntityToIdentifierTransformer](transformers/entity-to-identifier-transformer.md)
+* [EntityToIdentifierTransformer](entity-to-identifier-transformer.md)

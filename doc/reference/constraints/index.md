@@ -1,5 +1,5 @@
 [Home](../index.md) /
-[Reference Documents](index.md) /
+[Reference Documents](../index.md) /
 Validation Constraints Reference
 
 # Validation Constraints Reference
@@ -13,8 +13,8 @@ The following constraints are available:
 
 ### String Constraints
 
-* [Json](constraints/json.md)
+* [Json](json.md)
 
 ### Number Constraints
 
-* [Bsn](constraints/bsn.md)
+* [Bsn](bsn.md)
