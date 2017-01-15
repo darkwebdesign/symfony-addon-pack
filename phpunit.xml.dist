@@ -9,13 +9,13 @@
 
     <testsuites>
         <testsuite name="DarkWeb Design Symfony Add-on Pack Test Suite">
-            <directory>symfony-addon-validators/tests</directory>
+            <directory>symfony-addon-constraints/tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>symfony-addon-validators/src</directory>
+            <directory>symfony-addon-constraints/src</directory>
         </whitelist>
     </filter>
 

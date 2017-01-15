@@ -8,7 +8,7 @@
 >
 
     <testsuites>
-        <testsuite name="DarkWeb Design Symfony Add-on Validators Test Suite">
+        <testsuite name="DarkWeb Design Symfony Add-on Constraints Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

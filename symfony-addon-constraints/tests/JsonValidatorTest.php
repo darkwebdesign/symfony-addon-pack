@@ -18,11 +18,11 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Validator\Tests\Constraints;
+namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints\Json;
-use DarkWebDesign\SymfonyAddon\Validator\Constraints\JsonValidator;
-use DarkWebDesign\SymfonyAddon\Validator\Tests\Models\ToStringObject;
+use DarkWebDesign\SymfonyAddon\Constraint\Json;
+use DarkWebDesign\SymfonyAddon\Constraint\JsonValidator;
+use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
@@ -31,10 +31,10 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Validator\ExecutionContext */
     private $context;
 
-    /** @var \DarkWebDesign\SymfonyAddon\Validator\Constraints\JsonValidator */
+    /** @var \DarkWebDesign\SymfonyAddon\Constraint\JsonValidator */
     private $validator;
 
-    /** @var \DarkWebDesign\SymfonyAddon\Validator\Constraints\Json */
+    /** @var \DarkWebDesign\SymfonyAddon\Constraint\Json */
     private $constraint;
 
     protected function setUp()
