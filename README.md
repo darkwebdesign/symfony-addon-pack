@@ -19,6 +19,10 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 * EntityToIdentifierTransformer, transforms between an identifier and a Doctrine entity.
 
+### Form Field Types
+
+* EntityType, transforms an user entered identifier to a Doctrine entity.
+
 ### Validation Constraints
 
 * Bsn, validates that a value is a valid Dutch social security number (BSN).

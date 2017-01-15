@@ -10,6 +10,7 @@
     <testsuites>
         <testsuite name="DarkWeb Design Symfony Add-on Pack Test Suite">
             <directory>symfony-addon-constraints/tests</directory>
+            <directory>symfony-addon-form-types/tests</directory>
             <directory>symfony-addon-transformers/tests</directory>
         </testsuite>
     </testsuites>
@@ -17,6 +18,7 @@
     <filter>
         <whitelist>
             <directory>symfony-addon-constraints/src</directory>
+            <directory>symfony-addon-form-types/src</directory>
             <directory>symfony-addon-transformers/src</directory>
         </whitelist>
     </filter>
