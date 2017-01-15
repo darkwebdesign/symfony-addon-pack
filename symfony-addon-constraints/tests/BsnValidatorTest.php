@@ -18,11 +18,11 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Validator\Tests\Constraints;
+namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn;
-use DarkWebDesign\SymfonyAddon\Validator\Constraints\BsnValidator;
-use DarkWebDesign\SymfonyAddon\Validator\Tests\Models\ToStringObject;
+use DarkWebDesign\SymfonyAddon\Constraint\Bsn;
+use DarkWebDesign\SymfonyAddon\Constraint\BsnValidator;
+use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
@@ -31,10 +31,10 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Validator\ExecutionContext */
     private $context;
 
-    /** @var \DarkWebDesign\SymfonyAddon\Validator\Constraints\BsnValidator */
+    /** @var \DarkWebDesign\SymfonyAddon\Constraint\BsnValidator */
     private $validator;
 
-    /** @var \DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn */
+    /** @var \DarkWebDesign\SymfonyAddon\Constraint\Bsn */
     private $constraint;
 
     protected function setUp()

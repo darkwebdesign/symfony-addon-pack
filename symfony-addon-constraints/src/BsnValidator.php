@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Validator\Constraints;
+namespace DarkWebDesign\SymfonyAddon\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -36,6 +36,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  *
  * must be a multiple of 11. With this combination nearly 91 million numbers can be created. Valid examples are:
  * 111222333 and 123456782.
+ *
+ * @author Raymond Schouten
+ *
+ * @since 2.3
  */
 class BsnValidator extends ConstraintValidator
 {

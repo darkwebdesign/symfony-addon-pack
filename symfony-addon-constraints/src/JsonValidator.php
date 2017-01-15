@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Validator\Constraints;
+namespace DarkWebDesign\SymfonyAddon\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -26,6 +26,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * JSON validator.
+ *
+ * @author Raymond Schouten
+ *
+ * @since 2.3
  */
 class JsonValidator extends ConstraintValidator
 {
