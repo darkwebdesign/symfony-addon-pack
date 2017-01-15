@@ -3,6 +3,10 @@ Reference Documents
 
 # The Symfony Add-on Pack Reference
 
+## Data Transformers
+
+* [Data Transformer Reference](transformers.md)
+
 ## Validation Constraints
 
 * [Validation Constraints Reference](constraints.md)

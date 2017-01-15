@@ -8,16 +8,14 @@
 >
 
     <testsuites>
-        <testsuite name="DarkWeb Design Symfony Add-on Pack Test Suite">
-            <directory>symfony-addon-constraints/tests</directory>
-            <directory>symfony-addon-transformers/tests</directory>
+        <testsuite name="DarkWeb Design Symfony Add-on Transformers Test Suite">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>symfony-addon-constraints/src</directory>
-            <directory>symfony-addon-transformers/src</directory>
+            <directory>src</directory>
         </whitelist>
     </filter>
 

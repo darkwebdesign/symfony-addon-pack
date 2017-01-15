@@ -15,6 +15,10 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 ## Features
 
+### Data Transformers
+
+* EntityToIdentifierTransformer, transforms between an identifier and a Doctrine entity.
+
 ### Validation Constraints
 
 * Bsn, validates that a value is a valid Dutch social security number (BSN).
