@@ -56,9 +56,6 @@ entity_type:
 
 **type**: `string` **required**
 
-
-
-
 The class of your entity (e.g. `AppBundle:Category`). This can be a fully-qualified class name (e.g. `AppBundle\Entity\Category`)
 or the short alias name (as shown prior).
 
