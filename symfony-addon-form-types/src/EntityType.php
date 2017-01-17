@@ -20,8 +20,8 @@
 
 namespace DarkWebDesign\SymfonyAddon\FormType;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\RuntimeException;
