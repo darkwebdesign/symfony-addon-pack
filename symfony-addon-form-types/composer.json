@@ -1,16 +1,16 @@
 {
-    "name": "darkwebdesign/symfony-addon-transformers",
+    "name": "darkwebdesign/symfony-addon-form-types",
     "type": "library",
-    "description": "Symfony Add-on Transformers",
-    "keywords": ["symfony", "transformers"],
+    "description": "Symfony Add-on Form Types",
+    "keywords": ["form", "symfony", "types"],
     "homepage": "http://www.darkwebdesign.nl/",
     "license": "MIT",
     "authors": [
         {"name": "Raymond Schouten"}
     ],
     "require": {
+        "darkwebdesign/symfony-addon-transformers": "2.3.*",
         "doctrine/common": "^2.2",
-        "doctrine/orm": "^2.2",
         "php": "^5.3.3",
         "symfony/form": "2.3.*"
     },
@@ -19,17 +19,16 @@
         "phpunit/phpunit": "^4.8"
     },
     "suggest": {
-        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together",
-        "darkwebdesign/symfony-form-types": "Enables the use of the EntityType Form Field"
+        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together"
     },
     "autoload": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Transformer\\": "src/"
+            "DarkWebDesign\\SymfonyAddon\\FormType\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Transformer\\Tests\\": "tests/"
+            "DarkWebDesign\\SymfonyAddon\\FormType\\Tests\\": "tests/"
         }
     }
 }

@@ -1,0 +1,17 @@
+engines:
+    duplication:
+        enabled: true
+        config:
+            languages:
+                php:
+    markdownlint:
+        enabled: true
+    phpcodesniffer:
+        enabled: true
+    phpmd:
+        enabled: true
+
+ratings:
+    paths:
+        - "**.md"
+        - "**.php"
