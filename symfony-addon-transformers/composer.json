@@ -19,8 +19,8 @@
         "phpunit/phpunit": "^4.8"
     },
     "suggest": {
-        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together"
-        "darkwebdesign/symfony-form-types": "Enables the use of Entity Form Fields"
+        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together",
+        "darkwebdesign/symfony-form-types": "Enables the use of the EntityType Form Field"
     },
     "autoload": {
         "psr-4": {
