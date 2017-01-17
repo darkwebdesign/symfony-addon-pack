@@ -9,8 +9,8 @@ This form field type is used to transform user entered data to Doctrine entities
 
 ```text
 Note: In contradiction to the EntityType provided by symfony/doctrine-bridge, this form field type does *not*
-      retrieve all entities to display them in your forms, which is particulary usefull when your working with
-      large data sets, or if you are using a custom search/select field that retrieves the data via an API.
+      retrieve all entities in order to display them in your forms, which is particulary usefull when your working
+      with large data sets, or if you are using a custom search/select field that retrieves the data via an API.
 ```
 
 Rendered as:
@@ -20,6 +20,7 @@ Rendered as:
 Options:
 
 * [class](#class)
+* [entityManager](#entityManager)
 
 Overridden options:
 
@@ -36,7 +37,7 @@ Parent type:
 ```yml
 entity_type:
     class: DarkWebDesign\SymfonyAddon\FormType\EntityType
-    arguments: ["@doctrine.orm.entity_manager"]
+    arguments: ["@doctrine"]
     tags: [{ name: form.type }]
 ```
 
@@ -44,7 +45,7 @@ entity_type:
 
 ```xml
 <service id="entity_type" class="DarkWebDesign\SymfonyAddon\FormType\EntityType">
-    <argument type="service" id="doctrine.orm.entity_manager" />
+    <argument type="service" id="doctrine" />
     <tag name="form.type" />
 </service>
 ```
@@ -55,8 +56,17 @@ entity_type:
 
 **type**: `string` **required**
 
+
+
+
 The class of your entity (e.g. `AppBundle:Category`). This can be a fully-qualified class name (e.g. `AppBundle\Entity\Category`)
 or the short alias name (as shown prior).
+
+### entityManager
+
+**type**: `string` | `Doctrine\Common\Persistence\ObjectManager` **default**: the default entity manager
+
+If specified, this entity manager will be used to load the entity instead of the `default` entity manager.
 
 ## Overridden Options
 
