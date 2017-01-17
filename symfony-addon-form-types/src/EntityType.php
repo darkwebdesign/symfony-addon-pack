@@ -20,10 +20,14 @@
 
 namespace DarkWebDesign\SymfonyAddon\FormType;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -35,15 +39,15 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class EntityType extends AbstractType
 {
-    /** @var \Doctrine\Common\Persistence\ObjectManager */
-    private $entityManager;
+    /** @var \Doctrine\Common\Persistence\ManagerRegistry */
+    private $registry;
 
     /**
-     * @param \Doctrine\Common\Persistence\ObjectManager $entityManager
+     * @param \Doctrine\Common\Persistence\ManagerRegistry $registry
      */
-    public function __construct(ObjectManager $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->entityManager = $entityManager;
+        $this->registry = $registry;
     }
 
     /**
@@ -54,7 +58,7 @@ class EntityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addViewTransformer(new EntityToIdentifierTransformer($this->entityManager, $options['class']));
+        $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entityManager'], $options['class']));
     }
 
     /**
@@ -64,11 +68,49 @@ class EntityType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $registry = $this->registry;
+
+        $entityManagerNormalizer = function (Options $options, $entityManager) use ($registry) {
+            if (null !== $entityManager) {
+                if ($entityManager instanceof ObjectManager) {
+                    return $entityManager;
+                }
+
+                return $registry->getManager($entityManager);
+            }
+
+            $entityManager = $registry->getManagerForClass($options['class']);
+
+            if (null === $entityManager) {
+                throw new RuntimeException(sprintf(
+                    'Class "%s" seems not to be a managed Doctrine entity. Did you forget to map it?',
+                    $options['class']
+                ));
+            }
+
+            return $entityManager;
+        };
+
         $resolver->setDefaults(array(
             'compound' => false,
+            'entityManager' => null,
         ));
 
-        $resolver->setRequired(array('class'));
+        $resolver->setRequired(array(
+            'class',
+        ));
+
+        $resolver->setNormalizers(array(
+            'entityManager' => $entityManagerNormalizer,
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'entityManager' => array(
+                'null',
+                'string',
+                'Doctrine\Common\Persistence\ObjectManager'
+            ),
+        ));
     }
 
     /**
