@@ -58,9 +58,9 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     public function __construct(ObjectManager $entityManager, $className)
     {
         $this->entityManager = $entityManager;
-        $this->className = $className;
-        $this->repository = $this->entityManager->getRepository($this->className);
-        $this->metadata = $this->entityManager->getClassMetadata($this->className);
+        $this->repository = $this->entityManager->getRepository($className);
+        $this->metadata = $this->entityManager->getClassMetadata($className);
+        $this->className = $this->metadata->getName();
 
         if ($this->metadata->isIdentifierComposite) {
             throw new InvalidArgumentException('Expected an entity with a single identifier.');
@@ -86,9 +86,9 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
             throw new TransformationFailedException('Expected an object.');
         }
 
-        $class = ClassUtils::getClass($value);
+        $className = ClassUtils::getClass($value);
 
-        if ($class !== $this->className) {
+        if ($className !== $this->className) {
             throw new TransformationFailedException(sprintf('Expected entity %s.', $this->className));
         }
 
