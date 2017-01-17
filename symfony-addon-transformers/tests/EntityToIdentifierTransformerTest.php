@@ -61,6 +61,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
+        $this->metadata->method('getName')->willReturn($this->className);
         $this->metadata->method('getIdentifierValues')->willReturn(array('id' => $this->identifier));
 
         $this->metadata->isIdentifierComposite = false;
@@ -80,6 +81,15 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     public function testTransform()
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
+
+        $identifier = $transformer->transform($this->entity);
+
+        $this->assertSame($this->identifier, $identifier);
+    }
+
+    public function testTransformAlias()
+    {
+        $transformer = new EntityToIdentifierTransformer($this->entityManager, 'AppBundle:City');
 
         $identifier = $transformer->transform($this->entity);
 
