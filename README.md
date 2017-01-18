@@ -17,6 +17,7 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 ### Data Transformers
 
+* BooleanToValueTransformer, transforms between a boolean and a scalar value.
 * EntityToIdentifierTransformer, transforms between an identifier and a Doctrine entity.
 
 ### Form Field Types
