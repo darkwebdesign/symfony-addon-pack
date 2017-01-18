@@ -24,13 +24,13 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * Transforms between a boolean and a string.
+ * Transforms between a boolean and a scalar value.
  *
  * @author Raymond Schouten
  *
  * @since 2.3
  */
-class BooleanToStringTransformer implements DataTransformerInterface
+class BooleanToValueTransformer implements DataTransformerInterface
 {
     /** @var string */
     private $trueValue;
@@ -41,10 +41,10 @@ class BooleanToStringTransformer implements DataTransformerInterface
     /**
      * Constructor.
      *
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param string|int|float|bool $trueValue
+     * @param string|int|float|bool $falseValue
      */
-    public function __construct($trueValue = 'true', $falseValue = 'false')
+    public function __construct($trueValue = true, $falseValue = false)
     {
         $this->trueValue = $trueValue;
         $this->falseValue = $falseValue;
@@ -55,7 +55,7 @@ class BooleanToStringTransformer implements DataTransformerInterface
      *
      * @param bool $value
      *
-     * @return string
+     * @return string|int|float|bool
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
@@ -75,7 +75,7 @@ class BooleanToStringTransformer implements DataTransformerInterface
     /**
      * Transforms a value from the transformed representation to its original representation.
      *
-     * @param string $value
+     * @param string|int|float|bool $value
      *
      * @return bool
      *
@@ -91,12 +91,8 @@ class BooleanToStringTransformer implements DataTransformerInterface
             throw new TransformationFailedException('Expected a scalar.');
         }
 
-        $value = (string) $value;
-
         if (!($value === $this->trueValue || $value === $this->falseValue)) {
-            throw new TransformationFailedException(
-                sprintf('Expected a string "%s" or "%s".', $this->trueValue, $this->falseValue)
-            );
+            throw new TransformationFailedException('Expected true/false boolean value.');
         }
 
         return $value === $this->trueValue;
