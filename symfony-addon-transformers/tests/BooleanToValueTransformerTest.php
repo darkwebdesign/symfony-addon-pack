@@ -20,11 +20,11 @@
 
 namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
 
-use DarkWebDesign\SymfonyAddon\Transformer\BooleanToStringTransformer;
+use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
-class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
+class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @param string $trueValue
@@ -34,7 +34,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function testTransform($trueValue, $falseValue)
     {
-        $transformer = new BooleanToStringTransformer($trueValue, $falseValue);
+        $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
         $returnValue = $transformer->transform(true);
 
@@ -47,7 +47,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testTransformNull()
     {
-        $transformer = new BooleanToStringTransformer();
+        $transformer = new BooleanToValueTransformer();
 
         $returnValue = $transformer->transform(null);
 
@@ -64,7 +64,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function testTransformNoBool($value)
     {
-        $transformer = new BooleanToStringTransformer();
+        $transformer = new BooleanToValueTransformer();
 
         $transformer->transform($value);
     }
@@ -77,7 +77,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function testReverseTransform($trueValue, $falseValue)
     {
-        $transformer = new BooleanToStringTransformer($trueValue, $falseValue);
+        $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
         $returnValue = $transformer->reverseTransform($trueValue);
 
@@ -90,7 +90,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testReverseTransformNull()
     {
-        $transformer = new BooleanToStringTransformer();
+        $transformer = new BooleanToValueTransformer();
 
         $returnValue = $transformer->reverseTransform(null);
 
@@ -99,7 +99,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testReverseTransformEmptyString()
     {
-        $transformer = new BooleanToStringTransformer();
+        $transformer = new BooleanToValueTransformer();
 
         $returnValue = $transformer->reverseTransform('');
 
@@ -116,7 +116,7 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function testReverseTransformNoScalar($value)
     {
-        $transformer = new BooleanToStringTransformer();
+        $transformer = new BooleanToValueTransformer();
 
         $transformer->reverseTransform($value);
     }
@@ -126,15 +126,13 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
      * @param string $falseValue
      *
      * @dataProvider providerTrueFalseValue
+     *
+     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
+     * @expectedExceptionMessage Expected true/false boolean value.
      */
-    public function testReverseTransformInvalidString($trueValue, $falseValue)
+    public function testReverseTransformInvalidValue($trueValue, $falseValue)
     {
-        $transformer = new BooleanToStringTransformer($trueValue, $falseValue);
-
-        $this->setExpectedException(
-            'Symfony\Component\Form\Exception\TransformationFailedException',
-            sprintf('Expected a string "%s" or "%s".', $trueValue, $falseValue)
-        );
+        $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
         $transformer->reverseTransform('foo');
     }
@@ -145,10 +143,10 @@ class BooleanToStringTransformerTest extends PHPUnit_Framework_TestCase
     public function providerTrueFalseValue()
     {
         return array(
-            'true/false' => array('true', 'false'),
+            'true/false' => array(true, false),
             'yes/no' => array('yes', 'no'),
             'on/off' => array('on', 'off'),
-            '1/0' => array('1', '0'),
+            '1/0' => array(1, 0),
         );
     }
 
