@@ -13,6 +13,10 @@ This is where Data Transformers come into play.
 
 The following transformers are available:
 
+### Scalar Transformers
+
+* [BooleanToValueTransformer](boolean-to-value-transformer.md)
+
 ### Other Transformers
 
 * [EntityToIdentifierTransformer](entity-to-identifier-transformer.md)

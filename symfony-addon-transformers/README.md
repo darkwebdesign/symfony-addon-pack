@@ -16,6 +16,7 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 ## Features
 
+* BooleanToValueTransformer, transforms between a boolean and a scalar value.
 * EntityToIdentifierTransformer, Transforms between an identifier and a Doctrine entity.
 
 ## Installing via Composer
