@@ -48,7 +48,7 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @param string $bsn
      *
-     * @dataProvider providerValidate
+     * @dataProvider providerValidBsn
      */
     public function testValidate($bsn)
     {
@@ -57,18 +57,6 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
             ->method('addViolation');
 
         $this->validator->validate($bsn, $this->constraint);
-    }
-
-    /**
-     * @return array[]
-     */
-    public function providerValidate()
-    {
-        return array(
-            'valid1' => array('111222333'),
-            'valid2' => array('123456782'),
-            'objectToString' => array(new ToStringObject('270590791')),
-        );
     }
 
     public function testValidateNull()
@@ -92,7 +80,7 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @param string $bsn
      *
-     * @dataProvider providerValidateNoScalar
+     * @dataProvider providerNoScalar
      *
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
@@ -106,22 +94,9 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return array[]
-     */
-    public function providerValidateNoScalar()
-    {
-        return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
-    }
-
-    /**
      * @param string $bsn
      *
-     * @dataProvider providerValidateViolation
+     * @dataProvider providerInvalidBsn
      */
     public function testValidateViolation($bsn)
     {
@@ -139,7 +114,32 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function providerValidateViolation()
+    public function providerValidBsn()
+    {
+        return array(
+            'valid1' => array('111222333'),
+            'valid2' => array('123456782'),
+            'objectToString' => array(new ToStringObject('270590791')),
+        );
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerNoScalar()
+    {
+        return array(
+            'array'    => array(array('foo', 'bar')),
+            'object'   => array(new stdClass()),
+            'resource' => array(tmpfile()),
+            'callable' => array(function () {}),
+        );
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerInvalidBsn()
     {
         return array(
             'zeros'    => array('000000000'),

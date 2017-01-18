@@ -48,7 +48,7 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @param string $json
      *
-     * @dataProvider providerValidate
+     * @dataProvider providerValidJson
      */
     public function testIsValid($json)
     {
@@ -57,22 +57,6 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
             ->method('addViolation');
 
         $this->validator->validate($json, $this->constraint);
-    }
-
-    /**
-     * @return array[]
-     */
-    public function providerValidate()
-    {
-        return array(
-            'bool' => array(true),
-            'int' => array(123),
-            'float' => array(10.99),
-            'stringInt' => array('123'),
-            'stringArray' => array('[1, 2, 3]'),
-            'stringObject' => array('{"a": 1, "b": 2}'),
-            'objectToString' => array(new ToStringObject('123')),
-        );
     }
 
     public function testValidateNull()
@@ -96,7 +80,7 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @param string $bsn
      *
-     * @dataProvider providerValidateNoScalar
+     * @dataProvider providerNoScalar
      *
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
@@ -110,22 +94,9 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return array[]
-     */
-    public function providerValidateNoScalar()
-    {
-        return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
-    }
-
-    /**
      * @param string $json
      *
-     * @dataProvider providerValidateViolation
+     * @dataProvider providerInvalidJson
      */
     public function testValidateViolation($json)
     {
@@ -143,7 +114,36 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function providerValidateViolation()
+    public function providerValidJson()
+    {
+        return array(
+            'bool' => array(true),
+            'int' => array(123),
+            'float' => array(10.99),
+            'stringInt' => array('123'),
+            'stringArray' => array('[1, 2, 3]'),
+            'stringObject' => array('{"a": 1, "b": 2}'),
+            'objectToString' => array(new ToStringObject('123')),
+        );
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerNoScalar()
+    {
+        return array(
+            'array'    => array(array('foo', 'bar')),
+            'object'   => array(new stdClass()),
+            'resource' => array(tmpfile()),
+            'callable' => array(function () {}),
+        );
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerInvalidJson()
     {
         return array(
             'string' => array('json'),

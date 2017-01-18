@@ -108,7 +108,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     /**
      * @param mixed $value
      *
-     * @dataProvider providerTransformNoObject
+     * @dataProvider providerNoObject
      *
      * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
      * @expectedExceptionMessage Expected an object.
@@ -118,22 +118,6 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $transformer->transform($value);
-    }
-
-    /**
-     * @return array[]
-     */
-    public function providerTransformNoObject()
-    {
-        return array(
-            'bool'     => array(true),
-            'int'      => array(1),
-            'float'    => array(1.2),
-            'string'   => array('foo'),
-            'array'    => array(array('foo', 'bar')),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
     }
 
     /**
@@ -181,7 +165,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     /**
      * @param mixed $value
      *
-     * @dataProvider providerReverseTransformNoScalar
+     * @dataProvider providerNoScalar
      *
      * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
      * @expectedExceptionMessage Expected a scalar.
@@ -191,19 +175,6 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $transformer->reverseTransform($value);
-    }
-
-    /**
-     * @return array[]
-     */
-    public function providerReverseTransformNoScalar()
-    {
-        return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
     }
 
     /**
@@ -217,5 +188,34 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $this->repository->method('find')->willReturn(null);
 
         $transformer->reverseTransform($this->identifier);
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerNoObject()
+    {
+        return array(
+            'bool'     => array(true),
+            'int'      => array(1),
+            'float'    => array(1.2),
+            'string'   => array('foo'),
+            'array'    => array(array('foo', 'bar')),
+            'resource' => array(tmpfile()),
+            'callable' => array(function () {})
+        );
+    }
+
+    /**
+     * @return array[]
+     */
+    public function providerNoScalar()
+    {
+        return array(
+            'array'    => array(array('foo', 'bar')),
+            'object'   => array(new stdClass()),
+            'resource' => array(tmpfile()),
+            'callable' => array(function () {}),
+        );
     }
 }
