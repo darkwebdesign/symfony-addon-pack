@@ -13,4 +13,5 @@ The following field types are available:
 
 ### Other Fields
 
+* [BooleanType](boolean-type.md)
 * [EntityType](entity-type.md)
