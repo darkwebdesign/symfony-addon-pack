@@ -69,6 +69,10 @@ class EntityType extends AbstractType
     {
         $registry = $this->registry;
 
+        $compoundNormalizer = function () {
+            return false;
+        };
+
         $entityManagerNormalizer = function (Options $options, $entityManager) use ($registry) {
             if (null !== $entityManager) {
                 if ($entityManager instanceof ObjectManager) {
@@ -91,7 +95,6 @@ class EntityType extends AbstractType
         };
 
         $resolver->setDefaults(array(
-            'compound' => false,
             'entityManager' => null,
         ));
 
@@ -100,6 +103,7 @@ class EntityType extends AbstractType
         ));
 
         $resolver->setNormalizers(array(
+            'compound' => $compoundNormalizer,
             'entityManager' => $entityManagerNormalizer,
         ));
 
