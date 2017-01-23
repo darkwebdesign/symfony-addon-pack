@@ -5,7 +5,7 @@ BooleanType
 
 # BooleanType
 
-This form field type is used to transform user selected/entered data to booleans.
+This form field type is used to transform user selected values to booleans.
 
 ```text
 Note: In contradiction to the CheckboxType provided by Symfony, this form field type offers a tri-state boolean
