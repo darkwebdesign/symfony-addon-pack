@@ -108,11 +108,7 @@ class EntityType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'entityManager' => array(
-                'null',
-                'string',
-                'Doctrine\Common\Persistence\ObjectManager'
-            ),
+            'entityManager' => array('null', 'string', 'Doctrine\Common\Persistence\ObjectManager'),
         ));
     }
 
