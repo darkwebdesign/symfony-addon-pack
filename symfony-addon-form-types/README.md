@@ -15,6 +15,7 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 ## Features
 
+* BooleanType, transforms an user entered value to a boolean.
 * EntityType, transforms an user entered identifier to a Doctrine entity.
 
 ## Installing via Composer
