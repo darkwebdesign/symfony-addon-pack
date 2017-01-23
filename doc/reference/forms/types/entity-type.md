@@ -5,7 +5,7 @@ EntityType
 
 # EntityType
 
-This form field type is used to transform user entered data to Doctrine entities.
+This form field type is used to transform user entered identifiers to Doctrine entities.
 
 ```text
 Note: In contradiction to the EntityType provided by symfony/doctrine-bridge, this form field type does *not*
