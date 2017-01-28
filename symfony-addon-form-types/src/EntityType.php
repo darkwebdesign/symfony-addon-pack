@@ -57,7 +57,7 @@ class EntityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entityManager'], $options['class']));
+        $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entity_manager'], $options['class']));
     }
 
     /**
@@ -68,10 +68,6 @@ class EntityType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $registry = $this->registry;
-
-        $compoundNormalizer = function () {
-            return false;
-        };
 
         $entityManagerNormalizer = function (Options $options, $entityManager) use ($registry) {
             if (null !== $entityManager) {
@@ -94,8 +90,12 @@ class EntityType extends AbstractType
             return $entityManager;
         };
 
+        $compoundNormalizer = function () {
+            return false;
+        };
+
         $resolver->setDefaults(array(
-            'entityManager' => null,
+            'entity_manager' => null,
         ));
 
         $resolver->setRequired(array(
@@ -103,12 +103,12 @@ class EntityType extends AbstractType
         ));
 
         $resolver->setNormalizers(array(
+            'entity_manager' => $entityManagerNormalizer,
             'compound' => $compoundNormalizer,
-            'entityManager' => $entityManagerNormalizer,
         ));
 
         $resolver->setAllowedTypes(array(
-            'entityManager' => array('null', 'string', 'Doctrine\Common\Persistence\ObjectManager'),
+            'entity_manager' => array('null', 'string', 'Doctrine\Common\Persistence\ObjectManager'),
         ));
     }
 
