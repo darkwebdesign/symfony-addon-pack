@@ -9,7 +9,7 @@ This form field type is used to transform user selected values to booleans.
 
 ```text
 Note: In contradiction to the CheckboxType provided by Symfony, this form field type offers a tri-state boolean
-      (true/false/null), as well as a traditional boolean, using multiple widgets.
+      (true/false/null), as well as a traditional boolean, supporting multiple rendering widgets.
 ```
 
 Rendered as:
@@ -19,9 +19,11 @@ Rendered as:
 
 Options:
 
+* [label_false](#label_false)
+* [label_true](#label_true)
+* [value_false](#value_false)
+* [value_true](#value_true)
 * [widget](#widget)
-* [trueValue](#trueValue)
-* [falseValue](#falseValue)
 
 Overridden options:
 
@@ -53,6 +55,34 @@ boolean_type:
 
 ## Field Options
 
+### label_false
+
+**type**: `string` **default**: `null`
+
+The label that will be used for the `false` value.
+
+The default value results in a "humanized" version of `value_false`.
+
+### label_true
+
+**type**: `string` **default**: `null`
+
+The label that will be used for the `true` value.
+
+The default value results in a "humanized" version of `value_true`.
+
+### value_false
+
+**type**: `string` **default**: `no`
+
+The string value that is being transformed to a boolean `false`.
+
+### value_true
+
+**type**: `string` **default**: `yes`
+
+The string value that is being transformed to a boolean `true`.
+
 ### widget
 
 **type**: `string` **default**: `choice`
@@ -62,25 +92,13 @@ The basic way in which this field should be rendered. Can be one of the followin
 * `choice`: renders a select field.
 * `radio`: renders input radio buttons.
 
-### trueValue
-
-**type**: `string` **default**: `Yes`
-
-The string value that is being transformed to a boolean `true`.
-
-### falseValue
-
-**type**: `string` **default**: `No`
-
-The string value that is being transformed to a boolean `false`.
-
 ## Overridden Options
 
 ### choices
 
 **type**: `array`
 
-An array containing the `trueValue` and `falseValue` options.
+An array containing the `value_true` and `value_false` options.
 
 ### expanded
 
