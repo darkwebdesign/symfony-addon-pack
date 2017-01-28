@@ -9,7 +9,7 @@ This form field type is used to handle birthday data.
 
 ```text
 Note: In contradiction to the BirthdayType provided by Symfony, this form field type renders the year field in
-      descending order. 
+      descending order.
 ```
 
 Rendered as:
