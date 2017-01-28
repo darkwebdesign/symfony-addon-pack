@@ -43,7 +43,7 @@ class BooleanType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new BooleanToValueTransformer($options['trueValue'], $options['falseValue']));
+        $builder->addModelTransformer(new BooleanToValueTransformer($options['value_true'], $options['value_false']));
     }
 
     /**
@@ -53,16 +53,26 @@ class BooleanType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $self = $this;
+
         $valueNormalizer = function (Options $options, $value) {
             // PHP converts string array keys containing integers to integers array keys.
             // Make sure that our values are of the same type in order to be able to compare the values.
             return is_numeric($value) && $value / 1 === (int) $value ? (int) $value : $value;
         };
 
+        $labelTrueNormalizer = function (Options $options, $value) use ($self) {
+            return !is_null($value) ? (string) $value : $self->humanize($options['value_true']);
+        };
+
+        $labelFalseNormalizer = function (Options $options, $value) use ($self) {
+            return !is_null($value) ? (string) $value : $self->humanize($options['value_false']);
+        };
+
         $choicesNormalizer = function (Options $options) {
             return array(
-                $options['trueValue'] => $options['trueValue'],
-                $options['falseValue'] => $options['falseValue'],
+                $options['value_true'] => $options['label_true'],
+                $options['value_false'] => $options['label_false'],
             );
         };
 
@@ -75,22 +85,26 @@ class BooleanType extends AbstractType
         };
 
         $resolver->setDefaults(array(
+            'label_false' => null,
+            'label_true' => null,
+            'value_false' => 'no',
+            'value_true' => 'yes',
             'widget' => 'choice',
-            'trueValue' => 'Yes',
-            'falseValue' => 'No',
         ));
 
         $resolver->setNormalizers(array(
-            'trueValue' => $valueNormalizer,
-            'falseValue' => $valueNormalizer,
+            'value_true' => $valueNormalizer,
+            'value_false' => $valueNormalizer,
+            'label_true' => $labelTrueNormalizer,
+            'label_false' => $labelFalseNormalizer,
             'choices' => $choicesNormalizer,
             'expanded' => $expandedNormalizer,
             'multiple' => $multipleNormalizer,
         ));
 
         $resolver->setAllowedTypes(array(
-            'trueValue' => array('string'),
-            'falseValue' => array('string'),
+            'value_true' => array('string'),
+            'value_false' => array('string'),
         ));
 
         $resolver->setAllowedValues(array(
@@ -116,5 +130,17 @@ class BooleanType extends AbstractType
     public function getName()
     {
         return 'boolean';
+    }
+
+    /**
+     * Makes a technical name human readable.
+     *
+     * @param string $text
+     *
+     * @return string
+     */
+    public function humanize($text)
+    {
+        return ucfirst(trim(strtolower(preg_replace(array('/([A-Z])/', '/[_\s]+/'), array('_$1', ' '), $text))));
     }
 }

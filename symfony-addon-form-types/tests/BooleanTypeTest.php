@@ -36,42 +36,42 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param string $valueTrue
+     * @param string $valueFalse
      *
-     * @dataProvider providerTrueFalseValue
+     * @dataProvider providerValueTrueFalse
      */
-    public function test($trueValue, $falseValue)
+    public function test($valueTrue, $valueFalse)
     {
         $options = array(
-            'trueValue' => $trueValue,
-            'falseValue' => $falseValue,
+            'value_true' => $valueTrue,
+            'value_false' => $valueFalse,
         );
 
         $form = $this->factory->create($this->type, null, $options);
-        $form->submit($trueValue);
+        $form->submit($valueTrue);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertTrue($form->getData());
 
         $form = $this->factory->create($this->type, null, $options);
-        $form->submit($falseValue);
+        $form->submit($valueFalse);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertFalse($form->getData());
     }
 
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param string $valueTrue
+     * @param string $valueFalse
      *
-     * @dataProvider providerTrueFalseValue
+     * @dataProvider providerValueTrueFalse
      */
-    public function testInvalidValue($trueValue, $falseValue)
+    public function testInvalidValue($valueTrue, $valueFalse)
     {
         $options = array(
-            'trueValue' => $trueValue,
-            'falseValue' => $falseValue,
+            'value_true' => $valueTrue,
+            'value_false' => $valueFalse,
         );
 
         $form = $this->factory->create($this->type, null, $options);
@@ -100,10 +100,25 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertFalse($view->vars['multiple']);
     }
 
+    public function testHumanize()
+    {
+        $options = array(
+            'value_true' => 'an_underscored__label',
+            'value_false' => 'aCamel Cased  Label',
+        );
+
+        $form = $this->factory->create($this->type, null, $options);
+        $view = $form->createView();
+
+        $this->assertCount(2, $view->vars['choices']);
+        $this->assertSame('An underscored label', $view->vars['choices'][0]->label);
+        $this->assertSame('A camel cased label', $view->vars['choices'][1]->label);
+    }
+
     /**
      * @return array[]
      */
-    public function providerTrueFalseValue()
+    public function providerValueTrueFalse()
     {
         return array(
             'true/false' => array('true', 'false'),
