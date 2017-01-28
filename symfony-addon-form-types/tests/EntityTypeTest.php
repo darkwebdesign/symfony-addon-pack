@@ -116,7 +116,7 @@ class EntityTypeTest extends TypeTestCase
 
         $options = array(
             'class' => $this->className,
-            'entityManager' => $this->entityManager,
+            'entity_manager' => $this->entityManager,
         );
 
         $form = $this->factory->create($this->type, null, $options);
@@ -134,7 +134,7 @@ class EntityTypeTest extends TypeTestCase
 
         $options = array(
             'class' => $this->className,
-            'entityManager' => 'Doctrine\ORM\EntityManager',
+            'entity_manager' => 'Doctrine\ORM\EntityManager',
         );
 
         $form = $this->factory->create($this->type, null, $options);

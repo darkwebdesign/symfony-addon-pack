@@ -20,7 +20,7 @@ Rendered as:
 Options:
 
 * [class](#class)
-* [entityManager](#entityManager)
+* [entity_manager](#entity_manager)
 
 Overridden options:
 
@@ -59,7 +59,7 @@ entity_type:
 The class of your entity (e.g. `AppBundle:Category`). This can be a fully-qualified class name (e.g. `AppBundle\Entity\Category`)
 or the short alias name (as shown prior).
 
-### entityManager
+### entity_manager
 
 **type**: `string` | `Doctrine\Common\Persistence\ObjectManager` **default**: the default entity manager
 
