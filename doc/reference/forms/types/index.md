@@ -11,6 +11,10 @@ Symfony Add-on Pack comes with additional field types that can be used in your a
 
 The following field types are available:
 
+### Date and Time Fields
+
+* [BirthdayType](birthday-type.md)
+
 ### Other Fields
 
 * [BooleanType](boolean-type.md)
