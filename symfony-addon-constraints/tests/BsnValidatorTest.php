@@ -129,8 +129,8 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     public function providerNoScalar()
     {
         return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
+            'array' => array(array('foo', 'bar')),
+            'object' => array(new stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {}),
         );
@@ -142,7 +142,7 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
     public function providerInvalidBsn()
     {
         return array(
-            'zeros'    => array('000000000'),
+            'zeros' => array('000000000'),
             'invalid1' => array('999999999'),
             'invalid2' => array('876543242'),
             'toStringObject' => array(new ToStringObject('597944111')),

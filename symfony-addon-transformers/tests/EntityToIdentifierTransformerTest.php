@@ -196,11 +196,11 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     public function providerNoObject()
     {
         return array(
-            'bool'     => array(true),
-            'int'      => array(1),
-            'float'    => array(1.2),
-            'string'   => array('foo'),
-            'array'    => array(array('foo', 'bar')),
+            'bool' => array(true),
+            'int' => array(1),
+            'float' => array(1.2),
+            'string' => array('foo'),
+            'array' => array(array('foo', 'bar')),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );
@@ -212,8 +212,8 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     public function providerNoScalar()
     {
         return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
+            'array' => array(array('foo', 'bar')),
+            'object' => array(new stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {}),
         );
