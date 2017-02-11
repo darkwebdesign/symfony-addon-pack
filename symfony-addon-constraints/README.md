@@ -17,6 +17,7 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 ## Features
 
 * Bsn, validates that a value is a valid Dutch social security number (BSN).
+* Collection, validates that every item in a collection validates against one or more constraints.
 * Json, validates that a value is valid JSON.
 
 ## Installing via Composer

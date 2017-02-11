@@ -156,11 +156,11 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
     public function providerNoBool()
     {
         return array(
-            'int'      => array(1),
-            'float'    => array(1.2),
-            'string'   => array('foo'),
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass),
+            'int' => array(1),
+            'float' => array(1.2),
+            'string' => array('foo'),
+            'array' => array(array('foo', 'bar')),
+            'object' => array(new stdClass),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );
@@ -172,8 +172,8 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
     public function providerNoScalar()
     {
         return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass),
+            'array' => array(array('foo', 'bar')),
+            'object' => array(new stdClass),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );

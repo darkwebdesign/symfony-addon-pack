@@ -50,7 +50,7 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider providerValidJson
      */
-    public function testIsValid($json)
+    public function testValidate($json)
     {
         $this->context
             ->expects($this->never())
@@ -133,8 +133,8 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
     public function providerNoScalar()
     {
         return array(
-            'array'    => array(array('foo', 'bar')),
-            'object'   => array(new stdClass()),
+            'array' => array(array('foo', 'bar')),
+            'object' => array(new stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {}),
         );

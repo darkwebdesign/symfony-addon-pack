@@ -24,7 +24,7 @@ Options:
 // src/AppBundle/Entity/Transaction.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
 
 class Transaction
 {
@@ -42,7 +42,7 @@ class Transaction
 AppBundle\Entity\Transaction:
     properties:
         data:
-            - DarkWebDesign\SymfonyAddon\Validator\Constraints\Json: ~
+            - DarkWebDesign\SymfonyAddon\Constraint\Json: ~
 ```
 
 ### XML
@@ -56,7 +56,7 @@ AppBundle\Entity\Transaction:
 
     <class name="AppBundle\Entity\Transaction">
         <property name="data">
-            <constraint name="DarkWebDesign\SymfonyAddon\Validator\Constraints\Json" />
+            <constraint name="DarkWebDesign\SymfonyAddon\Constraint\Json" />
         </property>
     </class>
 </constraint-mapping>
@@ -68,7 +68,7 @@ AppBundle\Entity\Transaction:
 // src/AppBundle/Entity/Transaction.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Transaction

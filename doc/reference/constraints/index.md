@@ -18,3 +18,7 @@ The following constraints are available:
 ### Number Constraints
 
 * [Bsn](bsn.md)
+
+### Collection Constraints
+
+* [Collection](collection.md)
