@@ -111,6 +111,6 @@ class Person
 
 ### constraints
 
-**type**: `Symfony\Component\Validator\Constraint` | `array` [default option]
+**type**: `array` [default option]
 
-One or more constraints to validate every item in the collection against.
+The constraints to validate every item in the collection against.
