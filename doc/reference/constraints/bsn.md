@@ -24,7 +24,7 @@ Options:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
 
 class Person
 {
@@ -42,7 +42,7 @@ class Person
 AppBundle\Entity\Person:
     properties:
         socialSecurityNumber:
-            - DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn: ~
+            - DarkWebDesign\SymfonyAddon\Constraint\Bsn: ~
 ```
 
 ### XML
@@ -56,7 +56,7 @@ AppBundle\Entity\Person:
 
     <class name="AppBundle\Entity\Person">
         <property name="socialSecurityNumber">
-            <constraint name="DarkWebDesign\SymfonyAddon\Validator\Constraints\Bsn" />
+            <constraint name="DarkWebDesign\SymfonyAddon\Constraint\Bsn" />
         </property>
     </class>
 </constraint-mapping>
@@ -68,7 +68,7 @@ AppBundle\Entity\Person:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Person
