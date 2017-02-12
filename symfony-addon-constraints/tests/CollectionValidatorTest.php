@@ -77,7 +77,7 @@ class CollectionValidatorTest extends AbstractValidatorTestCase
     /**
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function testValidateNoCollectionConstraint()
+    public function testValidateInvalidConstraint()
     {
         $this->validator->validate(array(), new Assert\NotNull());
 
