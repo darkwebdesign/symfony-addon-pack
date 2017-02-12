@@ -103,10 +103,10 @@ class BooleanType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'value_true' => array('string'),
-            'value_false' => array('string'),
-            'label_true' => array('string'),
-            'label_false' => array('string'),
+            'value_true' => array('string', 'integer'),
+            'value_false' => array('string', 'integer'),
+            'label_true' => array('string', 'null'),
+            'label_false' => array('string', 'null'),
         ));
 
         $resolver->setAllowedValues(array(
