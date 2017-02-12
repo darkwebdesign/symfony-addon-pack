@@ -94,11 +94,10 @@ class BsnValidatorTest extends AbstractValidatorTestCase
     {
         $this->validator->validate($bsn, $this->constraint);
 
+        $violation = $this->createViolation($this->constraint->message, array('{{ value }}' => '"' . $bsn . '"'));
+
         $this->assertCount(1, $this->context->getViolations());
-        $this->assertEquals($this->context->getViolations()->get(0), $this->createViolation(
-            $this->constraint->message,
-            array('{{ value }}' => '"' . $bsn . '"')
-        ));
+        $this->assertEquals($violation, $this->context->getViolations()->get(0));
     }
 
     /**
