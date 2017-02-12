@@ -22,11 +22,11 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
 use DarkWebDesign\SymfonyAddon\Constraint\Bsn;
 use DarkWebDesign\SymfonyAddon\Constraint\BsnValidator;
+use DarkWebDesign\SymfonyAddon\Constraint\Tests\AbstractValidatorTestCase;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
-class BsnValidatorTest extends PHPUnit_Framework_TestCase
+class BsnValidatorTest extends AbstractValidatorTestCase
 {
     /** @var \Symfony\Component\Validator\ExecutionContext */
     private $context;
@@ -39,7 +39,7 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
+        $this->context = $this->createContext();
         $this->validator = new BsnValidator();
         $this->validator->initialize($this->context);
         $this->constraint = new Bsn();
@@ -52,29 +52,23 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidate($bsn)
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate($bsn, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     public function testValidateNull()
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate(null, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     public function testValidateEmptyString()
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate('', $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     /**
@@ -86,11 +80,9 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateNoScalar($bsn)
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate($bsn, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     /**
@@ -100,15 +92,13 @@ class BsnValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateViolation($bsn)
     {
-        $this->context
-            ->expects($this->once())
-            ->method('addViolation')
-            ->with(
-                $this->identicalTo($this->constraint->message),
-                $this->identicalTo(array('{{ value }}' => (string) $bsn))
-            );
-
         $this->validator->validate($bsn, $this->constraint);
+
+        $this->assertCount(1, $this->context->getViolations());
+        $this->assertEquals($this->context->getViolations()->get(0), $this->createViolation(
+            $this->constraint->message,
+            array('{{ value }}' => '"' . $bsn . '"')
+        ));
     }
 
     /**
