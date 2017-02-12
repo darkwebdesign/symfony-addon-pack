@@ -25,6 +25,7 @@ use DarkWebDesign\SymfonyAddon\Constraint\BsnValidator;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\AbstractValidatorTestCase;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
 use stdClass;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class BsnValidatorTest extends AbstractValidatorTestCase
 {
@@ -53,6 +54,16 @@ class BsnValidatorTest extends AbstractValidatorTestCase
     public function testValidate($bsn)
     {
         $this->validator->validate($bsn, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateInvalidConstraint()
+    {
+        $this->validator->validate(array(), new Assert\NotNull());
 
         $this->assertCount(0, $this->context->getViolations());
     }
