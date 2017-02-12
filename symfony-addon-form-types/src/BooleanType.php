@@ -85,10 +85,10 @@ class BooleanType extends AbstractType
         };
 
         $resolver->setDefaults(array(
-            'label_false' => null,
             'label_true' => null,
-            'value_false' => 'no',
+            'label_false' => null,
             'value_true' => 'yes',
+            'value_false' => 'no',
             'widget' => 'choice',
         ));
 
@@ -105,6 +105,8 @@ class BooleanType extends AbstractType
         $resolver->setAllowedTypes(array(
             'value_true' => array('string'),
             'value_false' => array('string'),
+            'label_true' => array('string'),
+            'label_false' => array('string'),
         ));
 
         $resolver->setAllowedValues(array(
