@@ -33,8 +33,16 @@ abstract class AbstractValidatorTestCase extends PHPUnit_Framework_TestCase
     {
         $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
         $validator = $this->getMock('Symfony\Component\Validator\Validator\ValidatorInterface');
+        $contextualValidator = $this->getMock('Symfony\Component\Validator\Validator\ContextualValidatorInterface');
 
-        return new ExecutionContext($validator, 'root', $translator);
+        $context = new ExecutionContext($validator, 'root', $translator);
+
+        $validator->expects($this->any())
+            ->method('inContext')
+            ->with($context)
+            ->willReturn($contextualValidator);
+
+        return $context;
     }
 
     /**
