@@ -60,7 +60,10 @@ class CollectionValidator extends ConstraintValidator
 
         foreach ($value as $field => $fieldValue) {
             foreach ($constraint->constraints as $fieldConstraint) {
-                $this->context->validateValue($fieldValue, $fieldConstraint, '[' . $field . ']');
+                $this->context->getValidator()
+                    ->inContext($this->context)
+                    ->atPath('[' . $field . ']')
+                    ->validate($fieldValue, $fieldConstraint);
             }
         }
     }
