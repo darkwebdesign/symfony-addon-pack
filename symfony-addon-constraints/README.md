@@ -1,11 +1,11 @@
 # Symfony Add-on Constraints
 
-[![Latest Stable Version](https://poser.pugx.org/darkwebdesign/symfony-addon-validators/v/stable?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-validators)
-[![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-validators/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-validators)
-[![License](https://poser.pugx.org/darkwebdesign/symfony-addon-validators/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-validators)
+[![Latest Stable Version](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/v/stable?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
+[![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
+[![License](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
 
-[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-validators.svg?branch=2.3)](https://travis-ci.org/darkwebdesign/symfony-addon-validators?branch=2.3)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-validators/branch/2.3/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-validators)
+[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-constraints.svg?branch=2.3)](https://travis-ci.org/darkwebdesign/symfony-addon-constraints?branch=2.3)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints/branch/2.3/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.3-blue.svg)](https://php.net/)
 [![Minimum Symfony Version](https://img.shields.io/badge/symfony-%3E%3D%202.3-green.svg)](https://symfony.com/)
 
