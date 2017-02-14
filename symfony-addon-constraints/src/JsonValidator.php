@@ -20,6 +20,7 @@
 
 namespace DarkWebDesign\SymfonyAddon\Constraint;
 
+use DarkWebDesign\SymfonyAddon\Constraint\Json;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -43,6 +44,10 @@ class JsonValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        if (!$constraint instanceof Json) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__ . '\Json');
+        }
+
         if (null === $value || '' === $value) {
             return;
         }
@@ -55,6 +60,8 @@ class JsonValidator extends ConstraintValidator
             return;
         }
 
-        $this->context->addViolation($constraint->message, array('{{ value }}' => $value));
+        $this->buildViolation($constraint->message)
+            ->setParameter('{{ value }}', $this->formatValue($value))
+            ->addViolation();
     }
 }

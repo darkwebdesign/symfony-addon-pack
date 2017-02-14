@@ -22,13 +22,12 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
 use DarkWebDesign\SymfonyAddon\Constraint\Collection;
 use DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
+use DarkWebDesign\SymfonyAddon\Constraint\Tests\AbstractValidatorTestCase;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CollectionValidatorTest extends PHPUnit_Framework_TestCase
+class CollectionValidatorTest extends AbstractValidatorTestCase
 {
     /** @var \Symfony\Component\Validator\ExecutionContext */
     private $context;
@@ -38,7 +37,7 @@ class CollectionValidatorTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
+        $this->context = $this->createContext();
         $this->validator = new CollectionValidator();
         $this->validator->initialize($this->context);
     }
@@ -57,11 +56,18 @@ class CollectionValidatorTest extends PHPUnit_Framework_TestCase
 
         $i = 0;
 
+        $contextualValidator = $this->context->getValidator()->inContext($this->context);
+
         foreach ($value as $field => $fieldValue) {
             foreach ($constraints as $constraint) {
-                $this->context->expects($this->at($i++))
-                    ->method('validateValue')
-                    ->with($fieldValue, $constraint, '[' . $field . ']');
+                $contextualValidator->expects($this->at($i++))
+                    ->method('atPath')
+                    ->with('[' . $field . ']')
+                    ->will($this->returnValue($contextualValidator));
+
+                $contextualValidator->expects($this->at($i++))
+                    ->method('validate')
+                    ->with($fieldValue, $constraint);
             }
         }
 
@@ -71,24 +77,20 @@ class CollectionValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function testValidateNoCollectionConstraint()
+    public function testValidateInvalidConstraint()
     {
-        $this->context
-            ->expects($this->never())
-            ->method('validateValue');
-
         $this->validator->validate(array(), new Assert\NotNull());
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     public function testValidateNull()
     {
-        $this->context
-            ->expects($this->never())
-            ->method('validateValue');
-
         $this->validator->validate(null, new Collection(array(
             new Assert\NotBlank(),
         )));
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     /**
@@ -100,13 +102,11 @@ class CollectionValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateNoArray($value)
     {
-        $this->context
-            ->expects($this->never())
-            ->method('validateValue');
-
         $this->validator->validate($value, new Collection(array(
             new Assert\NotBlank(),
         )));
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     /**

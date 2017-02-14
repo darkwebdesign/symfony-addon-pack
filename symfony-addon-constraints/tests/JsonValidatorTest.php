@@ -22,11 +22,12 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
 use DarkWebDesign\SymfonyAddon\Constraint\Json;
 use DarkWebDesign\SymfonyAddon\Constraint\JsonValidator;
+use DarkWebDesign\SymfonyAddon\Constraint\Tests\AbstractValidatorTestCase;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
-use PHPUnit_Framework_TestCase;
 use stdClass;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class JsonValidatorTest extends PHPUnit_Framework_TestCase
+class JsonValidatorTest extends AbstractValidatorTestCase
 {
     /** @var \Symfony\Component\Validator\ExecutionContext */
     private $context;
@@ -39,7 +40,7 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
+        $this->context = $this->createContext();
         $this->validator = new JsonValidator();
         $this->validator->initialize($this->context);
         $this->constraint = new Json();
@@ -52,29 +53,33 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidate($json)
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate($json, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateInvalidConstraint()
+    {
+        $this->validator->validate(array(), new Assert\NotNull());
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     public function testValidateNull()
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate(null, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     public function testValidateEmptyString()
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate('', $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     /**
@@ -86,11 +91,9 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateNoScalar($bsn)
     {
-        $this->context
-            ->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate($bsn, $this->constraint);
+
+        $this->assertCount(0, $this->context->getViolations());
     }
 
     /**
@@ -100,15 +103,12 @@ class JsonValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateViolation($json)
     {
-        $this->context
-            ->expects($this->once())
-            ->method('addViolation')
-            ->with(
-                $this->identicalTo($this->constraint->message),
-                $this->identicalTo(array('{{ value }}' => (string) $json))
-            );
-
         $this->validator->validate($json, $this->constraint);
+
+        $violation = $this->createViolation($this->constraint->message, array('{{ value }}' => '"' . $json . '"'));
+
+        $this->assertCount(1, $this->context->getViolations());
+        $this->assertEquals($violation, $this->context->getViolations()->get(0));
     }
 
     /**

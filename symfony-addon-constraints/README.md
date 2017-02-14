@@ -1,18 +1,18 @@
 # Symfony Add-on Constraints
 
-[![Latest Stable Version](https://poser.pugx.org/darkwebdesign/symfony-addon-validators/v/stable?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-validators)
-[![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-validators/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-validators)
-[![License](https://poser.pugx.org/darkwebdesign/symfony-addon-validators/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-validators)
+[![Latest Stable Version](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/v/stable?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
+[![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
+[![License](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
 
-[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-validators.svg?branch=2.4)](https://travis-ci.org/darkwebdesign/symfony-addon-validators?branch=2.4)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-validators/branch/2.4/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-validators)
+[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-constraints.svg?branch=2.5)](https://travis-ci.org/darkwebdesign/symfony-addon-constraints?branch=2.5)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints/branch/2.5/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.3-blue.svg)](https://php.net/)
 [![Minimum Symfony Version](https://img.shields.io/badge/symfony-%3E%3D%202.3-green.svg)](https://symfony.com/)
 
 Symfony Add-on Constraints is a collection of extra Symfony validation constraints that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/2.4/doc/reference/constraints/index.md).
+Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/2.5/doc/reference/constraints/index.md).
 
 ## Features
 
