@@ -22,24 +22,28 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
 use DarkWebDesign\SymfonyAddon\Constraint\Collection;
 use DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\AbstractValidatorTestCase;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
 use stdClass;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Validation;
 
-class CollectionValidatorTest extends AbstractValidatorTestCase
+class CollectionValidatorTest extends AbstractConstraintValidatorTest
 {
-    /** @var \Symfony\Component\Validator\ExecutionContext */
-    private $context;
-
-    /** @var \DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator */
-    private $validator;
-
-    protected function setUp()
+    /**
+     * @return int
+     */
+    protected function getApiVersion()
     {
-        $this->context = $this->createContext();
-        $this->validator = new CollectionValidator();
-        $this->validator->initialize($this->context);
+        return Validation::API_VERSION_2_5;
+    }
+
+    /**
+     * @return \DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator
+     */
+    protected function createValidator()
+    {
+        return new CollectionValidator();
     }
 
     /**
@@ -56,22 +60,15 @@ class CollectionValidatorTest extends AbstractValidatorTestCase
 
         $i = 0;
 
-        $contextualValidator = $this->context->getValidator()->inContext($this->context);
-
         foreach ($value as $field => $fieldValue) {
             foreach ($constraints as $constraint) {
-                $contextualValidator->expects($this->at($i++))
-                    ->method('atPath')
-                    ->with('[' . $field . ']')
-                    ->will($this->returnValue($contextualValidator));
-
-                $contextualValidator->expects($this->at($i++))
-                    ->method('validate')
-                    ->with($fieldValue, $constraint);
+                $this->expectValidateValueAt($i++, '[' . $field . ']', $fieldValue, $constraint);
             }
         }
 
         $this->validator->validate($value, new Collection($constraints));
+
+        $this->assertNoViolation();
     }
 
     /**
@@ -81,7 +78,7 @@ class CollectionValidatorTest extends AbstractValidatorTestCase
     {
         $this->validator->validate(array(), new Assert\NotNull());
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     public function testValidateNull()
@@ -90,7 +87,7 @@ class CollectionValidatorTest extends AbstractValidatorTestCase
             new Assert\NotBlank(),
         )));
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     /**
@@ -106,7 +103,7 @@ class CollectionValidatorTest extends AbstractValidatorTestCase
             new Assert\NotBlank(),
         )));
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     /**
