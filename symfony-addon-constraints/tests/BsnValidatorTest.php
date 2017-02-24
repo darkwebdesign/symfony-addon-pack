@@ -22,28 +22,28 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
 use DarkWebDesign\SymfonyAddon\Constraint\Bsn;
 use DarkWebDesign\SymfonyAddon\Constraint\BsnValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\AbstractValidatorTestCase;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
 use stdClass;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Validation;
 
-class BsnValidatorTest extends AbstractValidatorTestCase
+class BsnValidatorTest extends AbstractConstraintValidatorTest
 {
-    /** @var \Symfony\Component\Validator\ExecutionContext */
-    private $context;
-
-    /** @var \DarkWebDesign\SymfonyAddon\Constraint\BsnValidator */
-    private $validator;
-
-    /** @var \DarkWebDesign\SymfonyAddon\Constraint\Bsn */
-    private $constraint;
-
-    protected function setUp()
+    /**
+     * @return int
+     */
+    protected function getApiVersion()
     {
-        $this->context = $this->createContext();
-        $this->validator = new BsnValidator();
-        $this->validator->initialize($this->context);
-        $this->constraint = new Bsn();
+        return Validation::API_VERSION_2_5;
+    }
+
+    /**
+     * @return \DarkWebDesign\SymfonyAddon\Constraint\BsnValidator
+     */
+    protected function createValidator()
+    {
+        return new BsnValidator();
     }
 
     /**
@@ -53,9 +53,9 @@ class BsnValidatorTest extends AbstractValidatorTestCase
      */
     public function testValidate($bsn)
     {
-        $this->validator->validate($bsn, $this->constraint);
+        $this->validator->validate($bsn, new Bsn());
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     /**
@@ -65,21 +65,21 @@ class BsnValidatorTest extends AbstractValidatorTestCase
     {
         $this->validator->validate(array(), new Assert\NotNull());
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     public function testValidateNull()
     {
-        $this->validator->validate(null, $this->constraint);
+        $this->validator->validate(null, new Bsn());
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     public function testValidateEmptyString()
     {
-        $this->validator->validate('', $this->constraint);
+        $this->validator->validate('', new Bsn());
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     /**
@@ -91,9 +91,9 @@ class BsnValidatorTest extends AbstractValidatorTestCase
      */
     public function testValidateNoScalar($bsn)
     {
-        $this->validator->validate($bsn, $this->constraint);
+        $this->validator->validate($bsn, new Bsn());
 
-        $this->assertCount(0, $this->context->getViolations());
+        $this->assertNoViolation();
     }
 
     /**
@@ -103,12 +103,13 @@ class BsnValidatorTest extends AbstractValidatorTestCase
      */
     public function testValidateViolation($bsn)
     {
-        $this->validator->validate($bsn, $this->constraint);
+        $constraint = new Bsn();
 
-        $violation = $this->createViolation($this->constraint->message, array('{{ value }}' => '"' . $bsn . '"'));
+        $this->validator->validate($bsn, $constraint);
 
-        $this->assertCount(1, $this->context->getViolations());
-        $this->assertEquals($violation, $this->context->getViolations()->get(0));
+        $this->buildViolation($constraint->message)
+            ->setParameter('{{ value }}', '"' . $bsn . '"')
+            ->assertRaised();
     }
 
     /**
