@@ -27,7 +27,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Entity form field type.
@@ -61,11 +61,11 @@ class EntityType extends AbstractType
     }
 
     /**
-     * Sets the default options for this type.
+     * Configures the options for this type.
      *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $registry = $this->registry;
 
@@ -102,13 +102,13 @@ class EntityType extends AbstractType
             'class',
         ));
 
-        $resolver->setNormalizers(array(
-            'entity_manager' => $entityManagerNormalizer,
-            'compound' => $compoundNormalizer,
-        ));
+        $resolver->setNormalizer('entity_manager', $entityManagerNormalizer);
+        $resolver->setNormalizer('compound', $compoundNormalizer);
 
-        $resolver->setAllowedTypes(array(
-            'entity_manager' => array('null', 'string', 'Doctrine\Common\Persistence\ObjectManager'),
+        $resolver->setAllowedTypes('entity_manager', array(
+            'null',
+            'string',
+            'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
 

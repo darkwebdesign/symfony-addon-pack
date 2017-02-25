@@ -21,7 +21,7 @@
 namespace DarkWebDesign\SymfonyAddon\FormType;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Birthday form field type.
@@ -33,11 +33,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class BirthdayType extends AbstractType
 {
     /**
-     * Sets the default options for this type.
+     * Configures the options for this type.
      *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'years' => range(date('Y'), date('Y') - 120),

@@ -126,6 +126,7 @@ class BooleanTypeTest extends TypeTestCase
             'on/off' => array('on', 'off'),
             '1/0' => array('1', '0'),
             '1/2' => array(1, 2),
+            '1.3/2.7' => array(1.3, 2.7),
         );
     }
 
