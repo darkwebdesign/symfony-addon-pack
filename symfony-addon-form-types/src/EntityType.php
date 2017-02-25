@@ -111,14 +111,4 @@ class EntityType extends AbstractType
             'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
-
-    /**
-     * Returns the name of this type.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'entity';
-    }
 }
