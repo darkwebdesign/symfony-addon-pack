@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^5.3.9",
-        "symfony/validator": "2.7.*"
+        "symfony/validator": "2.8.*"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.3.2",
