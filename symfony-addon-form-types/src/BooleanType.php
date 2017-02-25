@@ -112,17 +112,7 @@ class BooleanType extends AbstractType
      */
     public function getParent()
     {
-        return 'choice';
-    }
-
-    /**
-     * Returns the name of this type.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'boolean';
+        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
     }
 
     /**
@@ -131,6 +121,8 @@ class BooleanType extends AbstractType
      * @param string $text
      *
      * @return string
+     *
+     * @deprecated since 2.8, will be removed in 3.0
      */
     public function humanize($text)
     {
