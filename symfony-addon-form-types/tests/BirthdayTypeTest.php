@@ -42,7 +42,7 @@ class BirthdayTypeTest extends TypeTestCase
         $choices = $form->get('year')->getConfig()->getOption('choices');
 
         $this->assertCount(121, $choices);
-        $this->assertSame(date('Y'), reset($choices));
-        $this->assertSame((string) (date('Y') - 120), end($choices));
+        $this->assertSame((int) date('Y'), reset($choices));
+        $this->assertSame((date('Y') - 120), end($choices));
     }
 }
