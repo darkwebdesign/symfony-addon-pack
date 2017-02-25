@@ -28,7 +28,7 @@ Overridden options:
 
 Parent type:
 
-* [FormType](http://symfony.com/doc/2.6/reference/forms/types/form.html)
+* [FormType](http://symfony.com/doc/2.7/reference/forms/types/form.html)
 
 ## Configuring as a form field type
 
