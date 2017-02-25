@@ -51,16 +51,6 @@ class BirthdayType extends AbstractType
      */
     public function getParent()
     {
-        return 'date';
-    }
-
-    /**
-     * Returns the name of this type.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'birthday';
+        return 'Symfony\Component\Form\Extension\Core\Type\DateType';
     }
 }
