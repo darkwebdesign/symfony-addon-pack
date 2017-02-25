@@ -61,7 +61,7 @@ or the short alias name (as shown prior).
 
 ### entity_manager
 
-**type**: `string` | `Doctrine\Common\Persistence\ObjectManager` **default**: the default entity manager
+**type**: `string` or `Doctrine\Common\Persistence\ObjectManager` **default**: the default entity manager
 
 If specified, this entity manager will be used to load the entity instead of the `default` entity manager.
 
