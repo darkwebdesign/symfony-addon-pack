@@ -16,8 +16,8 @@ Note: In contradiction to the Collection constraint provided by Symfony, this co
 
 Applies to:
 
-* [properties](http://symfony.com/doc/2.7/book/validation.html#properties)
-* [methods](http://symfony.com/doc/2.7/book/validation.html#getters)
+* [properties](http://symfony.com/doc/2.8/book/validation.html#properties)
+* [methods](http://symfony.com/doc/2.8/book/validation.html#getters)
 
 Options:
 

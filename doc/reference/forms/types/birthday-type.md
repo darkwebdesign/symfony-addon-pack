@@ -24,7 +24,7 @@ Overridden options:
 
 Parent type:
 
-* [DateType](http://symfony.com/doc/2.7/reference/forms/types/choice.html)
+* [DateType](http://symfony.com/doc/2.8/reference/forms/types/choice.html)
 
 ## Configuring as a form field type
 
