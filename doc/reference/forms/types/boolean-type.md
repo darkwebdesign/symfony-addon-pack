@@ -73,15 +73,15 @@ The default value results in a "humanized" version of `value_true`.
 
 ### value_false
 
-**type**: `string` **default**: `no`
+**type**: `string`, `integer` or `float` **default**: `no`
 
-The string value that is being transformed to a boolean `false`.
+The value that is being transformed to a boolean `false`.
 
 ### value_true
 
-**type**: `string` **default**: `yes`
+**type**: `string`, `integer` or `float` **default**: `yes`
 
-The string value that is being transformed to a boolean `true`.
+The value that is being transformed to a boolean `true`.
 
 ### widget
 
