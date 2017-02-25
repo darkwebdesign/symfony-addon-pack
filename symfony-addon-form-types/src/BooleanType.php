@@ -24,7 +24,7 @@ use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Boolean form field type.
@@ -47,19 +47,13 @@ class BooleanType extends AbstractType
     }
 
     /**
-     * Sets the default options for this type.
+     * Configures the options for this type.
      *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $self = $this;
-
-        $valueNormalizer = function (Options $options, $value) {
-            // PHP converts string array keys containing integers to integers array keys.
-            // Make sure that our values are of the same type in order to be able to compare the values.
-            return is_numeric($value) && $value / 1 === (int) $value ? (int) $value : $value;
-        };
 
         $labelTrueNormalizer = function (Options $options, $value) use ($self) {
             return !is_null($value) ? (string) $value : $self->humanize($options['value_true']);
@@ -71,9 +65,13 @@ class BooleanType extends AbstractType
 
         $choicesNormalizer = function (Options $options) {
             return array(
-                $options['value_true'] => $options['label_true'],
-                $options['value_false'] => $options['label_false'],
+                $options['label_true'] => $options['value_true'],
+                $options['label_false'] => $options['value_false'],
             );
+        };
+
+        $choicesAsValuesNormalizer = function () {
+            return true;
         };
 
         $expandedNormalizer = function (Options $options) {
@@ -92,26 +90,19 @@ class BooleanType extends AbstractType
             'widget' => 'choice',
         ));
 
-        $resolver->setNormalizers(array(
-            'value_true' => $valueNormalizer,
-            'value_false' => $valueNormalizer,
-            'label_true' => $labelTrueNormalizer,
-            'label_false' => $labelFalseNormalizer,
-            'choices' => $choicesNormalizer,
-            'expanded' => $expandedNormalizer,
-            'multiple' => $multipleNormalizer,
-        ));
+        $resolver->setNormalizer('label_true', $labelTrueNormalizer);
+        $resolver->setNormalizer('label_false', $labelFalseNormalizer);
+        $resolver->setNormalizer('choices', $choicesNormalizer);
+        $resolver->setNormalizer('choices_as_values', $choicesAsValuesNormalizer);
+        $resolver->setNormalizer('expanded', $expandedNormalizer);
+        $resolver->setNormalizer('multiple', $multipleNormalizer);
 
-        $resolver->setAllowedTypes(array(
-            'value_true' => array('string', 'integer'),
-            'value_false' => array('string', 'integer'),
-            'label_true' => array('string', 'null'),
-            'label_false' => array('string', 'null'),
-        ));
+        $resolver->setAllowedTypes('value_true', array('string', 'integer', 'float'));
+        $resolver->setAllowedTypes('value_false', array('string', 'integer', 'float'));
+        $resolver->setAllowedTypes('label_true', array('string', 'null'));
+        $resolver->setAllowedTypes('label_false', array('string', 'null'));
 
-        $resolver->setAllowedValues(array(
-            'widget' => array('choice', 'radio'),
-        ));
+        $resolver->setAllowedValues('widget', array('choice', 'radio'));
     }
 
     /**
