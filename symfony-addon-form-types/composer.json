@@ -11,7 +11,7 @@
     "require": {
         "darkwebdesign/symfony-addon-transformers": "2.7.*",
         "doctrine/common": "^2.3",
-        "php": "^5.3.9",
+        "php": ">=5.3.9",
         "symfony/form": "2.7.*"
     },
     "require-dev": {
