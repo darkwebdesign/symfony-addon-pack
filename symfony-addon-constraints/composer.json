@@ -9,7 +9,7 @@
         {"name": "Raymond Schouten"}
     ],
     "require": {
-        "php": "^5.3.9",
+        "php": ">=5.3.9",
         "symfony/validator": "2.8.*"
     },
     "require-dev": {
