@@ -22,6 +22,7 @@ namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
 
 use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City;
+use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\Employee;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\PointOfInterest;
 use PHPUnit_Framework_TestCase;
 use stdClass;
@@ -61,10 +62,26 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
-        $this->metadata->method('getName')->willReturn($this->className);
-        $this->metadata->method('getIdentifierValues')->willReturn(array('id' => $this->identifier));
+        $this->metadata->method('getName')->willReturnCallback(array($this, 'getClassName'));
+        $this->metadata->method('getIdentifierValues')->willReturnCallback(array($this, 'getIdentifier'));
 
         $this->metadata->isIdentifierComposite = false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @return array
+     */
+    public function getIdentifier()
+    {
+        return array('id' => $this->identifier);
     }
 
     /**
@@ -92,6 +109,19 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $transformer = new EntityToIdentifierTransformer($this->entityManager, 'AppBundle:City');
 
         $identifier = $transformer->transform($this->entity);
+
+        $this->assertSame($this->identifier, $identifier);
+    }
+
+    public function testTransformDiscriminated()
+    {
+        $this->className = 'DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\AbstractPerson';
+
+        $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
+
+        $entity = new Employee();
+
+        $identifier = $transformer->transform($entity);
 
         $this->assertSame($this->identifier, $identifier);
     }
