@@ -88,7 +88,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
 
         $className = ClassUtils::getClass($value);
 
-        if ($className !== $this->className) {
+        if ($className !== $this->className && !is_subclass_of($className, $this->className)) {
             throw new TransformationFailedException(sprintf('Expected entity %s.', $this->className));
         }
 
