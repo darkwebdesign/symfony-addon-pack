@@ -6,8 +6,8 @@
 
 [![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-pack.svg?branch=2.4)](https://travis-ci.org/darkwebdesign/symfony-addon-pack?branch=2.4)
 [![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-pack/branch/2.4/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-pack)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.3-777BB3.svg)](https://php.net/)
-[![Minimum Symfony Version](https://img.shields.io/badge/symfony-%3E%3D%202.3-93C74B.svg)](https://symfony.com/)
+[![PHP Version](https://img.shields.io/badge/php-5.3%2B-777BB3.svg)](https://php.net/)
+[![Symfony Version](https://img.shields.io/badge/symfony-2.4-93C74B.svg)](https://symfony.com/)
 
 Symfony Add-on Pack is a collection of extra Symfony components that you can use in your Symfony applications.
 
