@@ -23,7 +23,6 @@ namespace DarkWebDesign\SymfonyAddon\Constraint;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Traversable;
 
 /**
  * Collection validator.
@@ -52,7 +51,7 @@ class CollectionValidator extends ConstraintValidator
             return;
         }
 
-        if (!is_array($value) && !$value instanceof Traversable) {
+        if (!is_array($value) && !$value instanceof \Traversable) {
             throw new UnexpectedTypeException($value, 'array or Traversable');
         }
 

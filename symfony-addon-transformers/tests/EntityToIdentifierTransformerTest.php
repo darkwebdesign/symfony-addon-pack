@@ -21,6 +21,7 @@
 namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
 
 use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
+use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\AbstractPerson;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\Employee;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\PointOfInterest;
@@ -113,7 +114,7 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
 
     public function testTransformDiscriminated()
     {
-        $this->className = 'DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\AbstractPerson';
+        $this->className = AbstractPerson::class;
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
