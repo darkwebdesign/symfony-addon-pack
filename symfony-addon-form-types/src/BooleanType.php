@@ -71,10 +71,6 @@ class BooleanType extends AbstractType
             );
         };
 
-        $choicesAsValuesNormalizer = function () {
-            return true;
-        };
-
         $expandedNormalizer = function (Options $options) {
             return 'choice' !== $options['widget'];
         };
