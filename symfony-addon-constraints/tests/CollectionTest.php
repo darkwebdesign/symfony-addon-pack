@@ -18,9 +18,9 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Collection;
+use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase

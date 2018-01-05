@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Transformer\Tests\Models;
+namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
 /**
  * @Table(name="city")

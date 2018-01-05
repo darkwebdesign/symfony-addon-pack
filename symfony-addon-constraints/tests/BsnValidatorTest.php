@@ -18,18 +18,18 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Bsn;
-use DarkWebDesign\SymfonyAddon\Constraint\BsnValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
+use DarkWebDesign\SymfonyAddonConstraints\Bsn;
+use DarkWebDesign\SymfonyAddonConstraints\BsnValidator;
+use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
 
 class BsnValidatorTest extends AbstractConstraintValidatorTest
 {
     /**
-     * @return \DarkWebDesign\SymfonyAddon\Constraint\BsnValidator
+     * @return \DarkWebDesign\SymfonyAddonConstraints\BsnValidator
      */
     protected function createValidator()
     {

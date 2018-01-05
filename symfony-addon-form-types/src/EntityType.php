@@ -18,9 +18,9 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType;
+namespace DarkWebDesign\SymfonyAddonFormTypes;
 
-use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
+use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
