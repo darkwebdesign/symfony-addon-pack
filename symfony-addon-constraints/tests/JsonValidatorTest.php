@@ -18,18 +18,18 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Json;
-use DarkWebDesign\SymfonyAddon\Constraint\JsonValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
+use DarkWebDesign\SymfonyAddonConstraints\Json;
+use DarkWebDesign\SymfonyAddonConstraints\JsonValidator;
+use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
 
 class JsonValidatorTest extends AbstractConstraintValidatorTest
 {
     /**
-     * @return \DarkWebDesign\SymfonyAddon\Constraint\JsonValidator
+     * @return \DarkWebDesign\SymfonyAddonConstraints\JsonValidator
      */
     protected function createValidator()
     {

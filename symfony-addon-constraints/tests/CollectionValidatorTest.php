@@ -18,18 +18,18 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Collection;
-use DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
+use DarkWebDesign\SymfonyAddonConstraints\Collection;
+use DarkWebDesign\SymfonyAddonConstraints\CollectionValidator;
+use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\TraversableObject;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
 
 class CollectionValidatorTest extends AbstractConstraintValidatorTest
 {
     /**
-     * @return \DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator
+     * @return \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
      */
     protected function createValidator()
     {

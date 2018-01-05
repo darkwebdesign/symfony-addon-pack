@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Transformer\\": "src/"
+            "DarkWebDesign\\SymfonyAddonTransformers\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Transformer\\Tests\\": "tests/"
+            "DarkWebDesign\\SymfonyAddonTransformers\\Tests\\": "tests/"
         }
     }
 }

@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Constraint\\": "src/"
+            "DarkWebDesign\\SymfonyAddonConstraints\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Constraint\\Tests\\": "tests/"
+            "DarkWebDesign\\SymfonyAddonConstraints\\Tests\\": "tests/"
         }
     }
 }

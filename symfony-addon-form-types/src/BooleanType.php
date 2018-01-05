@@ -18,9 +18,9 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType;
+namespace DarkWebDesign\SymfonyAddonFormTypes;
 
-use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
+use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

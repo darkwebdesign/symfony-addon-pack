@@ -31,7 +31,7 @@ Options:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 
 class Person
 {
@@ -54,7 +54,7 @@ class Person
 AppBundle\Entity\Person:
     properties:
         emails:
-            - DarkWebDesign\SymfonyAddon\Constraint\Collection:
+            - DarkWebDesign\SymfonyAddonConstraints\Collection:
                 constraints:
                     - Email
                     - NotBlank
@@ -71,7 +71,7 @@ AppBundle\Entity\Person:
 
     <class name="AppBundle\Entity\Person">
         <property name="emails">
-            <constraint name="DarkWebDesign\SymfonyAddon\Constraint\Collection">
+            <constraint name="DarkWebDesign\SymfonyAddonConstraints\Collection">
                 <option name="constraints">
                     <constraint name="Email" />
                     <constraint name="NotBlank" />
@@ -88,7 +88,7 @@ AppBundle\Entity\Person:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Person

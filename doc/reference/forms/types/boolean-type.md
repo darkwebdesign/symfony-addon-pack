@@ -41,14 +41,14 @@ Parent type:
 
 ```yml
 boolean_type:
-    class: DarkWebDesign\SymfonyAddon\FormType\BooleanType
+    class: DarkWebDesign\SymfonyAddonFormTypes\BooleanType
     tags: [{ name: form.type }]
 ```
 
 ### XML
 
 ```xml
-<service id="boolean_type" class="DarkWebDesign\SymfonyAddon\FormType\BooleanType">
+<service id="boolean_type" class="DarkWebDesign\SymfonyAddonFormTypes\BooleanType">
     <tag name="form.type" />
 </service>
 ```

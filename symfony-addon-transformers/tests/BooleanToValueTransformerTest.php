@@ -18,9 +18,9 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
+namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
-use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
+use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
 
 class BooleanToValueTransformerTest extends \PHPUnit_Framework_TestCase
 {

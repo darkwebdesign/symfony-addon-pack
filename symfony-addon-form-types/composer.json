@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\FormType\\": "src/"
+            "DarkWebDesign\\SymfonyAddonFormTypes\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\FormType\\Tests\\": "tests/"
+            "DarkWebDesign\\SymfonyAddonFormTypes\\Tests\\": "tests/"
         }
     }
 }

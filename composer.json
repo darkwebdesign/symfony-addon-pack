@@ -26,16 +26,16 @@
     },
     "autoload": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Constraint\\": "symfony-addon-constraints/src/",
-            "DarkWebDesign\\SymfonyAddon\\FormType\\": "symfony-addon-form-types/src/",
-            "DarkWebDesign\\SymfonyAddon\\Transformer\\": "symfony-addon-transformers/src/"
+            "DarkWebDesign\\SymfonyAddonConstraints\\": "symfony-addon-constraints/src/",
+            "DarkWebDesign\\SymfonyAddonFormTypes\\": "symfony-addon-form-types/src/",
+            "DarkWebDesign\\SymfonyAddonTransformers\\": "symfony-addon-transformers/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DarkWebDesign\\SymfonyAddon\\Constraint\\Tests\\": "symfony-addon-constraints/tests/",
-            "DarkWebDesign\\SymfonyAddon\\FormType\\Tests\\": "symfony-addon-form-types/tests/",
-            "DarkWebDesign\\SymfonyAddon\\Transformer\\Tests\\": "symfony-addon-transformers/tests/"
+            "DarkWebDesign\\SymfonyAddonConstraints\\Tests\\": "symfony-addon-constraints/tests/",
+            "DarkWebDesign\\SymfonyAddonFormTypes\\Tests\\": "symfony-addon-form-types/tests/",
+            "DarkWebDesign\\SymfonyAddonTransformers\\Tests\\": "symfony-addon-transformers/tests/"
         }
     }
 }

@@ -18,9 +18,9 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType\Tests;
+namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
-use DarkWebDesign\SymfonyAddon\FormType\BooleanType;
+use DarkWebDesign\SymfonyAddonFormTypes\BooleanType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class BooleanTypeTest extends TypeTestCase

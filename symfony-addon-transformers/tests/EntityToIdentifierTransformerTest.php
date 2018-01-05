@@ -18,17 +18,17 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
+namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
-use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\AbstractPerson;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\Employee;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\PointOfInterest;
+use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
 
 class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City */
+    /** @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City */
     private $entity;
 
     /** @var string */
@@ -151,7 +151,7 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected entity DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City.
+     * @expectedExceptionMessage Expected entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City.
      */
     public function testTransformInvalidEntity()
     {
@@ -208,7 +208,7 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Entity DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City with identifier "123" not found.
+     * @expectedExceptionMessage Entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City with identifier "123" not found.
      */
     public function testReverseTransformEntityNotFound()
     {

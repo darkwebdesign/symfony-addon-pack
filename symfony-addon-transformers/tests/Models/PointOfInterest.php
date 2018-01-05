@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Transformer\Tests\Models;
+namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
 /**
  * @Table(name="pointofinterest")
@@ -53,7 +53,7 @@ class PointOfInterest
     private $name;
 
     /**
-     * @var \DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City
+     * @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City
      *
      * @ManyToOne(targetEntity="City")
      *
@@ -112,7 +112,7 @@ class PointOfInterest
     }
 
     /**
-     * @return \DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City
+     * @return \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City
      */
     public function getCity()
     {
@@ -120,7 +120,7 @@ class PointOfInterest
     }
 
     /**
-     * @param \DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City $city
+     * @param \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City $city
      */
     public function setCity(City $city)
     {

@@ -18,16 +18,16 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType\Tests;
+namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
-use DarkWebDesign\SymfonyAddon\FormType\EntityType;
-use DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City;
+use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
+use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class EntityTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City */
+    /** @var \DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City */
     private $entity;
 
     /** @var string */
@@ -154,7 +154,7 @@ class EntityTypeTest extends TypeTestCase
 
     /**
      * @expectedException \Symfony\Component\Form\Exception\RuntimeException
-     * @expectedExceptionMessage Class "DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?
+     * @expectedExceptionMessage Class "DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?
      */
     public function testNoEntityManager()
     {
