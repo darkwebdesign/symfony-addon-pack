@@ -25,16 +25,6 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class BooleanTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\BooleanType */
-    private $type;
-
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->type = new BooleanType();
-    }
-
     /**
      * @param string $valueTrue
      * @param string $valueFalse
@@ -48,13 +38,13 @@ class BooleanTypeTest extends TypeTestCase
             'value_false' => $valueFalse,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit($valueTrue);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertTrue($form->getData());
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit($valueFalse);
 
         $this->assertTrue($form->isSynchronized());
@@ -74,7 +64,7 @@ class BooleanTypeTest extends TypeTestCase
             'value_false' => $valueFalse,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit('foo');
 
         $this->assertFalse($form->isSynchronized());
@@ -93,7 +83,7 @@ class BooleanTypeTest extends TypeTestCase
             'widget' => $widget,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $view = $form->createView();
 
         $this->assertSame($expanded, $view->vars['expanded']);
@@ -107,7 +97,7 @@ class BooleanTypeTest extends TypeTestCase
             'value_false' => 'aCamel Cased  Label',
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $view = $form->createView();
 
         $this->assertCount(2, $view->vars['choices']);

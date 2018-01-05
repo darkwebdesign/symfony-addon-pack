@@ -21,21 +21,15 @@
 namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 
 use DarkWebDesign\SymfonyAddon\Constraint\Collection;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ArrayAccessObject;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
-use PHPUnit_Framework_TestCase;
-use stdClass;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class CollectionTest extends PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
         new Collection(array(
             'constraints' => array(
-                new NotBlank(),
+                new Assert\NotBlank(),
             ),
         ));
     }
@@ -43,7 +37,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function testConstructDefaultOption()
     {
         new Collection(array(
-            new NotBlank(),
+            new Assert\NotBlank(),
         ));
     }
 
@@ -88,7 +82,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     {
         new Collection(array(
             'constraints' => array(
-                new Valid(),
+                new Assert\Valid(),
             ),
         ));
     }
@@ -103,7 +97,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
             'int' => array(1),
             'float' => array(1.2),
             'string' => array('foo'),
-            'object' => array(new stdClass()),
+            'object' => array(new \stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );

@@ -21,6 +21,7 @@
 namespace DarkWebDesign\SymfonyAddon\FormType;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -51,6 +52,6 @@ class BirthdayType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\DateType';
+        return DateType::class;
     }
 }

@@ -22,6 +22,7 @@ namespace DarkWebDesign\SymfonyAddon\FormType;
 
 use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -93,7 +94,6 @@ class BooleanType extends AbstractType
         $resolver->setNormalizer('label_true', $labelTrueNormalizer);
         $resolver->setNormalizer('label_false', $labelFalseNormalizer);
         $resolver->setNormalizer('choices', $choicesNormalizer);
-        $resolver->setNormalizer('choices_as_values', $choicesAsValuesNormalizer);
         $resolver->setNormalizer('expanded', $expandedNormalizer);
         $resolver->setNormalizer('multiple', $multipleNormalizer);
 
@@ -112,7 +112,7 @@ class BooleanType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
+        return ChoiceType::class;
     }
 
     /**

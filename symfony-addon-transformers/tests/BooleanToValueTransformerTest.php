@@ -21,10 +21,8 @@
 namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
 
 use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
-use PHPUnit_Framework_TestCase;
-use stdClass;
 
-class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
+class BooleanToValueTransformerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param string $trueValue
@@ -160,7 +158,7 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
             'float' => array(1.2),
             'string' => array('foo'),
             'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass),
+            'object' => array(new \stdClass),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );
@@ -173,7 +171,7 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
     {
         return array(
             'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass),
+            'object' => array(new \stdClass),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );
