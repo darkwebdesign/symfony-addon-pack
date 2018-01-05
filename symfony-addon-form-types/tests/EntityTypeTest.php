@@ -22,6 +22,7 @@ namespace DarkWebDesign\SymfonyAddon\FormType\Tests;
 
 use DarkWebDesign\SymfonyAddon\FormType\EntityType;
 use DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City;
+use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class EntityTypeTest extends TypeTestCase
@@ -47,13 +48,8 @@ class EntityTypeTest extends TypeTestCase
     /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata */
     private $metadata;
 
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\EntityType */
-    private $type;
-
     protected function setUp()
     {
-        parent::setUp();
-
         $this->entity = new City();
         $this->entity->setId(123);
 
@@ -72,8 +68,20 @@ class EntityTypeTest extends TypeTestCase
         $this->metadata->method('getIdentifierValues')->willReturn(array('id' => $this->identifier));
 
         $this->metadata->isIdentifierComposite = false;
-        
-        $this->type = new EntityType($this->registry);
+
+        parent::setUp();
+    }
+
+    /**
+     * @return array
+     */
+    protected function getExtensions()
+    {
+        $type = new EntityType($this->registry);
+
+        return array(
+            new PreloadedExtension(array($type), array()),
+        );
     }
 
     public function test()
@@ -86,7 +94,7 @@ class EntityTypeTest extends TypeTestCase
             'class' => $this->className,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
@@ -103,7 +111,7 @@ class EntityTypeTest extends TypeTestCase
             'class' => $this->className,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertFalse($form->isSynchronized());
@@ -119,7 +127,7 @@ class EntityTypeTest extends TypeTestCase
             'entity_manager' => $this->entityManager,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
@@ -137,7 +145,7 @@ class EntityTypeTest extends TypeTestCase
             'entity_manager' => 'Doctrine\ORM\EntityManager',
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
@@ -159,7 +167,7 @@ class EntityTypeTest extends TypeTestCase
             'class' => $this->className,
         );
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());

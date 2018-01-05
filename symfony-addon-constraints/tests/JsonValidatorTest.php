@@ -23,23 +23,13 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 use DarkWebDesign\SymfonyAddon\Constraint\Json;
 use DarkWebDesign\SymfonyAddon\Constraint\JsonValidator;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
-use stdClass;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
-use Symfony\Component\Validator\Validation;
 
 class JsonValidatorTest extends AbstractConstraintValidatorTest
 {
     /**
-     * @return int
-     */
-    protected function getApiVersion()
-    {
-        return Validation::API_VERSION_2_5;
-    }
-
-    /**
-     * @return \DarkWebDesign\SymfonyAddon\Constraint\BsnValidator
+     * @return \DarkWebDesign\SymfonyAddon\Constraint\JsonValidator
      */
     protected function createValidator()
     {
@@ -135,7 +125,7 @@ class JsonValidatorTest extends AbstractConstraintValidatorTest
     {
         return array(
             'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass()),
+            'object' => array(new \stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {}),
         );

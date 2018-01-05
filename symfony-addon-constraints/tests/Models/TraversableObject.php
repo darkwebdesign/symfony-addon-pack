@@ -20,10 +20,7 @@
 
 namespace DarkWebDesign\SymfonyAddon\Constraint\Tests\Models;
 
-use ArrayIterator;
-use IteratorAggregate;
-
-class TraversableObject implements IteratorAggregate
+class TraversableObject implements \IteratorAggregate
 {
     /** @var array */
     private $container;
@@ -41,6 +38,6 @@ class TraversableObject implements IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->container);
+        return new \ArrayIterator($this->container);
     }
 }

@@ -23,21 +23,11 @@ namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
 use DarkWebDesign\SymfonyAddon\Constraint\Collection;
 use DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator;
 use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
-use stdClass;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
-use Symfony\Component\Validator\Validation;
 
 class CollectionValidatorTest extends AbstractConstraintValidatorTest
 {
-    /**
-     * @return int
-     */
-    protected function getApiVersion()
-    {
-        return Validation::API_VERSION_2_5;
-    }
-
     /**
      * @return \DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator
      */
@@ -128,7 +118,7 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
             'int' => array(1),
             'float' => array(1.2),
             'string' => array('foo'),
-            'object' => array(new stdClass()),
+            'object' => array(new \stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {})
         );

@@ -24,10 +24,8 @@ use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\Employee;
 use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\PointOfInterest;
-use PHPUnit_Framework_TestCase;
-use stdClass;
 
-class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
+class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var \DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City */
     private $entity;
@@ -243,7 +241,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     {
         return array(
             'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass()),
+            'object' => array(new \stdClass()),
             'resource' => array(tmpfile()),
             'callable' => array(function () {}),
         );

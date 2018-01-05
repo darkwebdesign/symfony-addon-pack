@@ -25,19 +25,9 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class BirthdayTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\BirthdayType */
-    private $type;
-
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->type = new BirthdayType();
-    }
-
     public function test()
     {
-        $form = $this->factory->create($this->type);
+        $form = $this->factory->create(BirthdayType::class);
 
         $choices = $form->get('year')->getConfig()->getOption('choices');
 

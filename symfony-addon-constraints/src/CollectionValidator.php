@@ -20,8 +20,6 @@
 
 namespace DarkWebDesign\SymfonyAddon\Constraint;
 
-use ArrayAccess;
-use DarkWebDesign\SymfonyAddon\Constraint\Collection;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -47,7 +45,7 @@ class CollectionValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Collection) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__ . '\Collection');
+            throw new UnexpectedTypeException($constraint, Collection::class);
         }
 
         if (null === $value) {
