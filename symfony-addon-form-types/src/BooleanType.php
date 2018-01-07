@@ -54,14 +54,12 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $self = $this;
-
-        $labelTrueNormalizer = function (Options $options, $value) use ($self) {
-            return !is_null($value) ? (string) $value : $self->humanize($options['value_true']);
+        $labelTrueNormalizer = function (Options $options, $value) {
+            return !is_null($value) ? (string) $value : $this->humanize($options['value_true']);
         };
 
-        $labelFalseNormalizer = function (Options $options, $value) use ($self) {
-            return !is_null($value) ? (string) $value : $self->humanize($options['value_false']);
+        $labelFalseNormalizer = function (Options $options, $value) {
+            return !is_null($value) ? (string) $value : $this->humanize($options['value_false']);
         };
 
         $choicesNormalizer = function (Options $options) {
@@ -117,8 +115,6 @@ class BooleanType extends AbstractType
      * @param string $text
      *
      * @return string
-     *
-     * @deprecated since 2.8, will be removed in 3.0
      */
     public function humanize($text)
     {
