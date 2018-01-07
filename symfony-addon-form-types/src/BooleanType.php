@@ -115,8 +115,6 @@ class BooleanType extends AbstractType
      * @param string $text
      *
      * @return string
-     *
-     * @deprecated since 2.8, will be removed in 3.0
      */
     public function humanize($text)
     {
