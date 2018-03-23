@@ -32,6 +32,7 @@ Options:
 namespace AppBundle\Entity;
 
 use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Person
 {
@@ -88,7 +89,8 @@ AppBundle\Entity\Person:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Person
