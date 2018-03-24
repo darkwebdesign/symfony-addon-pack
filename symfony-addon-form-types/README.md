@@ -4,14 +4,14 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-form-types/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-form-types)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-form-types/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-form-types)
 
-[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-form-types.svg?branch=2.8)](https://travis-ci.org/darkwebdesign/symfony-addon-form-types?branch=2.8)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-form-types/branch/2.8/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-form-types)
-[![PHP Version](https://img.shields.io/badge/php-5.3%2B-777BB3.svg)](https://php.net/)
-[![Symfony Version](https://img.shields.io/badge/symfony-2.8-93C74B.svg)](https://symfony.com/)
+[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-form-types.svg?branch=3.0)](https://travis-ci.org/darkwebdesign/symfony-addon-form-types?branch=3.0)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-form-types/branch/3.0/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-form-types)
+[![PHP Version](https://img.shields.io/badge/php-5.5%2B-777BB3.svg)](https://php.net/)
+[![Symfony Version](https://img.shields.io/badge/symfony-3.0-93C74B.svg)](https://symfony.com/)
 
 Symfony Add-on Form Types is a collection of extra Symfony form field types that you can use in your Symfony applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/2.8/doc/reference/forms/types/index.md).
+Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/3.0/doc/reference/forms/types/index.md).
 
 ## Features
 
