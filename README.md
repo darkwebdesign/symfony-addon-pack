@@ -4,14 +4,14 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-pack/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-pack)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-pack/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-pack)
 
-[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-pack.svg?branch=2.8)](https://travis-ci.org/darkwebdesign/symfony-addon-pack?branch=2.8)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-pack/branch/2.8/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-pack)
-[![PHP Version](https://img.shields.io/badge/php-5.3%2B-777BB3.svg)](https://php.net/)
-[![Symfony Version](https://img.shields.io/badge/symfony-2.8-93C74B.svg)](https://symfony.com/)
+[![Build Status](https://travis-ci.org/darkwebdesign/symfony-addon-pack.svg?branch=3.1)](https://travis-ci.org/darkwebdesign/symfony-addon-pack?branch=3.1)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-pack/branch/3.1/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-pack)
+[![PHP Version](https://img.shields.io/badge/php-5.5%2B-777BB3.svg)](https://php.net/)
+[![Symfony Version](https://img.shields.io/badge/symfony-3.1-93C74B.svg)](https://symfony.com/)
 
 Symfony Add-on Pack is a collection of extra Symfony components that you can use in your Symfony applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/2.8/doc/index.md).
+Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/3.1/doc/index.md).
 
 ## Features
 
