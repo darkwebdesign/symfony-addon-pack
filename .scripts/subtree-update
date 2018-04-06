@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+readonly DIR="$(cd "$(dirname "$BASH_SOURCE[0]")" && pwd)";
+
+cd "$DIR";
+
+./subtree-update-branch master
+
+./subtree-update-branch 2.3
+./subtree-update-branch 2.4
+./subtree-update-branch 2.5
+./subtree-update-branch 2.6
+./subtree-update-branch 2.7
+./subtree-update-branch 2.8
+
+./subtree-update-branch 3.0
+./subtree-update-branch 3.1

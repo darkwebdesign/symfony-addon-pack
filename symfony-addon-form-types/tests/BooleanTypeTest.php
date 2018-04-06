@@ -18,23 +18,13 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType\Tests;
+namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
-use DarkWebDesign\SymfonyAddon\FormType\BooleanType;
+use DarkWebDesign\SymfonyAddonFormTypes\BooleanType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class BooleanTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\BooleanType */
-    private $type;
-
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->type = new BooleanType();
-    }
-
     /**
      * @param string $valueTrue
      * @param string $valueFalse
@@ -43,18 +33,18 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function test($valueTrue, $valueFalse)
     {
-        $options = array(
+        $options = [
             'value_true' => $valueTrue,
             'value_false' => $valueFalse,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit($valueTrue);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertTrue($form->getData());
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit($valueFalse);
 
         $this->assertTrue($form->isSynchronized());
@@ -69,12 +59,12 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function testInvalidValue($valueTrue, $valueFalse)
     {
-        $options = array(
+        $options = [
             'value_true' => $valueTrue,
             'value_false' => $valueFalse,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit('foo');
 
         $this->assertFalse($form->isSynchronized());
@@ -89,11 +79,11 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function testWidget($widget, $expanded)
     {
-        $options = array(
+        $options = [
             'widget' => $widget,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $view = $form->createView();
 
         $this->assertSame($expanded, $view->vars['expanded']);
@@ -102,12 +92,12 @@ class BooleanTypeTest extends TypeTestCase
 
     public function testHumanize()
     {
-        $options = array(
+        $options = [
             'value_true' => 'an_underscored__label',
             'value_false' => 'aCamel Cased  Label',
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(BooleanType::class, null, $options);
         $view = $form->createView();
 
         $this->assertCount(2, $view->vars['choices']);
@@ -120,14 +110,14 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function providerValueTrueFalse()
     {
-        return array(
-            'true/false' => array('true', 'false'),
-            'yes/no' => array('yes', 'no'),
-            'on/off' => array('on', 'off'),
-            '1/0' => array('1', '0'),
-            '1/2' => array(1, 2),
-            '1.3/2.7' => array(1.3, 2.7),
-        );
+        return [
+            'true/false' => ['true', 'false'],
+            'yes/no' => ['yes', 'no'],
+            'on/off' => ['on', 'off'],
+            '1/0' => ['1', '0'],
+            '1/2' => [1, 2],
+            '1.3/2.7' => [1.3, 2.7],
+        ];
     }
 
     /**
@@ -135,9 +125,9 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function providerWidget()
     {
-        return array(
-            'choice' => array('choice', false),
-            'radio' => array('radio', true),
-        );
+        return [
+            'choice' => ['choice', false],
+            'radio' => ['radio', true],
+        ];
     }
 }

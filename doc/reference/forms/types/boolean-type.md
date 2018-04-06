@@ -33,22 +33,23 @@ Overridden options:
 
 Parent type:
 
-* [ChoiceType](http://symfony.com/doc/2.8/reference/forms/types/choice.html)
+* [ChoiceType](http://symfony.com/doc/3.1/reference/forms/types/choice.html)
 
 ## Configuring as a form field type
 
 ### YAML
 
 ```yml
-boolean_type:
-    class: DarkWebDesign\SymfonyAddon\FormType\BooleanType
+DarkWebDesign\SymfonyAddonFormTypes\BooleanType:
+    class: DarkWebDesign\SymfonyAddonFormTypes\BooleanType
     tags: [{ name: form.type }]
 ```
 
 ### XML
 
 ```xml
-<service id="boolean_type" class="DarkWebDesign\SymfonyAddon\FormType\BooleanType">
+<service id="DarkWebDesign\SymfonyAddonFormTypes\BooleanType"
+         class="DarkWebDesign\SymfonyAddonFormTypes\BooleanType">
     <tag name="form.type" />
 </service>
 ```

@@ -18,33 +18,27 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Collection;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ArrayAccessObject;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\ToStringObject;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
-use PHPUnit_Framework_TestCase;
-use stdClass;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Valid;
+use DarkWebDesign\SymfonyAddonConstraints\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class CollectionTest extends PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        new Collection(array(
-            'constraints' => array(
-                new NotBlank(),
-            ),
-        ));
+        new Collection([
+            'constraints' => [
+                new Assert\NotBlank(),
+            ],
+        ]);
     }
 
     public function testConstructDefaultOption()
     {
-        new Collection(array(
-            new NotBlank(),
-        ));
+        new Collection([
+            new Assert\NotBlank(),
+        ]);
     }
 
     /**
@@ -64,9 +58,9 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructConstraintsOptionNoArray($constraints)
     {
-        new Collection(array(
+        new Collection([
             'constraints' => $constraints,
-        ));
+        ]);
     }
 
     /**
@@ -74,11 +68,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructNoConstraint()
     {
-        new Collection(array(
-            'constraints' => array(
+        new Collection([
+            'constraints' => [
                 'foo',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -86,11 +80,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructValidConstraint()
     {
-        new Collection(array(
-            'constraints' => array(
-                new Valid(),
-            ),
-        ));
+        new Collection([
+            'constraints' => [
+                new Assert\Valid(),
+            ],
+        ]);
     }
 
     /**
@@ -98,14 +92,14 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function providerNoArray()
     {
-        return array(
-            'bool' => array(true),
-            'int' => array(1),
-            'float' => array(1.2),
-            'string' => array('foo'),
-            'object' => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'bool' => [true],
+            'int' => [1],
+            'float' => [1.2],
+            'string' => ['foo'],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 }

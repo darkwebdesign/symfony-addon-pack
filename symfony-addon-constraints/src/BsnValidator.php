@@ -18,9 +18,8 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint;
+namespace DarkWebDesign\SymfonyAddonConstraints;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Bsn;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -55,7 +54,7 @@ class BsnValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Bsn) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__ . '\Bsn');
+            throw new UnexpectedTypeException($constraint, Bsn::class);
         }
 
         if (null === $value || '' === $value) {
@@ -78,7 +77,7 @@ class BsnValidator extends ConstraintValidator
             }
         }
 
-        $this->buildViolation($constraint->message)
+        $this->context->buildViolation($constraint->message)
             ->setParameter('{{ value }}', $this->formatValue($value))
             ->addViolation();
     }

@@ -9,8 +9,8 @@ This constraint is used to ensure that a value has the proper format of a JSON-e
 
 Applies to:
 
-* [properties](http://symfony.com/doc/2.8/book/validation.html#properties)
-* [methods](http://symfony.com/doc/2.8/book/validation.html#getters)
+* [properties](http://symfony.com/doc/3.1/book/validation.html#properties)
+* [methods](http://symfony.com/doc/3.1/book/validation.html#getters)
 
 Options:
 
@@ -24,7 +24,7 @@ Options:
 // src/AppBundle/Entity/Transaction.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 
 class Transaction
 {
@@ -42,7 +42,7 @@ class Transaction
 AppBundle\Entity\Transaction:
     properties:
         data:
-            - DarkWebDesign\SymfonyAddon\Constraint\Json: ~
+            - DarkWebDesign\SymfonyAddonConstraints\Json: ~
 ```
 
 ### XML
@@ -56,7 +56,7 @@ AppBundle\Entity\Transaction:
 
     <class name="AppBundle\Entity\Transaction">
         <property name="data">
-            <constraint name="DarkWebDesign\SymfonyAddon\Constraint\Json" />
+            <constraint name="DarkWebDesign\SymfonyAddonConstraints\Json" />
         </property>
     </class>
 </constraint-mapping>
@@ -68,7 +68,7 @@ AppBundle\Entity\Transaction:
 // src/AppBundle/Entity/Transaction.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Transaction

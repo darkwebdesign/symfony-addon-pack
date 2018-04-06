@@ -13,14 +13,15 @@ This transformer is used to transform an identifier into a Doctrine entity and v
 
 ```yml
 task_to_identifier_transformer:
-    class: DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer
+    class: DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
     arguments: ["@doctrine.orm.entity_manager", "AppBundle:Task"]
 ```
 
 ### XML
 
 ```xml
-<service id="task_to_identifier_transformer" class="DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer">
+<service id="task_to_identifier_transformer"
+         class="DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer">
     <argument type="service" id="doctrine.orm.entity_manager" />
     <argument type="string">AppBundle:Task</argument>
 </service>

@@ -18,18 +18,17 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
+namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
-use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\Employee;
-use DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\PointOfInterest;
-use PHPUnit_Framework_TestCase;
-use stdClass;
+use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
+use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
 
-class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
+class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City */
+    /** @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City */
     private $entity;
 
     /** @var string */
@@ -38,13 +37,13 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     /** @var int */
     private $identifier;
 
-    /** @var \Doctrine\Common\Persistence\ObjectManager */
+    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit_Framework_MockObject_MockObject */
     private $entityManager;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository */
+    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit_Framework_MockObject_MockObject */
     private $repository;
 
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata */
+    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
     private $metadata;
 
     protected function setUp()
@@ -62,8 +61,8 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
-        $this->metadata->method('getName')->willReturnCallback(array($this, 'getClassName'));
-        $this->metadata->method('getIdentifierValues')->willReturnCallback(array($this, 'getIdentifier'));
+        $this->metadata->method('getName')->willReturnCallback([$this, 'getClassName']);
+        $this->metadata->method('getIdentifierValues')->willReturnCallback([$this, 'getIdentifier']);
 
         $this->metadata->isIdentifierComposite = false;
     }
@@ -81,7 +80,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function getIdentifier()
     {
-        return array('id' => $this->identifier);
+        return ['id' => $this->identifier];
     }
 
     /**
@@ -115,7 +114,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testTransformDiscriminated()
     {
-        $this->className = 'DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\AbstractPerson';
+        $this->className = AbstractPerson::class;
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -152,7 +151,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected entity DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City.
+     * @expectedExceptionMessage Expected entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City.
      */
     public function testTransformInvalidEntity()
     {
@@ -209,7 +208,7 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Entity DarkWebDesign\SymfonyAddon\Transformer\Tests\Models\City with identifier "123" not found.
+     * @expectedExceptionMessage Entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City with identifier "123" not found.
      */
     public function testReverseTransformEntityNotFound()
     {
@@ -225,15 +224,15 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function providerNoObject()
     {
-        return array(
-            'bool' => array(true),
-            'int' => array(1),
-            'float' => array(1.2),
-            'string' => array('foo'),
-            'array' => array(array('foo', 'bar')),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'bool' => [true],
+            'int' => [1],
+            'float' => [1.2],
+            'string' => ['foo'],
+            'array' => [['foo', 'bar']],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 
     /**
@@ -241,11 +240,11 @@ class EntityToIdentifierTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function providerNoScalar()
     {
-        return array(
-            'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
+        return [
+            'array' => [['foo', 'bar']],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 }

@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests\Models;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests\Models;
 
 class ToStringObject
 {

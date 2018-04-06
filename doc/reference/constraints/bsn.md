@@ -9,8 +9,8 @@ This constraint is used to ensure that a value has the proper format of a Dutch 
 
 Applies to:
 
-* [properties](http://symfony.com/doc/2.8/book/validation.html#properties)
-* [methods](http://symfony.com/doc/2.8/book/validation.html#getters)
+* [properties](http://symfony.com/doc/3.1/book/validation.html#properties)
+* [methods](http://symfony.com/doc/3.1/book/validation.html#getters)
 
 Options:
 
@@ -24,7 +24,7 @@ Options:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 
 class Person
 {
@@ -42,7 +42,7 @@ class Person
 AppBundle\Entity\Person:
     properties:
         socialSecurityNumber:
-            - DarkWebDesign\SymfonyAddon\Constraint\Bsn: ~
+            - DarkWebDesign\SymfonyAddonConstraints\Bsn: ~
 ```
 
 ### XML
@@ -56,7 +56,7 @@ AppBundle\Entity\Person:
 
     <class name="AppBundle\Entity\Person">
         <property name="socialSecurityNumber">
-            <constraint name="DarkWebDesign\SymfonyAddon\Constraint\Bsn" />
+            <constraint name="DarkWebDesign\SymfonyAddonConstraints\Bsn" />
         </property>
     </class>
 </constraint-mapping>
@@ -68,7 +68,7 @@ AppBundle\Entity\Person:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Person

@@ -18,13 +18,11 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Transformer\Tests;
+namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
-use DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer;
-use PHPUnit_Framework_TestCase;
-use stdClass;
+use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
 
-class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
+class BooleanToValueTransformerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param string $trueValue
@@ -142,12 +140,12 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function providerTrueFalseValue()
     {
-        return array(
-            'true/false' => array(true, false),
-            'yes/no' => array('yes', 'no'),
-            'on/off' => array('on', 'off'),
-            '1/0' => array(1, 0),
-        );
+        return [
+            'true/false' => [true, false],
+            'yes/no' => ['yes', 'no'],
+            'on/off' => ['on', 'off'],
+            '1/0' => [1, 0],
+        ];
     }
 
     /**
@@ -155,15 +153,15 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function providerNoBool()
     {
-        return array(
-            'int' => array(1),
-            'float' => array(1.2),
-            'string' => array('foo'),
-            'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'int' => [1],
+            'float' => [1.2],
+            'string' => ['foo'],
+            'array' => [['foo', 'bar']],
+            'object' => [new \stdClass],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 
     /**
@@ -171,11 +169,11 @@ class BooleanToValueTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function providerNoScalar()
     {
-        return array(
-            'array' => array(array('foo', 'bar')),
-            'object' => array(new stdClass),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'array' => [['foo', 'bar']],
+            'object' => [new \stdClass],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 }

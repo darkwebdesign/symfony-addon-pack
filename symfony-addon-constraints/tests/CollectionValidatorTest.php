@@ -18,28 +18,18 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint\Tests;
+namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
-use DarkWebDesign\SymfonyAddon\Constraint\Collection;
-use DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator;
-use DarkWebDesign\SymfonyAddon\Constraint\Tests\Models\TraversableObject;
-use stdClass;
+use DarkWebDesign\SymfonyAddonConstraints\Collection;
+use DarkWebDesign\SymfonyAddonConstraints\CollectionValidator;
+use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\TraversableObject;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
-use Symfony\Component\Validator\Validation;
 
 class CollectionValidatorTest extends AbstractConstraintValidatorTest
 {
     /**
-     * @return int
-     */
-    protected function getApiVersion()
-    {
-        return Validation::API_VERSION_2_5;
-    }
-
-    /**
-     * @return \DarkWebDesign\SymfonyAddon\Constraint\CollectionValidator
+     * @return \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
      */
     protected function createValidator()
     {
@@ -53,10 +43,10 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidate($value)
     {
-        $constraints = array(
+        $constraints = [
             new Assert\Email(),
             new Assert\NotBlank(),
-        );
+        ];
 
         $i = 0;
 
@@ -76,16 +66,16 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidateInvalidConstraint()
     {
-        $this->validator->validate(array(), new Assert\NotNull());
+        $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
     }
 
     public function testValidateNull()
     {
-        $this->validator->validate(null, new Collection(array(
+        $this->validator->validate(null, new Collection([
             new Assert\NotBlank(),
-        )));
+        ]));
 
         $this->assertNoViolation();
     }
@@ -99,9 +89,9 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidateNoArray($value)
     {
-        $this->validator->validate($value, new Collection(array(
+        $this->validator->validate($value, new Collection([
             new Assert\NotBlank(),
-        )));
+        ]));
 
         $this->assertNoViolation();
     }
@@ -111,11 +101,11 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerValidCollection()
     {
-        return array(
-            'empty' => array(array()),
-            'array' => array(array('my.email@address.com')),
-            'traversableObject' => array(new TraversableObject(array('my.email@address.com'))),
-        );
+        return [
+            'empty' => [[]],
+            'array' => [['my.email@address.com']],
+            'traversableObject' => [new TraversableObject(['my.email@address.com'])],
+        ];
     }
 
     /**
@@ -123,14 +113,14 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerNoArray()
     {
-        return array(
-            'bool' => array(true),
-            'int' => array(1),
-            'float' => array(1.2),
-            'string' => array('foo'),
-            'object' => array(new stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'bool' => [true],
+            'int' => [1],
+            'float' => [1.2],
+            'string' => ['foo'],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 }

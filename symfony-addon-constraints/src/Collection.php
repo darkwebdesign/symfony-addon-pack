@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint;
+namespace DarkWebDesign\SymfonyAddonConstraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -92,6 +92,6 @@ class Collection extends Constraint
      */
     public function getRequiredOptions()
     {
-        return array('constraints');
+        return ['constraints'];
     }
 }

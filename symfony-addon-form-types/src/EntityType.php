@@ -18,9 +18,9 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType;
+namespace DarkWebDesign\SymfonyAddonFormTypes;
 
-use DarkWebDesign\SymfonyAddon\Transformer\EntityToIdentifierTransformer;
+use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
@@ -94,21 +94,21 @@ class EntityType extends AbstractType
             return false;
         };
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'entity_manager' => null,
-        ));
+        ]);
 
-        $resolver->setRequired(array(
+        $resolver->setRequired([
             'class',
-        ));
+        ]);
 
         $resolver->setNormalizer('entity_manager', $entityManagerNormalizer);
         $resolver->setNormalizer('compound', $compoundNormalizer);
 
-        $resolver->setAllowedTypes('entity_manager', array(
+        $resolver->setAllowedTypes('entity_manager', [
             'null',
             'string',
-            'Doctrine\Common\Persistence\ObjectManager',
-        ));
+            ObjectManager::class,
+        ]);
     }
 }

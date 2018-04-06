@@ -16,8 +16,8 @@ Note: In contradiction to the Collection constraint provided by Symfony, this co
 
 Applies to:
 
-* [properties](http://symfony.com/doc/2.8/book/validation.html#properties)
-* [methods](http://symfony.com/doc/2.8/book/validation.html#getters)
+* [properties](http://symfony.com/doc/3.1/book/validation.html#properties)
+* [methods](http://symfony.com/doc/3.1/book/validation.html#getters)
 
 Options:
 
@@ -31,7 +31,8 @@ Options:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Constraint as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Person
 {
@@ -54,7 +55,7 @@ class Person
 AppBundle\Entity\Person:
     properties:
         emails:
-            - DarkWebDesign\SymfonyAddon\Constraint\Collection:
+            - DarkWebDesign\SymfonyAddonConstraints\Collection:
                 constraints:
                     - Email
                     - NotBlank
@@ -71,7 +72,7 @@ AppBundle\Entity\Person:
 
     <class name="AppBundle\Entity\Person">
         <property name="emails">
-            <constraint name="DarkWebDesign\SymfonyAddon\Constraint\Collection">
+            <constraint name="DarkWebDesign\SymfonyAddonConstraints\Collection">
                 <option name="constraints">
                     <constraint name="Email" />
                     <constraint name="NotBlank" />
@@ -88,7 +89,8 @@ AppBundle\Entity\Person:
 // src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
-use DarkWebDesign\SymfonyAddon\Validator\Constraints as AddonAssert;
+use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class Person
@@ -98,10 +100,10 @@ class Person
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('emails', new AddonAssert\Collection(
-            'constraints' => array(
+            'constraints' => [
                 new Assert\Email(),
                 new Assert\NotBlank(),
-            ),
+            ],
         ));
     }
 }

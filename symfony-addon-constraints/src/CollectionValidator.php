@@ -18,14 +18,11 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\Constraint;
+namespace DarkWebDesign\SymfonyAddonConstraints;
 
-use ArrayAccess;
-use DarkWebDesign\SymfonyAddon\Constraint\Collection;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Traversable;
 
 /**
  * Collection validator.
@@ -47,14 +44,14 @@ class CollectionValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Collection) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__ . '\Collection');
+            throw new UnexpectedTypeException($constraint, Collection::class);
         }
 
         if (null === $value) {
             return;
         }
 
-        if (!is_array($value) && !$value instanceof Traversable) {
+        if (!is_array($value) && !$value instanceof \Traversable) {
             throw new UnexpectedTypeException($value, 'array or Traversable');
         }
 

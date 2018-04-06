@@ -18,9 +18,10 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType;
+namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -39,9 +40,9 @@ class BirthdayType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'years' => range(date('Y'), date('Y') - 120),
-        ));
+        ]);
     }
 
     /**
@@ -51,6 +52,6 @@ class BirthdayType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\DateType';
+        return DateType::class;
     }
 }

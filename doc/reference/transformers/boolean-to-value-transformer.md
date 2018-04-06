@@ -13,14 +13,15 @@ This transformer is used to transform a boolean into a scalar value and vice ver
 
 ```yml
 boolean_to_yesno_transformer:
-    class: DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer
+    class: DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
     arguments: ["yes", "no"]
 ```
 
 ### XML
 
 ```xml
-<service id="boolean_to_yesno_transformer" class="DarkWebDesign\SymfonyAddon\Transformer\BooleanToValueTransformer">
+<service id="boolean_to_yesno_transformer"
+         class="DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer">
     <argument type="string">yes</argument>
     <argument type="string">no</argument>
 </service>

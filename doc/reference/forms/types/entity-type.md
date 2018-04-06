@@ -28,15 +28,15 @@ Overridden options:
 
 Parent type:
 
-* [FormType](http://symfony.com/doc/2.8/reference/forms/types/form.html)
+* [FormType](http://symfony.com/doc/3.1/reference/forms/types/form.html)
 
 ## Configuring as a form field type
 
 ### YAML
 
 ```yml
-entity_type:
-    class: DarkWebDesign\SymfonyAddon\FormType\EntityType
+class: DarkWebDesign\SymfonyAddonFormTypes\EntityType:
+    class: DarkWebDesign\SymfonyAddonFormTypes\EntityType
     arguments: ["@doctrine"]
     tags: [{ name: form.type }]
 ```
@@ -44,7 +44,8 @@ entity_type:
 ### XML
 
 ```xml
-<service id="entity_type" class="DarkWebDesign\SymfonyAddon\FormType\EntityType">
+<service id="DarkWebDesign\SymfonyAddonFormTypes\EntityType"
+         class="DarkWebDesign\SymfonyAddonFormTypes\EntityType">
     <argument type="service" id="doctrine" />
     <tag name="form.type" />
 </service>

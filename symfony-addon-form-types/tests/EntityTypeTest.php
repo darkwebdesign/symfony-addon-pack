@@ -18,15 +18,16 @@
  * SOFTWARE.
  */
 
-namespace DarkWebDesign\SymfonyAddon\FormType\Tests;
+namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
-use DarkWebDesign\SymfonyAddon\FormType\EntityType;
-use DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City;
+use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
+use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
+use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class EntityTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City */
+    /** @var \DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City */
     private $entity;
 
     /** @var string */
@@ -35,25 +36,20 @@ class EntityTypeTest extends TypeTestCase
     /** @var int */
     private $identifier;
 
-    /** @var \Doctrine\Common\Persistence\ManagerRegistry */
+    /** @var \Doctrine\Common\Persistence\ManagerRegistry|\PHPUnit_Framework_MockObject_MockObject */
     private $registry;
 
-    /** @var \Doctrine\Common\Persistence\ObjectManager */
+    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit_Framework_MockObject_MockObject */
     private $entityManager;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository */
+    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit_Framework_MockObject_MockObject */
     private $repository;
 
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata */
+    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
     private $metadata;
-
-    /** @var \DarkWebDesign\SymfonyAddon\FormType\EntityType */
-    private $type;
 
     protected function setUp()
     {
-        parent::setUp();
-
         $this->entity = new City();
         $this->entity->setId(123);
 
@@ -69,11 +65,23 @@ class EntityTypeTest extends TypeTestCase
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
         $this->metadata->method('getName')->willReturn($this->className);
-        $this->metadata->method('getIdentifierValues')->willReturn(array('id' => $this->identifier));
+        $this->metadata->method('getIdentifierValues')->willReturn(['id' => $this->identifier]);
 
         $this->metadata->isIdentifierComposite = false;
-        
-        $this->type = new EntityType($this->registry);
+
+        parent::setUp();
+    }
+
+    /**
+     * @return array
+     */
+    protected function getExtensions()
+    {
+        $type = new EntityType($this->registry);
+
+        return [
+            new PreloadedExtension([$type], []),
+        ];
     }
 
     public function test()
@@ -82,11 +90,11 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
@@ -99,11 +107,11 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn(null);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertFalse($form->isSynchronized());
@@ -114,12 +122,12 @@ class EntityTypeTest extends TypeTestCase
     {
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
             'entity_manager' => $this->entityManager,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
@@ -132,12 +140,12 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
             'entity_manager' => 'Doctrine\ORM\EntityManager',
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
@@ -146,7 +154,7 @@ class EntityTypeTest extends TypeTestCase
 
     /**
      * @expectedException \Symfony\Component\Form\Exception\RuntimeException
-     * @expectedExceptionMessage Class "DarkWebDesign\SymfonyAddon\FormType\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?
+     * @expectedExceptionMessage Class "DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?
      */
     public function testNoEntityManager()
     {
@@ -155,11 +163,11 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
-        );
+        ];
 
-        $form = $this->factory->create($this->type, null, $options);
+        $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
 
         $this->assertTrue($form->isSynchronized());
