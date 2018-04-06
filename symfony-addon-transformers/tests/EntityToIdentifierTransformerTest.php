@@ -61,8 +61,8 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
-        $this->metadata->method('getName')->willReturnCallback(array($this, 'getClassName'));
-        $this->metadata->method('getIdentifierValues')->willReturnCallback(array($this, 'getIdentifier'));
+        $this->metadata->method('getName')->willReturnCallback([$this, 'getClassName']);
+        $this->metadata->method('getIdentifierValues')->willReturnCallback([$this, 'getIdentifier']);
 
         $this->metadata->isIdentifierComposite = false;
     }
@@ -80,7 +80,7 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function getIdentifier()
     {
-        return array('id' => $this->identifier);
+        return ['id' => $this->identifier];
     }
 
     /**
@@ -224,15 +224,15 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function providerNoObject()
     {
-        return array(
-            'bool' => array(true),
-            'int' => array(1),
-            'float' => array(1.2),
-            'string' => array('foo'),
-            'array' => array(array('foo', 'bar')),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'bool' => [true],
+            'int' => [1],
+            'float' => [1.2],
+            'string' => ['foo'],
+            'array' => [['foo', 'bar']],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 
     /**
@@ -240,11 +240,11 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function providerNoScalar()
     {
-        return array(
-            'array' => array(array('foo', 'bar')),
-            'object' => array(new \stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
+        return [
+            'array' => [['foo', 'bar']],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 }

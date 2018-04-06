@@ -65,7 +65,7 @@ class EntityTypeTest extends TypeTestCase
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
         $this->metadata->method('getName')->willReturn($this->className);
-        $this->metadata->method('getIdentifierValues')->willReturn(array('id' => $this->identifier));
+        $this->metadata->method('getIdentifierValues')->willReturn(['id' => $this->identifier]);
 
         $this->metadata->isIdentifierComposite = false;
 
@@ -79,9 +79,9 @@ class EntityTypeTest extends TypeTestCase
     {
         $type = new EntityType($this->registry);
 
-        return array(
-            new PreloadedExtension(array($type), array()),
-        );
+        return [
+            new PreloadedExtension([$type], []),
+        ];
     }
 
     public function test()
@@ -90,9 +90,9 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
-        );
+        ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
@@ -107,9 +107,9 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn(null);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
-        );
+        ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
@@ -122,10 +122,10 @@ class EntityTypeTest extends TypeTestCase
     {
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
             'entity_manager' => $this->entityManager,
-        );
+        ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
@@ -140,10 +140,10 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
             'entity_manager' => 'Doctrine\ORM\EntityManager',
-        );
+        ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);
@@ -163,9 +163,9 @@ class EntityTypeTest extends TypeTestCase
 
         $this->repository->method('find')->willReturn($this->entity);
 
-        $options = array(
+        $options = [
             'class' => $this->className,
-        );
+        ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
         $form->submit($this->identifier);

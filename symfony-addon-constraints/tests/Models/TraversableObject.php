@@ -28,7 +28,7 @@ class TraversableObject implements \IteratorAggregate
     /**
      * @param array $data
      */
-    public function __construct($data = array())
+    public function __construct($data = [])
     {
         $this->container = $data;
     }

@@ -63,10 +63,10 @@ class BooleanType extends AbstractType
         };
 
         $choicesNormalizer = function (Options $options) {
-            return array(
+            return [
                 $options['label_true'] => $options['value_true'],
                 $options['label_false'] => $options['value_false'],
-            );
+            ];
         };
 
         $expandedNormalizer = function (Options $options) {
@@ -77,13 +77,13 @@ class BooleanType extends AbstractType
             return false;
         };
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'label_true' => null,
             'label_false' => null,
             'value_true' => 'yes',
             'value_false' => 'no',
             'widget' => 'choice',
-        ));
+        ]);
 
         $resolver->setNormalizer('label_true', $labelTrueNormalizer);
         $resolver->setNormalizer('label_false', $labelFalseNormalizer);
@@ -91,12 +91,12 @@ class BooleanType extends AbstractType
         $resolver->setNormalizer('expanded', $expandedNormalizer);
         $resolver->setNormalizer('multiple', $multipleNormalizer);
 
-        $resolver->setAllowedTypes('value_true', array('string', 'integer', 'float'));
-        $resolver->setAllowedTypes('value_false', array('string', 'integer', 'float'));
-        $resolver->setAllowedTypes('label_true', array('string', 'null'));
-        $resolver->setAllowedTypes('label_false', array('string', 'null'));
+        $resolver->setAllowedTypes('value_true', ['string', 'integer', 'float']);
+        $resolver->setAllowedTypes('value_false', ['string', 'integer', 'float']);
+        $resolver->setAllowedTypes('label_true', ['string', 'null']);
+        $resolver->setAllowedTypes('label_false', ['string', 'null']);
 
-        $resolver->setAllowedValues('widget', array('choice', 'radio'));
+        $resolver->setAllowedValues('widget', ['choice', 'radio']);
     }
 
     /**
@@ -118,6 +118,6 @@ class BooleanType extends AbstractType
      */
     public function humanize($text)
     {
-        return ucfirst(trim(strtolower(preg_replace(array('/([A-Z])/', '/[_\s]+/'), array('_$1', ' '), $text))));
+        return ucfirst(trim(strtolower(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
     }
 }
