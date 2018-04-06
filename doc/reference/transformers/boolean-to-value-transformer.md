@@ -20,7 +20,8 @@ boolean_to_yesno_transformer:
 ### XML
 
 ```xml
-<service id="boolean_to_yesno_transformer" class="DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer">
+<service id="boolean_to_yesno_transformer"
+         class="DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer">
     <argument type="string">yes</argument>
     <argument type="string">no</argument>
 </service>
