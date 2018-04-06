@@ -40,9 +40,9 @@ class BirthdayType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'years' => range(date('Y'), date('Y') - 120),
-        ));
+        ]);
     }
 
     /**

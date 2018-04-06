@@ -53,7 +53,7 @@ class BsnValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidateInvalidConstraint()
     {
-        $this->validator->validate(array(), new Assert\NotNull());
+        $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
     }
@@ -107,11 +107,11 @@ class BsnValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerValidBsn()
     {
-        return array(
-            'valid1' => array('111222333'),
-            'valid2' => array('123456782'),
-            'objectToString' => array(new ToStringObject('270590791')),
-        );
+        return [
+            'valid1' => ['111222333'],
+            'valid2' => ['123456782'],
+            'objectToString' => [new ToStringObject('270590791')],
+        ];
     }
 
     /**
@@ -119,12 +119,12 @@ class BsnValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerNoScalar()
     {
-        return array(
-            'array' => array(array('foo', 'bar')),
-            'object' => array(new \stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
+        return [
+            'array' => [['foo', 'bar']],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 
     /**
@@ -132,11 +132,11 @@ class BsnValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerInvalidBsn()
     {
-        return array(
-            'zeros' => array('000000000'),
-            'invalid1' => array('999999999'),
-            'invalid2' => array('876543242'),
-            'toStringObject' => array(new ToStringObject('597944111')),
-        );
+        return [
+            'zeros' => ['000000000'],
+            'invalid1' => ['999999999'],
+            'invalid2' => ['876543242'],
+            'toStringObject' => [new ToStringObject('597944111')],
+        ];
     }
 }

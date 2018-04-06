@@ -94,21 +94,21 @@ class EntityType extends AbstractType
             return false;
         };
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'entity_manager' => null,
-        ));
+        ]);
 
-        $resolver->setRequired(array(
+        $resolver->setRequired([
             'class',
-        ));
+        ]);
 
         $resolver->setNormalizer('entity_manager', $entityManagerNormalizer);
         $resolver->setNormalizer('compound', $compoundNormalizer);
 
-        $resolver->setAllowedTypes('entity_manager', array(
+        $resolver->setAllowedTypes('entity_manager', [
             'null',
             'string',
             ObjectManager::class,
-        ));
+        ]);
     }
 }

@@ -92,6 +92,6 @@ class Collection extends Constraint
      */
     public function getRequiredOptions()
     {
-        return array('constraints');
+        return ['constraints'];
     }
 }

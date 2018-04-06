@@ -53,7 +53,7 @@ class JsonValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidateInvalidConstraint()
     {
-        $this->validator->validate(array(), new Assert\NotNull());
+        $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
     }
@@ -107,15 +107,15 @@ class JsonValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerValidJson()
     {
-        return array(
-            'bool' => array(true),
-            'int' => array(123),
-            'float' => array(10.99),
-            'stringInt' => array('123'),
-            'stringArray' => array('[1, 2, 3]'),
-            'stringObject' => array('{"a": 1, "b": 2}'),
-            'objectToString' => array(new ToStringObject('123')),
-        );
+        return [
+            'bool' => [true],
+            'int' => [123],
+            'float' => [10.99],
+            'stringInt' => ['123'],
+            'stringArray' => ['[1, 2, 3]'],
+            'stringObject' => ['{"a": 1, "b": 2}'],
+            'objectToString' => [new ToStringObject('123')],
+        ];
     }
 
     /**
@@ -123,12 +123,12 @@ class JsonValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerNoScalar()
     {
-        return array(
-            'array' => array(array('foo', 'bar')),
-            'object' => array(new \stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {}),
-        );
+        return [
+            'array' => [['foo', 'bar']],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 
     /**
@@ -136,10 +136,10 @@ class JsonValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerInvalidJson()
     {
-        return array(
-            'string' => array('json'),
-            'stringArray' => array('[1, 2, 3'),
-            'stringObject' => array('{"a": 1, "b": 2'),
-        );
+        return [
+            'string' => ['json'],
+            'stringArray' => ['[1, 2, 3'],
+            'stringObject' => ['{"a": 1, "b": 2'],
+        ];
     }
 }

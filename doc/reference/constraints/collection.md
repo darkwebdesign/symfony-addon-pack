@@ -100,10 +100,10 @@ class Person
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('emails', new AddonAssert\Collection(
-            'constraints' => array(
+            'constraints' => [
                 new Assert\Email(),
                 new Assert\NotBlank(),
-            ),
+            ],
         ));
     }
 }
