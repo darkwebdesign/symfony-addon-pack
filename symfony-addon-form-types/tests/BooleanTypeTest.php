@@ -33,10 +33,10 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function test($valueTrue, $valueFalse)
     {
-        $options = array(
+        $options = [
             'value_true' => $valueTrue,
             'value_false' => $valueFalse,
-        );
+        ];
 
         $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit($valueTrue);
@@ -59,10 +59,10 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function testInvalidValue($valueTrue, $valueFalse)
     {
-        $options = array(
+        $options = [
             'value_true' => $valueTrue,
             'value_false' => $valueFalse,
-        );
+        ];
 
         $form = $this->factory->create(BooleanType::class, null, $options);
         $form->submit('foo');
@@ -79,9 +79,9 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function testWidget($widget, $expanded)
     {
-        $options = array(
+        $options = [
             'widget' => $widget,
-        );
+        ];
 
         $form = $this->factory->create(BooleanType::class, null, $options);
         $view = $form->createView();
@@ -92,10 +92,10 @@ class BooleanTypeTest extends TypeTestCase
 
     public function testHumanize()
     {
-        $options = array(
+        $options = [
             'value_true' => 'an_underscored__label',
             'value_false' => 'aCamel Cased  Label',
-        );
+        ];
 
         $form = $this->factory->create(BooleanType::class, null, $options);
         $view = $form->createView();
@@ -110,14 +110,14 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function providerValueTrueFalse()
     {
-        return array(
-            'true/false' => array('true', 'false'),
-            'yes/no' => array('yes', 'no'),
-            'on/off' => array('on', 'off'),
-            '1/0' => array('1', '0'),
-            '1/2' => array(1, 2),
-            '1.3/2.7' => array(1.3, 2.7),
-        );
+        return [
+            'true/false' => ['true', 'false'],
+            'yes/no' => ['yes', 'no'],
+            'on/off' => ['on', 'off'],
+            '1/0' => ['1', '0'],
+            '1/2' => [1, 2],
+            '1.3/2.7' => [1.3, 2.7],
+        ];
     }
 
     /**
@@ -125,9 +125,9 @@ class BooleanTypeTest extends TypeTestCase
      */
     public function providerWidget()
     {
-        return array(
-            'choice' => array('choice', false),
-            'radio' => array('radio', true),
-        );
+        return [
+            'choice' => ['choice', false],
+            'radio' => ['radio', true],
+        ];
     }
 }

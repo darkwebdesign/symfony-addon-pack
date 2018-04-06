@@ -43,10 +43,10 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidate($value)
     {
-        $constraints = array(
+        $constraints = [
             new Assert\Email(),
             new Assert\NotBlank(),
-        );
+        ];
 
         $i = 0;
 
@@ -66,16 +66,16 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidateInvalidConstraint()
     {
-        $this->validator->validate(array(), new Assert\NotNull());
+        $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
     }
 
     public function testValidateNull()
     {
-        $this->validator->validate(null, new Collection(array(
+        $this->validator->validate(null, new Collection([
             new Assert\NotBlank(),
-        )));
+        ]));
 
         $this->assertNoViolation();
     }
@@ -89,9 +89,9 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidateNoArray($value)
     {
-        $this->validator->validate($value, new Collection(array(
+        $this->validator->validate($value, new Collection([
             new Assert\NotBlank(),
-        )));
+        ]));
 
         $this->assertNoViolation();
     }
@@ -101,11 +101,11 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerValidCollection()
     {
-        return array(
-            'empty' => array(array()),
-            'array' => array(array('my.email@address.com')),
-            'traversableObject' => array(new TraversableObject(array('my.email@address.com'))),
-        );
+        return [
+            'empty' => [[]],
+            'array' => [['my.email@address.com']],
+            'traversableObject' => [new TraversableObject(['my.email@address.com'])],
+        ];
     }
 
     /**
@@ -113,14 +113,14 @@ class CollectionValidatorTest extends AbstractConstraintValidatorTest
      */
     public function providerNoArray()
     {
-        return array(
-            'bool' => array(true),
-            'int' => array(1),
-            'float' => array(1.2),
-            'string' => array('foo'),
-            'object' => array(new \stdClass()),
-            'resource' => array(tmpfile()),
-            'callable' => array(function () {})
-        );
+        return [
+            'bool' => [true],
+            'int' => [1],
+            'float' => [1.2],
+            'string' => ['foo'],
+            'object' => [new \stdClass()],
+            'resource' => [tmpfile()],
+            'callable' => [function () {}],
+        ];
     }
 }
