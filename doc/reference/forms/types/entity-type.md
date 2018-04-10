@@ -36,7 +36,6 @@ Parent type:
 
 ```yml
 DarkWebDesign\SymfonyAddonFormTypes\EntityType:
-    class: DarkWebDesign\SymfonyAddonFormTypes\EntityType
     arguments: ["@doctrine"]
     tags: [{ name: form.type }]
 ```
@@ -44,8 +43,7 @@ DarkWebDesign\SymfonyAddonFormTypes\EntityType:
 ### XML
 
 ```xml
-<service id="DarkWebDesign\SymfonyAddonFormTypes\EntityType"
-         class="DarkWebDesign\SymfonyAddonFormTypes\EntityType">
+<service id="DarkWebDesign\SymfonyAddonFormTypes\EntityType">
     <argument type="service" id="doctrine" />
     <tag name="form.type" />
 </service>
