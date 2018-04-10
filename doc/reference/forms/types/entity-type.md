@@ -35,7 +35,7 @@ Parent type:
 ### YAML
 
 ```yml
-class: DarkWebDesign\SymfonyAddonFormTypes\EntityType:
+DarkWebDesign\SymfonyAddonFormTypes\EntityType:
     class: DarkWebDesign\SymfonyAddonFormTypes\EntityType
     arguments: ["@doctrine"]
     tags: [{ name: form.type }]
