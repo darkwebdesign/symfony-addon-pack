@@ -16,3 +16,4 @@ cd "$DIR";
 ./subtree-update-branch 3.0
 ./subtree-update-branch 3.1
 ./subtree-update-branch 3.2
+./subtree-update-branch 3.3
