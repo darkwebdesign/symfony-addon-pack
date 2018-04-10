@@ -32,15 +32,13 @@ Parent type:
 
 ```yml
 DarkWebDesign\SymfonyAddonFormTypes\BirthdayType:
-    class: DarkWebDesign\SymfonyAddonFormTypes\BirthdayType
     tags: [{ name: form.type }]
 ```
 
 ### XML
 
 ```xml
-<service id="DarkWebDesign\SymfonyAddonFormTypes\BirthdayType"
-         class="DarkWebDesign\SymfonyAddonFormTypes\BirthdayType">
+<service id="DarkWebDesign\SymfonyAddonFormTypes\BirthdayType">
     <tag name="form.type" />
 </service>
 ```
