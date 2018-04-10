@@ -30,6 +30,14 @@ Parent type:
 
 * [FormType](http://symfony.com/doc/3.3/reference/forms/types/form.html)
 
+## Basic Usage
+
+```php
+$builder->add('task', EntityType::class, [
+    'class' => 'AppBundle:Task',
+]);
+```
+
 ## Configuring as a form field type
 
 ### YAML
