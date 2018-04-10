@@ -35,21 +35,10 @@ Parent type:
 
 * [ChoiceType](http://symfony.com/doc/3.3/reference/forms/types/choice.html)
 
-## Configuring as a form field type
+## Basic Usage
 
-### YAML
-
-```yml
-DarkWebDesign\SymfonyAddonFormTypes\BooleanType:
-    tags: [{ name: form.type }]
-```
-
-### XML
-
-```xml
-<service id="DarkWebDesign\SymfonyAddonFormTypes\BooleanType">
-    <tag name="form.type" />
-</service>
+```php
+$builder->add('married', BooleanType::class);
 ```
 
 ## Field Options

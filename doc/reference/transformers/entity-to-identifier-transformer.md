@@ -7,6 +7,18 @@ EntityToIdentifierTransformer
 
 This transformer is used to transform an identifier into a Doctrine entity and vice versa.
 
+## Basic Usage
+
+```php
+$taskToIdentifierTransformer = new EntityToIdentifierTransformer($entityManager, 'AppBundle:Task');
+
+// transform an entity to an identifier
+$identifier = $taskToIdentifierTransformer->transform($task);
+
+// transform an identifier to an entity
+$task = $taskToIdentifierTransformer->reverseTransform($identifier);
+```
+
 ## Configuring as a service
 
 ### YAML
