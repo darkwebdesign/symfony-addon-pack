@@ -24,25 +24,12 @@ Overridden options:
 
 Parent type:
 
-* [DateType](http://symfony.com/doc/3.1/reference/forms/types/choice.html)
+* [DateType](http://symfony.com/doc/3.3/reference/forms/types/choice.html)
 
-## Configuring as a form field type
+## Basic Usage
 
-### YAML
-
-```yml
-DarkWebDesign\SymfonyAddonFormTypes\BirthdayType:
-    class: DarkWebDesign\SymfonyAddonFormTypes\BirthdayType
-    tags: [{ name: form.type }]
-```
-
-### XML
-
-```xml
-<service id="DarkWebDesign\SymfonyAddonFormTypes\BirthdayType"
-         class="DarkWebDesign\SymfonyAddonFormTypes\BirthdayType">
-    <tag name="form.type" />
-</service>
+```php
+$builder->add('birthday', BirthdayType::class);
 ```
 
 ## Overridden Options

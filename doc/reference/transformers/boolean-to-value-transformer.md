@@ -7,6 +7,18 @@ BooleanToValueTransformer
 
 This transformer is used to transform a boolean into a scalar value and vice versa.
 
+## Basic Usage
+
+```php
+$booleanToYesnoTransformer = new BooleanToValueTransformer('yes', 'no');
+
+// transform a boolean to a value
+$yesno = $booleanToYesnoTransformer->transform($boolean);
+
+// transform a value to a boolean
+$boolean = $booleanToYesnoTransformer->reverseTransform($yesno);
+```
+
 ## Configuring as a service
 
 ### YAML

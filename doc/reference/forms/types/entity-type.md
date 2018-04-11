@@ -28,15 +28,22 @@ Overridden options:
 
 Parent type:
 
-* [FormType](http://symfony.com/doc/3.1/reference/forms/types/form.html)
+* [FormType](http://symfony.com/doc/3.3/reference/forms/types/form.html)
+
+## Basic Usage
+
+```php
+$builder->add('task', EntityType::class, [
+    'class' => 'AppBundle:Task',
+]);
+```
 
 ## Configuring as a form field type
 
 ### YAML
 
 ```yml
-class: DarkWebDesign\SymfonyAddonFormTypes\EntityType:
-    class: DarkWebDesign\SymfonyAddonFormTypes\EntityType
+DarkWebDesign\SymfonyAddonFormTypes\EntityType:
     arguments: ["@doctrine"]
     tags: [{ name: form.type }]
 ```
@@ -44,8 +51,7 @@ class: DarkWebDesign\SymfonyAddonFormTypes\EntityType:
 ### XML
 
 ```xml
-<service id="DarkWebDesign\SymfonyAddonFormTypes\EntityType"
-         class="DarkWebDesign\SymfonyAddonFormTypes\EntityType">
+<service id="DarkWebDesign\SymfonyAddonFormTypes\EntityType">
     <argument type="service" id="doctrine" />
     <tag name="form.type" />
 </service>
