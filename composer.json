@@ -12,8 +12,8 @@
         "doctrine/common": "^2.4",
         "doctrine/orm": "^2.4",
         "php": ">=5.5.9",
-        "symfony/form": "3.3.*",
-        "symfony/validator": "3.3.*"
+        "symfony/form": "3.4.*",
+        "symfony/validator": "3.4.*"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.3.2",

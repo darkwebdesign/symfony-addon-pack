@@ -1,19 +1,27 @@
 #!/usr/bin/env bash
 
 readonly DIR="$(cd "$(dirname "$BASH_SOURCE[0]")" && pwd)";
+readonly BRANCH="${1?No branch specified}";
 
-cd "$DIR";
+cd "$DIR/..";
 
-./subtree-update-branch master
+git checkout "$BRANCH"
+git pull origin "$BRANCH"
 
-./subtree-update-branch 2.3
-./subtree-update-branch 2.4
-./subtree-update-branch 2.5
-./subtree-update-branch 2.6
-./subtree-update-branch 2.7
-./subtree-update-branch 2.8
+git remote add symfony-addon-constraints git@github.com:darkwebdesign/symfony-addon-constraints.git
+git subtree split --prefix=symfony-addon-constraints -b "symfony-addon-constraints-$BRANCH"
+git push symfony-addon-constraints "symfony-addon-constraints-$BRANCH:$BRANCH"
+git branch -D "symfony-addon-constraints-$BRANCH"
+git remote remove symfony-addon-constraints
 
-./subtree-update-branch 3.0
-./subtree-update-branch 3.1
-./subtree-update-branch 3.2
-./subtree-update-branch 3.3
+git remote add symfony-addon-form-types git@github.com:darkwebdesign/symfony-addon-form-types.git
+git subtree split --prefix=symfony-addon-form-types -b "symfony-addon-form-types-$BRANCH"
+git push symfony-addon-form-types "symfony-addon-form-types-$BRANCH:$BRANCH"
+git branch -D "symfony-addon-form-types-$BRANCH"
+git remote remove symfony-addon-form-types
+
+git remote add symfony-addon-transformers git@github.com:darkwebdesign/symfony-addon-transformers.git
+git subtree split --prefix=symfony-addon-transformers -b "symfony-addon-transformers-$BRANCH"
+git push symfony-addon-transformers "symfony-addon-transformers-$BRANCH:$BRANCH"
+git branch -D "symfony-addon-transformers-$BRANCH"
+git remote remove symfony-addon-transformers
