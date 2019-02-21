@@ -20,14 +20,14 @@
 
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
-use DarkWebDesign\SymfonyAddonFormTypes\ArrayType;
+use DarkWebDesign\SymfonyAddonFormTypes\UnstructuredType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class ArrayTypeTest extends TypeTestCase
+class UnstructuredTypeTest extends TypeTestCase
 {
-    public function test()
+    public function testArray()
     {
-        $data = [
+        $value = [
             'age' => 30,
             'name' => [
                 'first' => 'Lawson',
@@ -35,10 +35,21 @@ class ArrayTypeTest extends TypeTestCase
             ],
         ];
 
-        $form = $this->factory->create(ArrayType::class);
-        $form->submit($data);
+        $form = $this->factory->create(UnstructuredType::class);
+        $form->submit($value);
 
         $this->assertTrue($form->isSynchronized());
-        $this->assertSame($data, $form->getData());
+        $this->assertSame($value, $form->getData());
+    }
+
+    public function testString()
+    {
+        $value = 'Monday';
+
+        $form = $this->factory->create(UnstructuredType::class);
+        $form->submit($value);
+
+        $this->assertTrue($form->isSynchronized());
+        $this->assertSame($value, $form->getData());
     }
 }

@@ -24,13 +24,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Array form field type.
+ * Unstructured form field type.
  *
  * @author Raymond Schouten
  *
  * @since 3.4
  */
-class ArrayType extends AbstractType
+class UnstructuredType extends AbstractType
 {
     /**
      * Configures the options for this type.
