@@ -19,3 +19,4 @@ The following field types are available:
 
 * [BooleanType](boolean-type.md)
 * [EntityType](entity-type.md)
+* [UnstructuredType](unstructured-type.md)
