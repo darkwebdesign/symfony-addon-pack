@@ -25,8 +25,9 @@ use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
+use PHPUnit\Framework\TestCase;
 
-class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
+class EntityToIdentifierTransformerTest extends TestCase
 {
     /** @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City */
     private $entity;
@@ -54,9 +55,9 @@ class EntityToIdentifierTransformerTest extends \PHPUnit_Framework_TestCase
         $this->className = get_class($this->entity);
         $this->identifier = $this->entity->getId();
 
-        $this->entityManager = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
-        $this->repository = $this->getMock('Doctrine\Common\Persistence\ObjectRepository');
-        $this->metadata = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
+        $this->entityManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
+        $this->repository = $this->createMock('Doctrine\Common\Persistence\ObjectRepository');
+        $this->metadata = $this->createMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
 
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
