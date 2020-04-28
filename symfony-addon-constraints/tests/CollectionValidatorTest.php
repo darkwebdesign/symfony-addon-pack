@@ -24,9 +24,9 @@ use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use DarkWebDesign\SymfonyAddonConstraints\CollectionValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\TraversableObject;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
-class CollectionValidatorTest extends AbstractConstraintValidatorTest
+class CollectionValidatorTest extends ConstraintValidatorTestCase
 {
     /**
      * @return \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
