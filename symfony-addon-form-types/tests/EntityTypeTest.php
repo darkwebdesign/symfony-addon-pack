@@ -22,6 +22,11 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
 use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
@@ -56,10 +61,10 @@ class EntityTypeTest extends TypeTestCase
         $this->className = get_class($this->entity);
         $this->identifier = $this->entity->getId();
 
-        $this->registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $this->entityManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
-        $this->repository = $this->createMock('Doctrine\Common\Persistence\ObjectRepository');
-        $this->metadata = $this->createMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
+        $this->registry = $this->createMock(ManagerRegistry::class);
+        $this->entityManager = $this->createMock(ObjectManager::class);
+        $this->repository = $this->createMock(ObjectRepository::class);
+        $this->metadata = $this->createMock(ClassMetadata::class);
 
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
@@ -142,7 +147,7 @@ class EntityTypeTest extends TypeTestCase
 
         $options = [
             'class' => $this->className,
-            'entity_manager' => 'Doctrine\ORM\EntityManager',
+            'entity_manager' => EntityManager::class,
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
