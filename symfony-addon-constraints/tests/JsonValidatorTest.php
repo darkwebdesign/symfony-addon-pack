@@ -24,9 +24,9 @@ use DarkWebDesign\SymfonyAddonConstraints\Json;
 use DarkWebDesign\SymfonyAddonConstraints\JsonValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
-class JsonValidatorTest extends AbstractConstraintValidatorTest
+class JsonValidatorTest extends ConstraintValidatorTestCase
 {
     /**
      * @return \DarkWebDesign\SymfonyAddonConstraints\JsonValidator

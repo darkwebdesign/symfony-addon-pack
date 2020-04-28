@@ -24,9 +24,9 @@ use DarkWebDesign\SymfonyAddonConstraints\Bsn;
 use DarkWebDesign\SymfonyAddonConstraints\BsnValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
-class BsnValidatorTest extends AbstractConstraintValidatorTest
+class BsnValidatorTest extends ConstraintValidatorTestCase
 {
     /**
      * @return \DarkWebDesign\SymfonyAddonConstraints\BsnValidator
