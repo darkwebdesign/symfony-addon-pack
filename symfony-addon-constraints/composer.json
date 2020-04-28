@@ -13,8 +13,8 @@
         "symfony/validator": "4.0.*"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "^0.3.2",
-        "phpunit/phpunit": "^4.8"
+        "codeclimate/php-test-reporter": "^0.4.4",
+        "phpunit/phpunit": "^7.5"
     },
     "suggest": {
         "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together"

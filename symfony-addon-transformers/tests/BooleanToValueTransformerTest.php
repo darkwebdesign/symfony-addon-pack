@@ -21,8 +21,9 @@
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
 use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
+use PHPUnit\Framework\TestCase;
 
-class BooleanToValueTransformerTest extends \PHPUnit_Framework_TestCase
+class BooleanToValueTransformerTest extends TestCase
 {
     /**
      * @param string $trueValue

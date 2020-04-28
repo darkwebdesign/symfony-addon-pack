@@ -56,10 +56,10 @@ class EntityTypeTest extends TypeTestCase
         $this->className = get_class($this->entity);
         $this->identifier = $this->entity->getId();
 
-        $this->registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $this->entityManager = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
-        $this->repository = $this->getMock('Doctrine\Common\Persistence\ObjectRepository');
-        $this->metadata = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
+        $this->registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $this->entityManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
+        $this->repository = $this->createMock('Doctrine\Common\Persistence\ObjectRepository');
+        $this->metadata = $this->createMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
 
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
