@@ -21,9 +21,10 @@
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
     public function testConstruct()
     {
