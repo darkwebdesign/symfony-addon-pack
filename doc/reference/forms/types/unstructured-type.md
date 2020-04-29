@@ -20,7 +20,7 @@ Overridden options:
 
 Parent type:
 
-* [FormType](http://symfony.com/doc/4.3/reference/forms/types/form.html)
+* [FormType](http://symfony.com/doc/4.4/reference/forms/types/form.html)
 
 ## Basic Usage
 
