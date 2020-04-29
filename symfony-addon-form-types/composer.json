@@ -9,10 +9,10 @@
         {"name": "Raymond Schouten"}
     ],
     "require": {
-        "darkwebdesign/symfony-addon-transformers": "4.2.*",
+        "darkwebdesign/symfony-addon-transformers": "4.3.*",
         "doctrine/common": "^2.4",
         "php": ">=7.1.3",
-        "symfony/form": "4.2.*"
+        "symfony/form": "4.3.*"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.4.4",
