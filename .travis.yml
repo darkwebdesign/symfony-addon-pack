@@ -1,3 +1,7 @@
+env:
+    global:
+        - 'CC_TEST_REPORTER_ID=6e4ee4c44c44119ebc8c68b84726cc5a3ffdfde8fc3f1aaf87e4b92209b4a8fe'
+
 language: 'php'
 
 php:
@@ -9,8 +13,14 @@ php:
 install:
     - 'composer install'
 
+before_script:
+    - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+    - 'chmod +x ./cc-test-reporter'
+    - './cc-test-reporter before-build'
+
 script:
     - 'vendor/bin/phpunit'
 
 after_success:
     - 'bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml'
+    - './cc-test-reporter after-build'
