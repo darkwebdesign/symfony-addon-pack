@@ -1,4 +1,4 @@
-language: php
+language: 'php'
 
 php:
     - '7.1'
@@ -6,11 +6,11 @@ php:
     - '7.3'
 
 install:
-    - composer install
+    - 'composer install'
 
 script:
-    - vendor/bin/phpunit
+    - 'vendor/bin/phpunit'
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
-    - vendor/bin/test-reporter
+    - 'bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml'
+    - 'vendor/bin/test-reporter'
