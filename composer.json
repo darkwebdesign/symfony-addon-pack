@@ -16,7 +16,6 @@
         "symfony/validator": "4.3.*"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "^0.4.4",
         "phpunit/phpunit": "^7.5"
     },
     "replace": {
