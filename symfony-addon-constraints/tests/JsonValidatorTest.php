@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Json;
@@ -29,27 +31,24 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 class JsonValidatorTest extends ConstraintValidatorTestCase
 {
-    /**
-     * @return \DarkWebDesign\SymfonyAddonConstraints\JsonValidator
-     */
-    protected function createValidator()
+    protected function createValidator(): JsonValidator
     {
         return new JsonValidator();
     }
 
     /**
-     * @param string $json
+     * @param mixed $value
      *
      * @dataProvider providerValidJson
      */
-    public function testValidate($json)
+    public function testValidate($value): void
     {
-        $this->validator->validate($json, new Json());
+        $this->validator->validate($value, new Json());
 
         $this->assertNoViolation();
     }
 
-    public function testValidateInvalidConstraint()
+    public function testValidateInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -58,14 +57,14 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    public function testValidateNull()
+    public function testValidateNull(): void
     {
         $this->validator->validate(null, new Json());
 
         $this->assertNoViolation();
     }
 
-    public function testValidateEmptyString()
+    public function testValidateEmptyString(): void
     {
         $this->validator->validate('', new Json());
 
@@ -73,39 +72,34 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param string $bsn
+     * @param mixed $value
      *
      * @dataProvider providerNoScalar
      */
-    public function testValidateNoScalar($bsn)
+    public function testValidateNoScalar($value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
-        $this->validator->validate($bsn, new Json());
+        $this->validator->validate($value, new Json());
 
         $this->assertNoViolation();
     }
 
     /**
-     * @param string $json
-     *
      * @dataProvider providerInvalidJson
      */
-    public function testValidateViolation($json)
+    public function testValidateViolation(string $value): void
     {
         $constraint = new Json();
 
-        $this->validator->validate($json, $constraint);
+        $this->validator->validate($value, $constraint);
 
         $this->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', '"' . $json . '"')
+            ->setParameter('{{ value }}', '"' . $value . '"')
             ->assertRaised();
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerValidJson()
+    public function providerValidJson(): array
     {
         return [
             'bool' => [true],
@@ -118,10 +112,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoScalar()
+    public function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
@@ -131,10 +122,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerInvalidJson()
+    public function providerInvalidJson(): array
     {
         return [
             'string' => ['json'],

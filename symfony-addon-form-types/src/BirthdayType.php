@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use Symfony\Component\Form\AbstractType;
@@ -35,10 +37,8 @@ class BirthdayType extends AbstractType
 {
     /**
      * Configures the options for this type.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'years' => range(date('Y'), date('Y') - 120),
@@ -47,10 +47,8 @@ class BirthdayType extends AbstractType
 
     /**
      * Returns the name of the parent type.
-     *
-     * @return string
      */
-    public function getParent()
+    public function getParent(): string
     {
         return DateType::class;
     }

@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use Symfony\Component\Form\AbstractType;
@@ -34,10 +36,8 @@ class UnstructuredType extends AbstractType
 {
     /**
      * Configures the options for this type.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $compoundNormalizer = function () {
             return false;

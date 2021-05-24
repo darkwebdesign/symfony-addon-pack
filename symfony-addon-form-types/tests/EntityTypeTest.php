@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
@@ -42,16 +44,16 @@ class EntityTypeTest extends TypeTestCase
     /** @var int */
     private $identifier;
 
-    /** @var \Doctrine\Common\Persistence\ManagerRegistry|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Common\Persistence\ManagerRegistry|\PHPUnit\Framework\MockObject\MockObject */
     private $registry;
 
-    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
     private $metadata;
 
     protected function setUp(): void
@@ -78,10 +80,7 @@ class EntityTypeTest extends TypeTestCase
         parent::setUp();
     }
 
-    /**
-     * @return array
-     */
-    protected function getExtensions()
+    protected function getExtensions(): array
     {
         $type = new EntityType($this->registry);
 
@@ -90,7 +89,7 @@ class EntityTypeTest extends TypeTestCase
         ];
     }
 
-    public function test()
+    public function test(): void
     {
         $this->registry->method('getManagerForClass')->willReturn($this->entityManager);
 
@@ -107,7 +106,7 @@ class EntityTypeTest extends TypeTestCase
         $this->assertSame($this->entity, $form->getData());
     }
 
-    public function testEntityNotFound()
+    public function testEntityNotFound(): void
     {
         $this->registry->method('getManagerForClass')->willReturn($this->entityManager);
 
@@ -124,7 +123,7 @@ class EntityTypeTest extends TypeTestCase
         $this->assertNull($form->getData());
     }
 
-    public function testEntityManagerObject()
+    public function testEntityManagerObject(): void
     {
         $this->repository->method('find')->willReturn($this->entity);
 
@@ -140,7 +139,7 @@ class EntityTypeTest extends TypeTestCase
         $this->assertSame($this->entity, $form->getData());
     }
 
-    public function testEntityManagerString()
+    public function testEntityManagerString(): void
     {
         $this->registry->method('getManager')->willReturn($this->entityManager);
 
@@ -158,7 +157,7 @@ class EntityTypeTest extends TypeTestCase
         $this->assertSame($this->entity, $form->getData());
     }
 
-    public function testNoEntityManager()
+    public function testNoEntityManager(): void
     {
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Class "DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?');

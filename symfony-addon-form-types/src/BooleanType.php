@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
@@ -38,28 +40,23 @@ class BooleanType extends AbstractType
 {
     /**
      * Builds the form.
-     *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new BooleanToValueTransformer($options['value_true'], $options['value_false']));
     }
 
     /**
      * Configures the options for this type.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $labelTrueNormalizer = function (Options $options, $value) {
-            return !is_null($value) ? (string) $value : $this->humanize($options['value_true']);
+            return !is_null($value) ? (string) $value : $this->humanize((string) $options['value_true']);
         };
 
         $labelFalseNormalizer = function (Options $options, $value) {
-            return !is_null($value) ? (string) $value : $this->humanize($options['value_false']);
+            return !is_null($value) ? (string) $value : $this->humanize((string) $options['value_false']);
         };
 
         $choicesNormalizer = function (Options $options) {
@@ -101,22 +98,16 @@ class BooleanType extends AbstractType
 
     /**
      * Returns the name of the parent type.
-     *
-     * @return string
      */
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
 
     /**
      * Makes a technical name human readable.
-     *
-     * @param string $text
-     *
-     * @return string
      */
-    public function humanize($text)
+    public function humanize(string $text): string
     {
         return ucfirst(trim(strtolower(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
     }

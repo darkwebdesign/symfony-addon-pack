@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
@@ -29,20 +31,17 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 class CollectionValidatorTest extends ConstraintValidatorTestCase
 {
-    /**
-     * @return \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
-     */
-    protected function createValidator()
+    protected function createValidator(): CollectionValidator
     {
         return new CollectionValidator();
     }
 
     /**
-     * @param array $value
+     * @param mixed $value
      *
      * @dataProvider providerValidCollection
      */
-    public function testValidate($value)
+    public function testValidate($value): void
     {
         $constraints = [
             new Assert\Email(),
@@ -62,7 +61,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    public function testValidateInvalidConstraint()
+    public function testValidateInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -71,7 +70,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    public function testValidateNull()
+    public function testValidateNull(): void
     {
         $this->validator->validate(null, new Collection([
             new Assert\NotBlank(),
@@ -85,7 +84,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
      *
      * @dataProvider providerNoArray
      */
-    public function testValidateNoArray($value)
+    public function testValidateNoArray($value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -96,10 +95,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerValidCollection()
+    public function providerValidCollection(): array
     {
         return [
             'empty' => [[]],
@@ -108,10 +104,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoArray()
+    public function providerNoArray(): array
     {
         return [
             'bool' => [true],

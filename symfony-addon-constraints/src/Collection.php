@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints;
 
 use Symfony\Component\Validator\Constraint;
@@ -77,20 +79,16 @@ class Collection extends Constraint
 
     /**
      * Returns the name of the default option.
-     *
-     * @return string
      */
-    public function getDefaultOption()
+    public function getDefaultOption(): string
     {
         return 'constraints';
     }
 
     /**
      * Returns the name of the required options.
-     *
-     * @return array
      */
-    public function getRequiredOptions()
+    public function getRequiredOptions(): array
     {
         return ['constraints'];
     }

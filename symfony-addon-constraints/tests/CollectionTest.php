@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
@@ -28,7 +30,7 @@ use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 class CollectionTest extends TestCase
 {
-    public function testConstruct()
+    public function testConstruct(): void
     {
         new Collection([
             'constraints' => [
@@ -39,7 +41,7 @@ class CollectionTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testConstructDefaultOption()
+    public function testConstructDefaultOption(): void
     {
         new Collection([
             new Assert\NotBlank(),
@@ -48,7 +50,7 @@ class CollectionTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testConstructMissingRequiredConstraintsOption()
+    public function testConstructMissingRequiredConstraintsOption(): void
     {
         $this->expectException(MissingOptionsException::class);
 
@@ -60,7 +62,7 @@ class CollectionTest extends TestCase
      *
      * @dataProvider providerNoArray
      */
-    public function testConstructConstraintsOptionNoArray($constraints)
+    public function testConstructConstraintsOptionNoArray($constraints): void
     {
         $this->expectException(ConstraintDefinitionException::class);
 
@@ -69,7 +71,7 @@ class CollectionTest extends TestCase
         ]);
     }
 
-    public function testConstructNoConstraint()
+    public function testConstructNoConstraint(): void
     {
         $this->expectException(ConstraintDefinitionException::class);
 
@@ -80,7 +82,7 @@ class CollectionTest extends TestCase
         ]);
     }
 
-    public function testConstructValidConstraint()
+    public function testConstructValidConstraint(): void
     {
         $this->expectException(ConstraintDefinitionException::class);
 
@@ -91,10 +93,7 @@ class CollectionTest extends TestCase
         ]);
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoArray()
+    public function providerNoArray(): array
     {
         return [
             'bool' => [true],

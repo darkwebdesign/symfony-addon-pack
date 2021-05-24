@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
 /**
@@ -34,18 +36,12 @@ class Employee extends AbstractPerson
      */
     private $function;
 
-    /**
-     * @return string
-     */
-    public function getFunction()
+    public function getFunction(): ?string
     {
         return $this->function;
     }
 
-    /**
-     * @param string $function
-     */
-    public function setFunction($function)
+    public function setFunction(string $function): void
     {
         $this->function = $function;
     }

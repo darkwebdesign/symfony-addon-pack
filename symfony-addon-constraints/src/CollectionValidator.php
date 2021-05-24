@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints;
 
 use Symfony\Component\Validator\Constraint;
@@ -37,11 +39,10 @@ class CollectionValidator extends ConstraintValidator
      * Checks if the value is valid.
      *
      * @param mixed $value
-     * @param \Symfony\Component\Validator\Constraint $constraint
      *
      * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof Collection) {
             throw new UnexpectedTypeException($constraint, Collection::class);
