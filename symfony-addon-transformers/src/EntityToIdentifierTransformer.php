@@ -28,6 +28,10 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+if (!interface_exists(ObjectManager::class)) {
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/common" package is not installed. Try running "composer require doctrine/common".');
+}
+
 /**
  * Transforms between an identifier and a Doctrine entity.
  *
@@ -83,6 +87,10 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
 
         if (!is_object($value) || is_callable($value)) {
             throw new TransformationFailedException('Expected an object.');
+        }
+
+        if (!class_exists(ClassUtils::class)) {
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/common" package is not installed. Try running "composer require doctrine/common".', __CLASS__));
         }
 
         $className = ClassUtils::getClass($value);

@@ -11,13 +11,17 @@
     "require": {
         "ext-json": "*",
         "php": ">=7.2.5",
-        "doctrine/common": "^2.4",
-        "doctrine/orm": "^2.4",
         "symfony/form": "5.0.*",
         "symfony/validator": "5.0.*"
     },
     "require-dev": {
+        "doctrine/common": "^2.4",
+        "doctrine/orm": "^2.4",
         "phpunit/phpunit": "^8.5"
+    },
+    "suggest": {
+        "doctrine/common": "Required for EntityToIdentifierTransformer and EntityType",
+        "doctrine/orm": "Required for EntityToIdentifierTransformer"
     },
     "replace": {
         "darkwebdesign/symfony-addon-constraints": "self.version",
