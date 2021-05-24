@@ -23,6 +23,8 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
+use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 class CollectionTest extends TestCase
 {
@@ -33,6 +35,8 @@ class CollectionTest extends TestCase
                 new Assert\NotBlank(),
             ],
         ]);
+
+        $this->assertTrue(true);
     }
 
     public function testConstructDefaultOption()
@@ -40,13 +44,14 @@ class CollectionTest extends TestCase
         new Collection([
             new Assert\NotBlank(),
         ]);
+
+        $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\MissingOptionsException
-     */
     public function testConstructMissingRequiredConstraintsOption()
     {
+        $this->expectException(MissingOptionsException::class);
+
         new Collection();
     }
 
@@ -54,21 +59,20 @@ class CollectionTest extends TestCase
      * @param mixed $constraints
      *
      * @dataProvider providerNoArray
-     *
-     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
      */
     public function testConstructConstraintsOptionNoArray($constraints)
     {
+        $this->expectException(ConstraintDefinitionException::class);
+
         new Collection([
             'constraints' => $constraints,
         ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
-     */
     public function testConstructNoConstraint()
     {
+        $this->expectException(ConstraintDefinitionException::class);
+
         new Collection([
             'constraints' => [
                 'foo',
@@ -76,11 +80,10 @@ class CollectionTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
-     */
     public function testConstructValidConstraint()
     {
+        $this->expectException(ConstraintDefinitionException::class);
+
         new Collection([
             'constraints' => [
                 new Assert\Valid(),
