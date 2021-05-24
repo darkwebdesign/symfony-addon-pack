@@ -53,7 +53,7 @@ class EntityTypeTest extends TypeTestCase
     /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
     private $metadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->entity = new City();
         $this->entity->setId(123);

@@ -18,7 +18,7 @@ before_script:
     - './cc-test-reporter before-build'
 
 script:
-    - 'vendor/bin/phpunit'
+    - 'XDEBUG_MODE=coverage vendor/bin/phpunit'
 
 after_success:
     - 'bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml'
