@@ -29,6 +29,8 @@ use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EntityToIdentifierTransformerTest extends TestCase
 {
@@ -50,7 +52,7 @@ class EntityToIdentifierTransformerTest extends TestCase
     /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
     private $metadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->entity = new City();
         $this->entity->setId(123);
@@ -87,12 +89,11 @@ class EntityToIdentifierTransformerTest extends TestCase
         return ['id' => $this->identifier];
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Expected an entity with a single identifier.
-     */
     public function testConstructIdentifierComposite()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected an entity with a single identifier.');
+
         $this->metadata->isIdentifierComposite = true;
 
         new EntityToIdentifierTransformer($this->entityManager, $this->className);
@@ -142,23 +143,22 @@ class EntityToIdentifierTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoObject
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected an object.
      */
     public function testTransformNoObject($value)
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected an object.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $transformer->transform($value);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City.
-     */
     public function testTransformInvalidEntity()
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $entity = new PointOfInterest();
@@ -199,23 +199,22 @@ class EntityToIdentifierTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoScalar
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a scalar.
      */
     public function testReverseTransformNoScalar($value)
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected a scalar.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $transformer->reverseTransform($value);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City with identifier "123" not found.
-     */
     public function testReverseTransformEntityNotFound()
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City with identifier "123" not found.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $this->repository->method('find')->willReturn(null);

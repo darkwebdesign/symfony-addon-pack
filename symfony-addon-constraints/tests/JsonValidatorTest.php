@@ -24,6 +24,7 @@ use DarkWebDesign\SymfonyAddonConstraints\Json;
 use DarkWebDesign\SymfonyAddonConstraints\JsonValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 class JsonValidatorTest extends ConstraintValidatorTestCase
@@ -48,11 +49,10 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     */
     public function testValidateInvalidConstraint()
     {
+        $this->expectException(UnexpectedTypeException::class);
+
         $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
@@ -76,11 +76,11 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
      * @param string $bsn
      *
      * @dataProvider providerNoScalar
-     *
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
     public function testValidateNoScalar($bsn)
     {
+        $this->expectException(UnexpectedTypeException::class);
+
         $this->validator->validate($bsn, new Json());
 
         $this->assertNoViolation();
