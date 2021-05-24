@@ -24,6 +24,7 @@ use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use DarkWebDesign\SymfonyAddonConstraints\CollectionValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\TraversableObject;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 class CollectionValidatorTest extends ConstraintValidatorTestCase
@@ -61,11 +62,10 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     */
     public function testValidateInvalidConstraint()
     {
+        $this->expectException(UnexpectedTypeException::class);
+
         $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
@@ -84,11 +84,11 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
      * @param mixed $value
      *
      * @dataProvider providerNoArray
-     *
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
     public function testValidateNoArray($value)
     {
+        $this->expectException(UnexpectedTypeException::class);
+
         $this->validator->validate($value, new Collection([
             new Assert\NotBlank(),
         ]));

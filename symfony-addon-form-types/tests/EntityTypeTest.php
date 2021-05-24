@@ -27,6 +27,7 @@ use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
@@ -157,12 +158,11 @@ class EntityTypeTest extends TypeTestCase
         $this->assertSame($this->entity, $form->getData());
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\RuntimeException
-     * @expectedExceptionMessage Class "DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?
-     */
     public function testNoEntityManager()
     {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Class "DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City" seems not to be a managed Doctrine entity. Did you forget to map it?');
+
         $this->registry->method('getManager')->willReturn(null);
         $this->registry->method('getManagerForClass')->willReturn(null);
 

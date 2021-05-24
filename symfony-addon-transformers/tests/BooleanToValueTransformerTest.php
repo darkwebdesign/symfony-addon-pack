@@ -22,6 +22,7 @@ namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
 use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class BooleanToValueTransformerTest extends TestCase
 {
@@ -57,12 +58,12 @@ class BooleanToValueTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoBool
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a boolean.
      */
     public function testTransformNoBool($value)
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected a boolean.');
+
         $transformer = new BooleanToValueTransformer();
 
         $transformer->transform($value);
@@ -109,12 +110,12 @@ class BooleanToValueTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoScalar
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a scalar.
      */
     public function testReverseTransformNoScalar($value)
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected a scalar.');
+
         $transformer = new BooleanToValueTransformer();
 
         $transformer->reverseTransform($value);
@@ -125,12 +126,12 @@ class BooleanToValueTransformerTest extends TestCase
      * @param string $falseValue
      *
      * @dataProvider providerTrueFalseValue
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected true/false boolean value.
      */
     public function testReverseTransformInvalidValue($trueValue, $falseValue)
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected true/false boolean value.');
+
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
         $transformer->reverseTransform('foo');
