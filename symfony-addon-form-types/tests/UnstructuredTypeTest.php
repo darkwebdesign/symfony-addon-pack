@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\UnstructuredType;
@@ -25,7 +27,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class UnstructuredTypeTest extends TypeTestCase
 {
-    public function testArray()
+    public function testArray(): void
     {
         $value = [
             'age' => 30,
@@ -42,7 +44,7 @@ class UnstructuredTypeTest extends TypeTestCase
         $this->assertSame($value, $form->getData());
     }
 
-    public function testString()
+    public function testString(): void
     {
         $value = 'Monday';
 

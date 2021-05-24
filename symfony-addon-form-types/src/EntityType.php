@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
@@ -51,21 +53,16 @@ class EntityType extends AbstractType
 
     /**
      * Builds the form.
-     *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entity_manager'], $options['class']));
     }
 
     /**
      * Configures the options for this type.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $registry = $this->registry;
 

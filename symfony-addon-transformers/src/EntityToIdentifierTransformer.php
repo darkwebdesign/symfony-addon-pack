@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -50,12 +52,9 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     /**
      * Constructor.
      *
-     * @param \Doctrine\Common\Persistence\ObjectManager $entityManager
-     * @param string $className
-     *
      * @throws \Symfony\Component\Form\Exception\InvalidArgumentException
      */
-    public function __construct(ObjectManager $entityManager, $className)
+    public function __construct(ObjectManager $entityManager, string $className)
     {
         $this->entityManager = $entityManager;
         $this->repository = $this->entityManager->getRepository($className);
@@ -102,11 +101,11 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
      *
      * @param mixed $value
      *
-     * @return object
+     * @return object|null
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): ?object
     {
         if (null === $value || '' === $value) {
             return null;

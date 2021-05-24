@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers;
 
 use Symfony\Component\Form\DataTransformerInterface;
@@ -53,9 +55,9 @@ class BooleanToValueTransformer implements DataTransformerInterface
     /**
      * Transforms a value from the original representation to a transformed representation.
      *
-     * @param bool $value
+     * @param bool|null $value
      *
-     * @return string|int|float|bool
+     * @return string|int|float|bool|null
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
@@ -75,13 +77,13 @@ class BooleanToValueTransformer implements DataTransformerInterface
     /**
      * Transforms a value from the transformed representation to its original representation.
      *
-     * @param string|int|float|bool $value
+     * @param string|int|float|bool|null $value
      *
-     * @return bool
+     * @return bool|null
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): ?bool
     {
         if (null === $value || '' === $value) {
             return null;

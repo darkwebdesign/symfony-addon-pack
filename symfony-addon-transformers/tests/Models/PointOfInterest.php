@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
 /**
@@ -37,7 +39,7 @@ class PointOfInterest
     private $latitude;
 
     /**
-     * @var string
+     * @var int
      *
      * @Column(name="longitude", type="integer", nullable=false)
      *
@@ -63,66 +65,42 @@ class PointOfInterest
      */
     private $city;
 
-    /**
-     * @return int
-     */
-    public function getLatitude()
+    public function getLatitude(): ?int
     {
         return $this->latitude;
     }
 
-    /**
-     * @param int $latitude
-     */
-    public function setLatitude($latitude)
+    public function setLatitude(int $latitude): void
     {
         $this->latitude = $latitude;
     }
 
-    /**
-     * @return int
-     */
-    public function getLongitude()
+    public function getLongitude(): ?int
     {
         return $this->longitude;
     }
 
-    /**
-     * @param int $longitude
-     */
-    public function setLongitude($longitude)
+    public function setLongitude(int $longitude): void
     {
         $this->longitude = $longitude;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City
-     */
-    public function getCity()
+    public function getCity(): ?City
     {
         return $this->city;
     }
 
-    /**
-     * @param \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City $city
-     */
-    public function setCity(City $city)
+    public function setCity(City $city): void
     {
         $this->city = $city;
     }

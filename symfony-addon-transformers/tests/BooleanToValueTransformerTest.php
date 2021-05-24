@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
 use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
@@ -27,12 +29,12 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class BooleanToValueTransformerTest extends TestCase
 {
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testTransform($trueValue, $falseValue)
+    public function testTransform($trueValue, $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -45,7 +47,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertSame($falseValue, $returnValue);
     }
 
-    public function testTransformNull()
+    public function testTransformNull(): void
     {
         $transformer = new BooleanToValueTransformer();
 
@@ -59,7 +61,7 @@ class BooleanToValueTransformerTest extends TestCase
      *
      * @dataProvider providerNoBool
      */
-    public function testTransformNoBool($value)
+    public function testTransformNoBool($value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a boolean.');
@@ -70,12 +72,12 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransform($trueValue, $falseValue)
+    public function testReverseTransform($trueValue, $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -88,7 +90,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertFalse($returnValue);
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $transformer = new BooleanToValueTransformer();
 
@@ -97,7 +99,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertNull($returnValue);
     }
 
-    public function testReverseTransformEmptyString()
+    public function testReverseTransformEmptyString(): void
     {
         $transformer = new BooleanToValueTransformer();
 
@@ -111,7 +113,7 @@ class BooleanToValueTransformerTest extends TestCase
      *
      * @dataProvider providerNoScalar
      */
-    public function testReverseTransformNoScalar($value)
+    public function testReverseTransformNoScalar($value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a scalar.');
@@ -122,12 +124,12 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransformInvalidValue($trueValue, $falseValue)
+    public function testReverseTransformInvalidValue($trueValue, $falseValue): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected true/false boolean value.');
@@ -137,10 +139,7 @@ class BooleanToValueTransformerTest extends TestCase
         $transformer->reverseTransform('foo');
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerTrueFalseValue()
+    public function providerTrueFalseValue(): array
     {
         return [
             'true/false' => [true, false],
@@ -150,10 +149,7 @@ class BooleanToValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoBool()
+    public function providerNoBool(): array
     {
         return [
             'int' => [1],
@@ -166,10 +162,7 @@ class BooleanToValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoScalar()
+    public function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
