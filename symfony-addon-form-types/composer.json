@@ -10,15 +10,17 @@
     ],
     "require": {
         "php": ">=7.2.5",
-        "darkwebdesign/symfony-addon-transformers": "5.0.*",
-        "doctrine/common": "^2.4",
         "symfony/form": "5.0.*"
     },
     "require-dev": {
+        "darkwebdesign/symfony-addon-transformers": "5.0.*",
+        "doctrine/common": "^2.4",
         "phpunit/phpunit": "^8.5"
     },
     "suggest": {
-        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together"
+        "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together",
+        "darkwebdesign/symfony-addon-transformers": "Required for BooleanType and EntityType",
+        "doctrine/common": "Required for EntityType"
     },
     "autoload": {
         "psr-4": {

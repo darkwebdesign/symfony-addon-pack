@@ -43,6 +43,10 @@ class BooleanType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if (!class_exists(BooleanToValueTransformer::class)) {
+            throw new \LogicException(sprintf('You cannot use "%s" as the "darkwebdesign/symfony-addon-transformers" package is not installed. Try running "composer require darkwebdesign/symfony-addon-transformers".', __CLASS__));
+        }
+
         $builder->addModelTransformer(new BooleanToValueTransformer($options['value_true'], $options['value_false']));
     }
 
