@@ -29,7 +29,7 @@ use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 if (!interface_exists(ObjectManager::class)) {
-    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/common" package is not installed. Try running "composer require doctrine/common".');
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/persistence" package is not installed. Try running "composer require doctrine/persistence:^1.0".');
 }
 
 /**

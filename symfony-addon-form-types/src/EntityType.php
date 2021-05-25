@@ -32,7 +32,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 if (!interface_exists(ManagerRegistry::class)) {
-    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonFormTypes\EntityType" as the "doctrine/common" package is not installed. Try running "composer require doctrine/common".');
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonFormTypes\EntityType" as the "doctrine/persistence" package is not installed. Try running "composer require doctrine/persistence:^1.0".');
 }
 
 /**
@@ -73,7 +73,7 @@ class EntityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         if (!interface_exists(ObjectManager::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/common" package is not installed. Try running "composer require doctrine/common".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/persistence" package is not installed. Try running "composer require doctrine/persistence:^1.0".', __CLASS__));
         }
 
         $registry = $this->registry;
