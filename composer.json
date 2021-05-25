@@ -15,18 +15,19 @@
         "symfony/validator": "5.0.*"
     },
     "require-dev": {
-        "doctrine/common": "^2.4",
-        "doctrine/orm": "^2.4",
+        "doctrine/orm": "^2.7",
         "phpunit/phpunit": "^8.5"
     },
     "suggest": {
-        "doctrine/common": "Required for EntityToIdentifierTransformer and EntityType",
-        "doctrine/orm": "Required for EntityToIdentifierTransformer"
+        "doctrine/orm": "Required for EntityToIdentifierTransformer and EntityType"
     },
     "replace": {
         "darkwebdesign/symfony-addon-constraints": "self.version",
         "darkwebdesign/symfony-addon-form-types": "self.version",
         "darkwebdesign/symfony-addon-transformers": "self.version"
+    },
+    "conflict": {
+        "doctrine/orm": "<2.7"
     },
     "autoload": {
         "psr-4": {

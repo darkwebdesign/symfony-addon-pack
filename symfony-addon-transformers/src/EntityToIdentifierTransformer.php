@@ -22,14 +22,14 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonTransformers;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Util\ClassUtils;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 if (!interface_exists(ObjectManager::class)) {
-    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/persistence" package is not installed. Try running "composer require doctrine/persistence:^1.0".');
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
 }
 
 /**
@@ -90,7 +90,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
         }
 
         if (!class_exists(ClassUtils::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/common" package is not installed. Try running "composer require doctrine/common".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', __CLASS__));
         }
 
         $className = ClassUtils::getClass($value);
