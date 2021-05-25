@@ -24,10 +24,10 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
 use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\PreloadedExtension;
@@ -44,16 +44,16 @@ class EntityTypeTest extends TypeTestCase
     /** @var int */
     private $identifier;
 
-    /** @var \Doctrine\Common\Persistence\ManagerRegistry|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\ManagerRegistry|\PHPUnit\Framework\MockObject\MockObject */
     private $registry;
 
-    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
     private $metadata;
 
     protected function setUp(): void

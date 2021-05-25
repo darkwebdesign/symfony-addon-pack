@@ -27,9 +27,9 @@ use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -45,13 +45,13 @@ class EntityToIdentifierTransformerTest extends TestCase
     /** @var int */
     private $identifier;
 
-    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Doctrine\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
     private $metadata;
 
     protected function setUp(): void

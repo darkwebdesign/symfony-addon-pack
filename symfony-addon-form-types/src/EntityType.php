@@ -23,8 +23,8 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,7 +32,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 if (!interface_exists(ManagerRegistry::class)) {
-    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonFormTypes\EntityType" as the "doctrine/persistence" package is not installed. Try running "composer require doctrine/persistence:^1.0".');
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonFormTypes\EntityType" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
 }
 
 /**
@@ -44,11 +44,11 @@ if (!interface_exists(ManagerRegistry::class)) {
  */
 class EntityType extends AbstractType
 {
-    /** @var \Doctrine\Common\Persistence\ManagerRegistry */
+    /** @var \Doctrine\Persistence\ManagerRegistry */
     private $registry;
 
     /**
-     * @param \Doctrine\Common\Persistence\ManagerRegistry $registry
+     * @param \Doctrine\Persistence\ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -73,7 +73,7 @@ class EntityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         if (!interface_exists(ObjectManager::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/persistence" package is not installed. Try running "composer require doctrine/persistence:^1.0".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', __CLASS__));
         }
 
         $registry = $this->registry;

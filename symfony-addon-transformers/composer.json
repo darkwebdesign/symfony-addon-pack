@@ -13,14 +13,15 @@
         "symfony/form": "5.0.*"
     },
     "require-dev": {
-        "doctrine/common": "^2.4",
-        "doctrine/orm": "^2.4",
+        "doctrine/orm": "^2.7",
         "phpunit/phpunit": "^8.5"
     },
     "suggest": {
         "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together",
-        "doctrine/common": "Required for EntityToIdentifierTransformer",
         "doctrine/orm": "Required for EntityToIdentifierTransformer"
+    },
+    "conflict": {
+        "doctrine/orm": "<2.7"
     },
     "autoload": {
         "psr-4": {

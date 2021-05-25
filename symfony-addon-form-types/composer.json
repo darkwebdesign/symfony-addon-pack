@@ -14,13 +14,16 @@
     },
     "require-dev": {
         "darkwebdesign/symfony-addon-transformers": "5.0.*",
-        "doctrine/common": "^2.4",
+        "doctrine/orm": "^2.7",
         "phpunit/phpunit": "^8.5"
     },
     "suggest": {
         "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together",
         "darkwebdesign/symfony-addon-transformers": "Required for BooleanType and EntityType",
-        "doctrine/common": "Required for EntityType"
+        "doctrine/orm": "Required for EntityType"
+    },
+    "conflict": {
+        "doctrine/orm": "<2.7"
     },
     "autoload": {
         "psr-4": {
