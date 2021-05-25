@@ -18,13 +18,19 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Util\ClassUtils;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
+
+if (!interface_exists(ObjectManager::class)) {
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
+}
 
 /**
  * Transforms between an identifier and a Doctrine entity.
@@ -50,12 +56,9 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     /**
      * Constructor.
      *
-     * @param \Doctrine\Common\Persistence\ObjectManager $entityManager
-     * @param string $className
-     *
      * @throws \Symfony\Component\Form\Exception\InvalidArgumentException
      */
-    public function __construct(ObjectManager $entityManager, $className)
+    public function __construct(ObjectManager $entityManager, string $className)
     {
         $this->entityManager = $entityManager;
         $this->repository = $this->entityManager->getRepository($className);
@@ -86,6 +89,10 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
             throw new TransformationFailedException('Expected an object.');
         }
 
+        if (!class_exists(ClassUtils::class)) {
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', __CLASS__));
+        }
+
         $className = ClassUtils::getClass($value);
 
         if ($className !== $this->className && !is_subclass_of($className, $this->className)) {
@@ -102,11 +109,11 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
      *
      * @param mixed $value
      *
-     * @return object
+     * @return object|null
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): ?object
     {
         if (null === $value || '' === $value) {
             return null;

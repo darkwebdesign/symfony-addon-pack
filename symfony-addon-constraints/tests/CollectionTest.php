@@ -18,35 +18,42 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
+use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 class CollectionTest extends TestCase
 {
-    public function testConstruct()
+    public function testConstruct(): void
     {
         new Collection([
             'constraints' => [
                 new Assert\NotBlank(),
             ],
         ]);
+
+        $this->assertTrue(true);
     }
 
-    public function testConstructDefaultOption()
+    public function testConstructDefaultOption(): void
     {
         new Collection([
             new Assert\NotBlank(),
         ]);
+
+        $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\MissingOptionsException
-     */
-    public function testConstructMissingRequiredConstraintsOption()
+    public function testConstructMissingRequiredConstraintsOption(): void
     {
+        $this->expectException(MissingOptionsException::class);
+
         new Collection();
     }
 
@@ -54,21 +61,20 @@ class CollectionTest extends TestCase
      * @param mixed $constraints
      *
      * @dataProvider providerNoArray
-     *
-     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
      */
-    public function testConstructConstraintsOptionNoArray($constraints)
+    public function testConstructConstraintsOptionNoArray($constraints): void
     {
+        $this->expectException(ConstraintDefinitionException::class);
+
         new Collection([
             'constraints' => $constraints,
         ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
-     */
-    public function testConstructNoConstraint()
+    public function testConstructNoConstraint(): void
     {
+        $this->expectException(ConstraintDefinitionException::class);
+
         new Collection([
             'constraints' => [
                 'foo',
@@ -76,11 +82,10 @@ class CollectionTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
-     */
-    public function testConstructValidConstraint()
+    public function testConstructValidConstraint(): void
     {
+        $this->expectException(ConstraintDefinitionException::class);
+
         new Collection([
             'constraints' => [
                 new Assert\Valid(),
@@ -88,10 +93,7 @@ class CollectionTest extends TestCase
         ]);
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoArray()
+    public function providerNoArray(): array
     {
         return [
             'bool' => [true],

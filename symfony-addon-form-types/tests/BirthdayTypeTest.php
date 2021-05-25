@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\BirthdayType;
@@ -25,7 +27,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class BirthdayTypeTest extends TypeTestCase
 {
-    public function test()
+    public function test(): void
     {
         $form = $this->factory->create(BirthdayType::class);
 

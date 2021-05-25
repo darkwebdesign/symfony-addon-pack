@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\BooleanType;
@@ -26,12 +28,12 @@ use Symfony\Component\Form\Test\TypeTestCase;
 class BooleanTypeTest extends TypeTestCase
 {
     /**
-     * @param string $valueTrue
-     * @param string $valueFalse
+     * @param mixed $valueTrue
+     * @param mixed $valueFalse
      *
      * @dataProvider providerValueTrueFalse
      */
-    public function test($valueTrue, $valueFalse)
+    public function test($valueTrue, $valueFalse): void
     {
         $options = [
             'value_true' => $valueTrue,
@@ -52,12 +54,12 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * @param string $valueTrue
-     * @param string $valueFalse
+     * @param mixed $valueTrue
+     * @param mixed $valueFalse
      *
      * @dataProvider providerValueTrueFalse
      */
-    public function testInvalidValue($valueTrue, $valueFalse)
+    public function testInvalidValue($valueTrue, $valueFalse): void
     {
         $options = [
             'value_true' => $valueTrue,
@@ -72,12 +74,9 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * @param string $widget
-     * @param bool $expanded
-     *
      * @dataProvider providerWidget
      */
-    public function testWidget($widget, $expanded)
+    public function testWidget(string $widget, bool $expanded): void
     {
         $options = [
             'widget' => $widget,
@@ -90,7 +89,7 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertFalse($view->vars['multiple']);
     }
 
-    public function testHumanize()
+    public function testHumanize(): void
     {
         $options = [
             'value_true' => 'an_underscored__label',
@@ -105,10 +104,7 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertSame('A camel cased label', $view->vars['choices'][1]->label);
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerValueTrueFalse()
+    public function providerValueTrueFalse(): array
     {
         return [
             'true/false' => ['true', 'false'],
@@ -120,10 +116,7 @@ class BooleanTypeTest extends TypeTestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerWidget()
+    public function providerWidget(): array
     {
         return [
             'choice' => ['choice', false],

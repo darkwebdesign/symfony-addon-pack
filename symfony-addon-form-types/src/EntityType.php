@@ -18,16 +18,22 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonFormTypes;
 
 use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+if (!interface_exists(ManagerRegistry::class)) {
+    throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonFormTypes\EntityType" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
+}
 
 /**
  * Entity form field type.
@@ -38,11 +44,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class EntityType extends AbstractType
 {
-    /** @var \Doctrine\Common\Persistence\ManagerRegistry */
+    /** @var \Doctrine\Persistence\ManagerRegistry */
     private $registry;
 
     /**
-     * @param \Doctrine\Common\Persistence\ManagerRegistry $registry
+     * @param \Doctrine\Persistence\ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -51,22 +57,25 @@ class EntityType extends AbstractType
 
     /**
      * Builds the form.
-     *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if (!class_exists(EntityToIdentifierTransformer::class)) {
+            throw new \LogicException(sprintf('You cannot use "%s" as the "darkwebdesign/symfony-addon-transformers" package is not installed. Try running "composer require darkwebdesign/symfony-addon-transformers".', __CLASS__));
+        }
+
         $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entity_manager'], $options['class']));
     }
 
     /**
      * Configures the options for this type.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
+        if (!interface_exists(ObjectManager::class)) {
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', __CLASS__));
+        }
+
         $registry = $this->registry;
 
         $entityManagerNormalizer = function (Options $options, $entityManager) use ($registry) {

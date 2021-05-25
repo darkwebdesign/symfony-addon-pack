@@ -18,20 +18,23 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
 use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class BooleanToValueTransformerTest extends TestCase
 {
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testTransform($trueValue, $falseValue)
+    public function testTransform($trueValue, $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -44,7 +47,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertSame($falseValue, $returnValue);
     }
 
-    public function testTransformNull()
+    public function testTransformNull(): void
     {
         $transformer = new BooleanToValueTransformer();
 
@@ -57,24 +60,24 @@ class BooleanToValueTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoBool
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a boolean.
      */
-    public function testTransformNoBool($value)
+    public function testTransformNoBool($value): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected a boolean.');
+
         $transformer = new BooleanToValueTransformer();
 
         $transformer->transform($value);
     }
 
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransform($trueValue, $falseValue)
+    public function testReverseTransform($trueValue, $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -87,7 +90,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertFalse($returnValue);
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $transformer = new BooleanToValueTransformer();
 
@@ -96,7 +99,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertNull($returnValue);
     }
 
-    public function testReverseTransformEmptyString()
+    public function testReverseTransformEmptyString(): void
     {
         $transformer = new BooleanToValueTransformer();
 
@@ -109,37 +112,34 @@ class BooleanToValueTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoScalar
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a scalar.
      */
-    public function testReverseTransformNoScalar($value)
+    public function testReverseTransformNoScalar($value): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected a scalar.');
+
         $transformer = new BooleanToValueTransformer();
 
         $transformer->reverseTransform($value);
     }
 
     /**
-     * @param string $trueValue
-     * @param string $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected true/false boolean value.
      */
-    public function testReverseTransformInvalidValue($trueValue, $falseValue)
+    public function testReverseTransformInvalidValue($trueValue, $falseValue): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected true/false boolean value.');
+
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
         $transformer->reverseTransform('foo');
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerTrueFalseValue()
+    public function providerTrueFalseValue(): array
     {
         return [
             'true/false' => [true, false],
@@ -149,10 +149,7 @@ class BooleanToValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoBool()
+    public function providerNoBool(): array
     {
         return [
             'int' => [1],
@@ -165,10 +162,7 @@ class BooleanToValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoScalar()
+    public function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],

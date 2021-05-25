@@ -18,54 +18,53 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Bsn;
 use DarkWebDesign\SymfonyAddonConstraints\BsnValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 class BsnValidatorTest extends ConstraintValidatorTestCase
 {
-    /**
-     * @return \DarkWebDesign\SymfonyAddonConstraints\BsnValidator
-     */
-    protected function createValidator()
+    protected function createValidator(): BsnValidator
     {
         return new BsnValidator();
     }
 
     /**
-     * @param string $bsn
+     * @param mixed $value
      *
      * @dataProvider providerValidBsn
      */
-    public function testValidate($bsn)
+    public function testValidate($value): void
     {
-        $this->validator->validate($bsn, new Bsn());
+        $this->validator->validate($value, new Bsn());
 
         $this->assertNoViolation();
     }
 
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     */
-    public function testValidateInvalidConstraint()
+    public function testValidateInvalidConstraint(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+
         $this->validator->validate([], new Assert\NotNull());
 
         $this->assertNoViolation();
     }
 
-    public function testValidateNull()
+    public function testValidateNull(): void
     {
         $this->validator->validate(null, new Bsn());
 
         $this->assertNoViolation();
     }
 
-    public function testValidateEmptyString()
+    public function testValidateEmptyString(): void
     {
         $this->validator->validate('', new Bsn());
 
@@ -73,39 +72,36 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param string $bsn
+     * @param mixed $value
      *
      * @dataProvider providerNoScalar
-     *
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function testValidateNoScalar($bsn)
+    public function testValidateNoScalar($value): void
     {
-        $this->validator->validate($bsn, new Bsn());
+        $this->expectException(UnexpectedTypeException::class);
+
+        $this->validator->validate($value, new Bsn());
 
         $this->assertNoViolation();
     }
 
     /**
-     * @param string $bsn
+     * @param mixed $value
      *
      * @dataProvider providerInvalidBsn
      */
-    public function testValidateViolation($bsn)
+    public function testValidateViolation($value): void
     {
         $constraint = new Bsn();
 
-        $this->validator->validate($bsn, $constraint);
+        $this->validator->validate($value, $constraint);
 
         $this->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', '"' . $bsn . '"')
+            ->setParameter('{{ value }}', '"' . $value . '"')
             ->assertRaised();
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerValidBsn()
+    public function providerValidBsn(): array
     {
         return [
             'valid1' => ['111222333'],
@@ -114,10 +110,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoScalar()
+    public function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
@@ -127,10 +120,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerInvalidBsn()
+    public function providerInvalidBsn(): array
     {
         return [
             'zeros' => ['000000000'],

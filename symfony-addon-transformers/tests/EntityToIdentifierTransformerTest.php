@@ -18,6 +18,8 @@
  * SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
 use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
@@ -25,10 +27,12 @@ use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EntityToIdentifierTransformerTest extends TestCase
 {
@@ -41,16 +45,16 @@ class EntityToIdentifierTransformerTest extends TestCase
     /** @var int */
     private $identifier;
 
-    /** @var \Doctrine\Common\Persistence\ObjectManager|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
     private $metadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->entity = new City();
         $this->entity->setId(123);
@@ -71,34 +75,27 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->metadata->isIdentifierComposite = false;
     }
 
-    /**
-     * @return string
-     */
-    public function getClassName()
+    public function getClassName(): string
     {
         return $this->className;
     }
 
-    /**
-     * @return array
-     */
-    public function getIdentifier()
+    public function getIdentifier(): array
     {
         return ['id' => $this->identifier];
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Expected an entity with a single identifier.
-     */
-    public function testConstructIdentifierComposite()
+    public function testConstructIdentifierComposite(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected an entity with a single identifier.');
+
         $this->metadata->isIdentifierComposite = true;
 
         new EntityToIdentifierTransformer($this->entityManager, $this->className);
     }
 
-    public function testTransform()
+    public function testTransform(): void
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -107,7 +104,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertSame($this->identifier, $identifier);
     }
 
-    public function testTransformAlias()
+    public function testTransformAlias(): void
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, 'AppBundle:City');
 
@@ -116,7 +113,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertSame($this->identifier, $identifier);
     }
 
-    public function testTransformDiscriminated()
+    public function testTransformDiscriminated(): void
     {
         $this->className = AbstractPerson::class;
 
@@ -129,7 +126,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertSame($this->identifier, $identifier);
     }
 
-    public function testTransformNull()
+    public function testTransformNull(): void
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -142,23 +139,22 @@ class EntityToIdentifierTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoObject
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected an object.
      */
-    public function testTransformNoObject($value)
+    public function testTransformNoObject($value): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected an object.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $transformer->transform($value);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City.
-     */
-    public function testTransformInvalidEntity()
+    public function testTransformInvalidEntity(): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $entity = new PointOfInterest();
@@ -166,7 +162,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $transformer->transform($entity);
     }
 
-    public function testReverseTransform()
+    public function testReverseTransform(): void
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -177,7 +173,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertSame($this->identifier, $entity->getId());
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -186,7 +182,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertNull($entity);
     }
 
-    public function testReverseTransformEmptyString()
+    public function testReverseTransformEmptyString(): void
     {
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -199,23 +195,22 @@ class EntityToIdentifierTransformerTest extends TestCase
      * @param mixed $value
      *
      * @dataProvider providerNoScalar
-     *
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a scalar.
      */
-    public function testReverseTransformNoScalar($value)
+    public function testReverseTransformNoScalar($value): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected a scalar.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $transformer->reverseTransform($value);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City with identifier "123" not found.
-     */
-    public function testReverseTransformEntityNotFound()
+    public function testReverseTransformEntityNotFound(): void
     {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Entity DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City with identifier "123" not found.');
+
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
         $this->repository->method('find')->willReturn(null);
@@ -223,10 +218,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $transformer->reverseTransform($this->identifier);
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoObject()
+    public function providerNoObject(): array
     {
         return [
             'bool' => [true],
@@ -239,10 +231,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @return array[]
-     */
-    public function providerNoScalar()
+    public function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
