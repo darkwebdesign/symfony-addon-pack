@@ -29,6 +29,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
+ *
+ * @uses \DarkWebDesign\SymfonyAddonConstraints\Collection
+ */
 class CollectionValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): CollectionValidator

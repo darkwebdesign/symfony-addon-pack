@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.5/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.5/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
->
+         executionOrder="depends,defects"
+         forceCoversAnnotation="true"
+         beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         verbose="true">
 
     <testsuites>
         <testsuite name="DarkWeb Design Symfony Add-on Pack Test Suite">
@@ -15,10 +19,10 @@
     </testsuites>
 
     <filter>
-        <whitelist>
-            <directory>symfony-addon-constraints/src</directory>
-            <directory>symfony-addon-form-types/src</directory>
-            <directory>symfony-addon-transformers/src</directory>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">symfony-addon-constraints/src</directory>
+            <directory suffix=".php">symfony-addon-form-types/src</directory>
+            <directory suffix=".php">symfony-addon-transformers/src</directory>
         </whitelist>
     </filter>
 

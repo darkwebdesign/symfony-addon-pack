@@ -29,6 +29,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonConstraints\BsnValidator
+ */
 class BsnValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): BsnValidator

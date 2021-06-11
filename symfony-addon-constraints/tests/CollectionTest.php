@@ -28,6 +28,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\MissingOptionsException;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonConstraints\Collection
+ */
 class CollectionTest extends TestCase
 {
     public function testConstruct(): void

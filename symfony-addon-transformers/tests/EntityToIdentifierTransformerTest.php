@@ -34,6 +34,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
+ */
 class EntityToIdentifierTransformerTest extends TestCase
 {
     /** @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City */
