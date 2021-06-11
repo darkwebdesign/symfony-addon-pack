@@ -9,8 +9,8 @@ This constraint is used to ensure that a value has the proper format of a JSON-e
 
 Applies to:
 
-* [properties](http://symfony.com/doc/5.0/validation.html#properties)
-* [methods](http://symfony.com/doc/5.0/validation.html#getters)
+* [properties](http://symfony.com/doc/5.1/validation.html#properties)
+* [methods](http://symfony.com/doc/5.1/validation.html#getters)
 
 Options:
 

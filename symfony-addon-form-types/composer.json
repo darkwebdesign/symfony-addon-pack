@@ -10,10 +10,10 @@
     ],
     "require": {
         "php": ">=7.2.5",
-        "symfony/form": "5.0.*"
+        "symfony/form": "5.1.*"
     },
     "require-dev": {
-        "darkwebdesign/symfony-addon-transformers": "5.0.*",
+        "darkwebdesign/symfony-addon-transformers": "5.1.*",
         "doctrine/orm": "^2.7",
         "phpunit/phpunit": "^8.5"
     },
