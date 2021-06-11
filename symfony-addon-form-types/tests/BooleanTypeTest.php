@@ -25,6 +25,11 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 use DarkWebDesign\SymfonyAddonFormTypes\BooleanType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonFormTypes\BooleanType
+ *
+ * @uses \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
+ */
 class BooleanTypeTest extends TypeTestCase
 {
     /**

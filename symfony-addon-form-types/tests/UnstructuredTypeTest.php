@@ -25,6 +25,9 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 use DarkWebDesign\SymfonyAddonFormTypes\UnstructuredType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonFormTypes\UnstructuredType
+ */
 class UnstructuredTypeTest extends TypeTestCase
 {
     public function testArray(): void

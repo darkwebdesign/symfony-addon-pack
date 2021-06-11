@@ -25,6 +25,9 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 use DarkWebDesign\SymfonyAddonFormTypes\BirthdayType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonFormTypes\BirthdayType
+ */
 class BirthdayTypeTest extends TypeTestCase
 {
     public function test(): void
