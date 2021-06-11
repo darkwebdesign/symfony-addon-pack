@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-form-types/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-form-types)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-form-types/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-form-types)
 
-[![Build Status](https://travis-ci.com/darkwebdesign/symfony-addon-form-types.svg?branch=5.1)](https://travis-ci.com/darkwebdesign/symfony-addon-form-types?branch=5.1)
+[![Build Status](https://travis-ci.com/darkwebdesign/symfony-addon-form-types.svg?branch=5.1)](https://travis-ci.com/darkwebdesign/symfony-addon-form-types)
 [![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-form-types/branch/5.1/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-form-types)
 [![PHP Version](https://img.shields.io/badge/php-7.2%2B-777BB3.svg)](https://php.net/)
 [![Symfony Version](https://img.shields.io/badge/symfony-5.1-93C74B.svg)](https://symfony.com/)
