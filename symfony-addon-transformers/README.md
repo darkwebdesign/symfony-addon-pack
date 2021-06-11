@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-transformers/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-transformers)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-transformers/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-transformers)
 
-[![Build Status](https://travis-ci.com/darkwebdesign/symfony-addon-transformers.svg?branch=5.1)](https://travis-ci.com/darkwebdesign/symfony-addon-transformers?branch=5.1)
+[![Build Status](https://travis-ci.com/darkwebdesign/symfony-addon-transformers.svg?branch=5.1)](https://travis-ci.com/darkwebdesign/symfony-addon-transformers)
 [![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers/branch/5.1/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers)
 [![PHP Version](https://img.shields.io/badge/php-7.2%2B-777BB3.svg)](https://php.net/)
 [![Symfony Version](https://img.shields.io/badge/symfony-5.1-93C74B.svg)](https://symfony.com/)
