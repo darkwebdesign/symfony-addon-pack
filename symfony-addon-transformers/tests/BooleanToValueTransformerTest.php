@@ -26,6 +26,9 @@ use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
+ */
 class BooleanToValueTransformerTest extends TestCase
 {
     /**

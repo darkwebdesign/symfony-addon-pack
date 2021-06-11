@@ -33,6 +33,11 @@ use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @covers \DarkWebDesign\SymfonyAddonFormTypes\EntityType
+ *
+ * @uses \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
+ */
 class EntityTypeTest extends TypeTestCase
 {
     /** @var \DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City */
