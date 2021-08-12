@@ -15,10 +15,17 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 ## Features
 
+### Types
+
 * BirthdayType, handles birthday data.
 * BooleanType, transforms an user selected value into a boolean.
 * EntityType, transforms an user entered identifier into a Doctrine entity.
 * UnstructuredType, handles unstructured data.
+
+### Event Subscribers
+
+* BooleanToYesNoSubscriber, rewrites boolean values to "yes" or "no", to be used with the `BooleanType`.
+* JsonSchemaSubscriber, rewrites the JSON Schema `$schema` keyword property.
 
 ## Installing via Composer
 
