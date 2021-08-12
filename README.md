@@ -27,6 +27,10 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 * EntityType, transforms an user entered identifier into a Doctrine entity.
 * UnstructuredType, handles unstructured data.
 
+### Form Field Event Subscribers
+
+* JsonSchemaSubscriber, rewrites the JSON Schema `$schema` keyword property.
+
 ### Validation Constraints
 
 * Bsn, validates that a value is a valid Dutch social security number (BSN).
