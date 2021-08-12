@@ -29,6 +29,7 @@ Learn more about it in its [documentation](https://github.com/darkwebdesign/symf
 
 ### Form Field Event Subscribers
 
+* BooleanToYesNoSubscriber, rewrites boolean values to "yes" or "no", to be used with the `BooleanType`.
 * JsonSchemaSubscriber, rewrites the JSON Schema `$schema` keyword property.
 
 ### Validation Constraints
