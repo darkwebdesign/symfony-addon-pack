@@ -13,4 +13,5 @@ The following field event subscribers are available:
 
 ### Other Fields
 
+* [BooleanToYesNoSubscriber](boolean-to-yes-no-subscriber.md)
 * [JsonSchemaSubscriber](json-schema-subscriber.md)
