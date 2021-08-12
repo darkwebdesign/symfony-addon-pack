@@ -4,15 +4,15 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
 
-[![Build Status](https://travis-ci.com/darkwebdesign/symfony-addon-constraints.svg?branch=5.2)](https://travis-ci.com/darkwebdesign/symfony-addon-constraints)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints/branch/5.2/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints)
+[![Build Status](https://travis-ci.com/darkwebdesign/symfony-addon-constraints.svg?branch=5.3)](https://travis-ci.com/darkwebdesign/symfony-addon-constraints)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints/branch/5.3/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints)
 [![PHP Version](https://img.shields.io/badge/php-7.2%2B-777BB3.svg)](https://php.net/)
-[![Symfony Version](https://img.shields.io/badge/symfony-5.2-93C74B.svg)](https://symfony.com/)
+[![Symfony Version](https://img.shields.io/badge/symfony-5.3-93C74B.svg)](https://symfony.com/)
 
 Symfony Add-on Constraints is a collection of extra Symfony validation constraints that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/5.2/doc/reference/constraints/index.md).
+Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/5.3/doc/reference/constraints/index.md).
 
 ## Features
 
