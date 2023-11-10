@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Welcome
-permalink: /docs
+permalink: /docs/index
 redirect_from:
   - /
+  - /docs
 ---
 
 # Symfony Add-on Pack
