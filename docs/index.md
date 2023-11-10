@@ -5,7 +5,7 @@ permalink: /docs/index.html
 redirect_from:
   - /
   - /docs
-  - /docs/
+  - /docs
   - /docs/index
 ---
 
