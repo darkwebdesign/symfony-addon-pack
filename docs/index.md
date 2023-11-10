@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Welcome
-permalink: /docs/index
+permalink: /docs/index.html
 redirect_from:
   - /
   - /docs
