@@ -5,6 +5,8 @@ permalink: /docs/index.html
 redirect_from:
   - /
   - /docs
+  - /docs/
+  - /docs/index
 ---
 
 # Symfony Add-on Pack
