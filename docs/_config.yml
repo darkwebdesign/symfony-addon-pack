@@ -9,46 +9,46 @@ collections:
   v5_4:
     permalink: "/docs/5.4/:path:output_ext"
     output: true
-#  v5_3:
-#    permalink: "/docs/5.3/:path:output_ext"
-#    output: true
-#  v5_2:
-#    permalink: "/docs/5.2/:path:output_ext"
-#    output: true
-#  v5_1:
-#    permalink: "/docs/5.1/:path:output_ext"
-#    output: true
-#  v5_0:
-#    permalink: "/docs/5.0/:path:output_ext"
-#    output: true
+  v5_3:
+    permalink: "/docs/5.3/:path:output_ext"
+    output: true
+  v5_2:
+    permalink: "/docs/5.2/:path:output_ext"
+    output: true
+  v5_1:
+    permalink: "/docs/5.1/:path:output_ext"
+    output: true
+  v5_0:
+    permalink: "/docs/5.0/:path:output_ext"
+    output: true
 
 just_the_docs:
   collections:
     v5_4:
       name: v5.4 (latest)
       nav_exclude: false
-      nav_fold: false
+      nav_fold: true
       search_exclude: false
-#    v5_3:
-#      name: v5.3
-#      nav_exclude: false
-#      nav_fold: true
-#      search_exclude: true
-#    v5_2:
-#      name: v5.2
-#      nav_exclude: false
-#      nav_fold: true
-#      search_exclude: true
-#    v5_1:
-#      name: v5.1
-#      nav_exclude: false
-#      nav_fold: true
-#      search_exclude: true
-#    v5_0:
-#      name: v5.0
-#      nav_exclude: false
-#      nav_fold: true
-#      search_exclude: true
+    v5_3:
+      name: v5.3
+      nav_exclude: false
+      nav_fold: true
+      search_exclude: true
+    v5_2:
+      name: v5.2
+      nav_exclude: false
+      nav_fold: true
+      search_exclude: true
+    v5_1:
+      name: v5.1
+      nav_exclude: false
+      nav_fold: true
+      search_exclude: true
+    v5_0:
+      name: v5.0
+      nav_exclude: false
+      nav_fold: true
+      search_exclude: true
 
 callouts:
   info:
