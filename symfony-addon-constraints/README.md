@@ -12,23 +12,15 @@
 Symfony Add-on Constraints is a collection of extra Symfony validation constraints that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/5.4/doc/reference/constraints/index.md).
+Learn more about it in its [documentation](https://darkwebdesign.github.io/symfony-addon-pack/docs/5.4).
 
 ## Features
+
+### Validation Constraints
 
 * Bsn, validates that a value is a valid Dutch social security number (BSN).
 * Collection, validates that every item in a collection validates against one or more constraints.
 * Json, validates that a value is valid JSON.
-
-## Installing via Composer
-
-```bash
-composer require darkwebdesign/symfony-addon-constraints
-```
-
-```bash
-composer install
-```
 
 ## License
 

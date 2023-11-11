@@ -11,31 +11,21 @@
 
 Symfony Add-on Form Types is a collection of extra Symfony form field types that you can use in your Symfony applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/5.4/doc/reference/forms/types/index.md).
+Learn more about it in its [documentation](https://darkwebdesign.github.io/symfony-addon-pack/docs/5.4).
 
 ## Features
 
-### Types
+### Form Field Types
 
 * BirthdayType, handles birthday data.
-* BooleanType, transforms an user selected value into a boolean.
-* EntityType, transforms an user entered identifier into a Doctrine entity.
+* BooleanType, transforms a user selected value into a boolean.
+* EntityType, transforms a user entered identifier into a Doctrine entity.
 * UnstructuredType, handles unstructured data.
 
-### Event Subscribers
+### Form Field Event Subscribers
 
 * BooleanToYesNoSubscriber, rewrites boolean values to "yes" or "no", to be used with the `BooleanType`.
 * JsonSchemaSubscriber, rewrites the JSON Schema `$schema` keyword property.
-
-## Installing via Composer
-
-```bash
-composer require darkwebdesign/symfony-addon-form-types
-```
-
-```bash
-composer install
-```
 
 ## License
 

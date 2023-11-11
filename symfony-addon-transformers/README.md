@@ -12,22 +12,14 @@
 Symfony Add-on Transformers is a collection of extra Symfony data transformers that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/5.4/doc/reference/transformers/index.md).
+Learn more about it in its [documentation](https://darkwebdesign.github.io/symfony-addon-pack/docs/5.4).
 
 ## Features
 
+### Data Transformers
+
 * BooleanToValueTransformer, transforms between a boolean and a scalar value.
-* EntityToIdentifierTransformer, Transforms between an identifier and a Doctrine entity.
-
-## Installing via Composer
-
-```bash
-composer require darkwebdesign/symfony-addon-transformers
-```
-
-```bash
-composer install
-```
+* EntityToIdentifierTransformer, transforms between an identifier and a Doctrine entity.
 
 ## License
 

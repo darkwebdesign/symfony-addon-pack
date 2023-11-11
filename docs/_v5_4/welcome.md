@@ -32,8 +32,8 @@ Symfony Add-on Pack is a collection of extra Symfony components that you can use
 ### Form Field Types
 
 * BirthdayType, handles birthday data.
-* BooleanType, transforms an user selected value into a boolean.
-* EntityType, transforms an user entered identifier into a Doctrine entity.
+* BooleanType, transforms a user selected value into a boolean.
+* EntityType, transforms a user entered identifier into a Doctrine entity.
 * UnstructuredType, handles unstructured data.
 
 ### Form Field Event Subscribers
