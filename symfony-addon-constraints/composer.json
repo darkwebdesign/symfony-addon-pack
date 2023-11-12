@@ -10,7 +10,7 @@
     ],
     "require": {
         "ext-json": "*",
-        "php": ">=8.0.2",
+        "php": "^8.0",
         "symfony/validator": "6.0.*"
     },
     "require-dev": {
