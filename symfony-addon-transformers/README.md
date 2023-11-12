@@ -4,20 +4,22 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-transformers/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-transformers)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-transformers/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-transformers)
 
-[![Build Status](https://app.travis-ci.com/darkwebdesign/symfony-addon-transformers.svg?branch=5.4)](https://app.travis-ci.com/darkwebdesign/symfony-addon-transformers)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers/branch/5.4/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers)
-[![PHP Version](https://img.shields.io/badge/php-7.2%2B-777BB3.svg)](https://php.net/)
-[![Symfony Version](https://img.shields.io/badge/symfony-5.4-93C74B.svg)](https://symfony.com/)
+[![Build Status](https://app.travis-ci.com/darkwebdesign/symfony-addon-transformers.svg?branch=6.0)](https://app.travis-ci.com/darkwebdesign/symfony-addon-transformers)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers/branch/6.0/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers)
+[![PHP Version](https://img.shields.io/badge/php-8.0%2B-777BB3.svg)](https://php.net/)
+[![Symfony Version](https://img.shields.io/badge/symfony-6.0-93C74B.svg)](https://symfony.com/)
 
 Symfony Add-on Transformers is a collection of extra Symfony data transformers that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://github.com/darkwebdesign/symfony-addon-pack/blob/5.4/doc/reference/transformers/index.md).
+Learn more about it in its [documentation](https://darkwebdesign.github.io/symfony-addon-pack/docs/6.0).
 
 ## Features
 
+### Data Transformers
+
 * BooleanToValueTransformer, transforms between a boolean and a scalar value.
-* EntityToIdentifierTransformer, Transforms between an identifier and a Doctrine entity.
+* EntityToIdentifierTransformer, transforms between an identifier and a Doctrine entity.
 
 ## Installing via Composer
 
