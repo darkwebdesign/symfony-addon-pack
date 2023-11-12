@@ -26,6 +26,7 @@ before_script:
 
 script:
     - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
+    - vendor/bin/rector process --dry-run --no-progress-bar
 
 after_success:
     - bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
