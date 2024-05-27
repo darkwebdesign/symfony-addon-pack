@@ -1,0 +1,32 @@
+name: 'Build'
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  phpunit:
+    name: 'PHPUnit'
+    runs-on: 'ubuntu-24.04'
+    strategy:
+      matrix:
+        include:
+          - php: '8.0'
+          - php: '8.1'
+          - php: '8.3'
+      fail-fast: false
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+      - name: 'Setup PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: "${{ matrix.php }}"
+      - name: 'Composer Install'
+        uses: 'ramsey/composer-install@v2'
+      - name: 'PHPUnit'
+        run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml'
+      - name: 'Code Climate'
+        uses: 'paambaati/codeclimate-action@v6'
+        env:
+          CC_TEST_REPORTER_ID: '6e4ee4c44c44119ebc8c68b84726cc5a3ffdfde8fc3f1aaf87e4b92209b4a8fe'
