@@ -80,8 +80,6 @@ class EntityTypeTest extends TypeTestCase
         $this->metadata->method('getName')->willReturn($this->className);
         $this->metadata->method('getIdentifierValues')->willReturn(['id' => $this->identifier]);
 
-        $this->metadata->isIdentifierComposite = false;
-
         parent::setUp();
     }
 

@@ -25,7 +25,6 @@ namespace DarkWebDesign\SymfonyAddonTransformers;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 if (!interface_exists(ObjectManager::class)) {
@@ -55,8 +54,6 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
 
     /**
      * Constructor.
-     *
-     * @throws \Symfony\Component\Form\Exception\InvalidArgumentException
      */
     public function __construct(ObjectManager $entityManager, string $className)
     {
@@ -64,10 +61,6 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
         $this->repository = $this->entityManager->getRepository($className);
         $this->metadata = $this->entityManager->getClassMetadata($className);
         $this->className = $this->metadata->getName();
-
-        if ($this->metadata->isIdentifierComposite) {
-            throw new InvalidArgumentException('Expected an entity with a single identifier.');
-        }
     }
 
     /**
@@ -100,6 +93,10 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
         }
 
         $identifierValues = $this->metadata->getIdentifierValues($value);
+
+        if (count($identifierValues) > 1) {
+            throw new TransformationFailedException('Expected an entity with a single identifier.');
+        }
 
         return reset($identifierValues);
     }
