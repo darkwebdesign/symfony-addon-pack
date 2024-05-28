@@ -34,7 +34,6 @@ jobs:
         uses: 'ramsey/composer-install@v3'
       - name: 'PHPUnit'
         run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml'
-      - run: ls "$RUNNER_TEMP/phpunit-coverage.xml"
       - name: 'Code Climate'
         uses: 'paambaati/codeclimate-action@v6'
         with:
