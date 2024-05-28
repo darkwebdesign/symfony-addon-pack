@@ -11,7 +11,9 @@
     "require": {
         "ext-json": "*",
         "php": "^8.0",
+        "symfony/event-dispatcher": "6.0.*",
         "symfony/form": "6.0.*",
+        "symfony/options-resolver": "6.0.*",
         "symfony/validator": "6.0.*"
     },
     "require-dev": {
