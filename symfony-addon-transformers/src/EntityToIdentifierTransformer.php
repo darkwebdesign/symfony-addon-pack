@@ -27,9 +27,11 @@ use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+// @codeCoverageIgnoreStart
 if (!interface_exists(ObjectManager::class)) {
     throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
 }
+// @codeCoverageIgnoreEnd
 
 /**
  * Transforms between an identifier and a Doctrine entity.

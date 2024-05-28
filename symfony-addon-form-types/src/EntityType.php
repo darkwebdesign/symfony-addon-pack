@@ -31,9 +31,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+// @codeCoverageIgnoreStart
 if (!interface_exists(ManagerRegistry::class)) {
     throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonFormTypes\EntityType" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
 }
+// @codeCoverageIgnoreEnd
 
 /**
  * Entity form field type.
