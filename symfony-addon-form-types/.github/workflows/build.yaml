@@ -33,6 +33,7 @@ jobs:
       - name: 'Code Climate'
         uses: 'paambaati/codeclimate-action@v6'
         with:
-          coverageLocations: "$RUNNER_TEMP/phpunit-coverage.xml:clover"
+          coverageLocations: |
+            "$RUNNER_TEMP/phpunit-coverage.xml:clover"
         env:
           CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"
