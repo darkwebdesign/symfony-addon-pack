@@ -10,13 +10,15 @@
     ],
     "require": {
         "ext-json": "*",
-        "php": ">=8.0.2",
+        "php": "^8.0",
+        "symfony/event-dispatcher": "6.0.*",
         "symfony/form": "6.0.*",
+        "symfony/options-resolver": "6.0.*",
         "symfony/validator": "6.0.*"
     },
     "require-dev": {
         "doctrine/orm": "^2.7",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.5"
     },
     "suggest": {
         "doctrine/orm": "Required for EntityToIdentifierTransformer and EntityType"

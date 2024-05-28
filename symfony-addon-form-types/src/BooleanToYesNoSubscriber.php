@@ -35,12 +35,10 @@ use Symfony\Component\Form\FormEvents;
  */
 class BooleanToYesNoSubscriber implements EventSubscriberInterface
 {
-    /** @var string[] */
-    private $fieldNames;
-
-    public function __construct(array $fieldNames)
-    {
-        $this->fieldNames = $fieldNames;
+    public function __construct(
+        /** @var string[] */
+        private array $fieldNames
+    ) {
     }
 
     /**

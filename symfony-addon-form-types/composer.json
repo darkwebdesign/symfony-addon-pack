@@ -9,8 +9,10 @@
         {"name": "Raymond Schouten"}
     ],
     "require": {
-        "php": ">=8.0.2",
-        "symfony/form": "6.0.*"
+        "php": "^8.0",
+        "symfony/event-dispatcher": "6.0.*",
+        "symfony/form": "6.0.*",
+        "symfony/options-resolver": "6.0.*"
     },
     "require-dev": {
         "darkwebdesign/symfony-addon-transformers": "6.0.*",

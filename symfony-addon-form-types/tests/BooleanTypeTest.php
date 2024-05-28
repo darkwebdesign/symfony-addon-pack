@@ -33,12 +33,10 @@ use Symfony\Component\Form\Test\TypeTestCase;
 class BooleanTypeTest extends TypeTestCase
 {
     /**
-     * @param mixed $valueTrue
-     * @param mixed $valueFalse
      *
      * @dataProvider providerValueTrueFalse
      */
-    public function test($valueTrue, $valueFalse): void
+    public function test(mixed $valueTrue, mixed $valueFalse): void
     {
         $options = [
             'value_true' => $valueTrue,
@@ -59,12 +57,10 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * @param mixed $valueTrue
-     * @param mixed $valueFalse
      *
      * @dataProvider providerValueTrueFalse
      */
-    public function testInvalidValue($valueTrue, $valueFalse): void
+    public function testInvalidValue(mixed $valueTrue, mixed $valueFalse): void
     {
         $options = [
             'value_true' => $valueTrue,

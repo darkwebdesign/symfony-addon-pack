@@ -9,7 +9,7 @@
         {"name": "Raymond Schouten"}
     ],
     "require": {
-        "php": ">=8.0.2",
+        "php": "^8.0",
         "symfony/form": "6.0.*"
     },
     "require-dev": {

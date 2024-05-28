@@ -22,48 +22,12 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
-/**
- * @Table(name="pointofinterest")
- *
- * @Entity
- */
 class PointOfInterest
 {
-    /**
-     * @var int
-     *
-     * @Column(name="latitude", type="integer", nullable=false)
-     *
-     * @Id
-     */
-    private $latitude;
-
-    /**
-     * @var int
-     *
-     * @Column(name="longitude", type="integer", nullable=false)
-     *
-     * @Id
-     */
-    private $longitude;
-
-    /**
-     * @var string
-     *
-     * @Column(name="name", type="string", length=50, nullable=false)
-     */
-    private $name;
-
-    /**
-     * @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City
-     *
-     * @ManyToOne(targetEntity="City")
-     *
-     * @JoinColumns({
-     *   @JoinColumn(name="city_id", referencedColumnName="id")
-     * })
-     */
-    private $city;
+    private ?int $latitude = null;
+    private ?int $longitude = null;
+    private ?string $name = null;
+    private ?City $city = null;
 
     public function getLatitude(): ?int
     {
