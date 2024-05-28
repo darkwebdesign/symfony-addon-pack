@@ -46,15 +46,9 @@ if (!interface_exists(ManagerRegistry::class)) {
  */
 class EntityType extends AbstractType
 {
-    /** @var \Doctrine\Persistence\ManagerRegistry */
-    private $registry;
-
-    /**
-     * @param \Doctrine\Persistence\ManagerRegistry $registry
-     */
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
+    public function __construct(
+        private ManagerRegistry $registry
+    ) {
     }
 
     /**
@@ -63,7 +57,7 @@ class EntityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (!class_exists(EntityToIdentifierTransformer::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "darkwebdesign/symfony-addon-transformers" package is not installed. Try running "composer require darkwebdesign/symfony-addon-transformers".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "darkwebdesign/symfony-addon-transformers" package is not installed. Try running "composer require darkwebdesign/symfony-addon-transformers".', self::class));
         }
 
         $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entity_manager'], $options['class']));
@@ -75,7 +69,7 @@ class EntityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         if (!interface_exists(ObjectManager::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', self::class));
         }
 
         $registry = $this->registry;
@@ -101,9 +95,7 @@ class EntityType extends AbstractType
             return $entityManager;
         };
 
-        $compoundNormalizer = function () {
-            return false;
-        };
+        $compoundNormalizer = fn() => false;
 
         $resolver->setDefaults([
             'entity_manager' => null,

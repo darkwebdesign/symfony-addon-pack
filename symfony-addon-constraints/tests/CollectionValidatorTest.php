@@ -42,11 +42,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerValidCollection
      */
-    public function testValidate($value): void
+    public function testValidate(mixed $value): void
     {
         $constraints = [
             new Assert\Email(),
@@ -85,11 +83,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoArray
      */
-    public function testValidateNoArray($value): void
+    public function testValidateNoArray(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 

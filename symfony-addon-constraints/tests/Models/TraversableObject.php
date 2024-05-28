@@ -24,12 +24,9 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests\Models;
 
 class TraversableObject implements \IteratorAggregate
 {
-    /** @var array */
-    private $container;
-
-    public function __construct(array $data = [])
-    {
-        $this->container = $data;
+    public function __construct(
+        private array $container = []
+    ) {
     }
 
     public function getIterator(): \Traversable

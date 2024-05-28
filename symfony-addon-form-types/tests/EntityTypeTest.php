@@ -29,6 +29,7 @@ use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
@@ -40,33 +41,20 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class EntityTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City */
-    private $entity;
-
-    /** @var string */
-    private $className;
-
-    /** @var int */
-    private $identifier;
-
-    /** @var \Doctrine\Persistence\ManagerRegistry|\PHPUnit\Framework\MockObject\MockObject */
-    private $registry;
-
-    /** @var \Doctrine\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $entityManager;
-
-    /** @var \Doctrine\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
-    private $repository;
-
-    /** @var \Doctrine\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
-    private $metadata;
+    private City $entity;
+    private string $className;
+    private int $identifier;
+    private ManagerRegistry|MockObject $registry;
+    private ObjectManager|MockObject $entityManager;
+    private ObjectRepository|MockObject $repository;
+    private ClassMetadata|MockObject $metadata;
 
     protected function setUp(): void
     {
         $this->entity = new City();
         $this->entity->setId(123);
 
-        $this->className = get_class($this->entity);
+        $this->className = $this->entity::class;
         $this->identifier = $this->entity->getId();
 
         $this->registry = $this->createMock(ManagerRegistry::class);

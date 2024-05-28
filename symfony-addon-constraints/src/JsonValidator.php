@@ -36,11 +36,9 @@ class JsonValidator extends ConstraintValidator
     /**
      * Checks if the value is valid.
      *
-     * @param mixed $value
-     *
      * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof Json) {
             throw new UnexpectedTypeException($constraint, Json::class);

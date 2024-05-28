@@ -32,12 +32,10 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class BooleanToValueTransformerTest extends TestCase
 {
     /**
-     * @param mixed $trueValue
-     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testTransform($trueValue, $falseValue): void
+    public function testTransform(mixed $trueValue, mixed $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -60,11 +58,9 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoBool
      */
-    public function testTransformNoBool($value): void
+    public function testTransformNoBool(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a boolean.');
@@ -75,12 +71,10 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $trueValue
-     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransform($trueValue, $falseValue): void
+    public function testReverseTransform(mixed $trueValue, mixed $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -112,11 +106,9 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoScalar
      */
-    public function testReverseTransformNoScalar($value): void
+    public function testReverseTransformNoScalar(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a scalar.');
@@ -127,12 +119,10 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $trueValue
-     * @param mixed $falseValue
      *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransformInvalidValue($trueValue, $falseValue): void
+    public function testReverseTransformInvalidValue(mixed $trueValue, mixed $falseValue): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected true/false boolean value.');
