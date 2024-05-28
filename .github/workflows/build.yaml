@@ -33,8 +33,10 @@ jobs:
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'PHPUnit'
-        run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml'
+        run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover $RUNNER_TEMP/coverage.xml'
       - name: 'Code Climate'
         uses: 'paambaati/codeclimate-action@v6'
+        with:
+          coverageLocations: "$RUNNER_TEMP/phpunit-coverage.xml"
         env:
           CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"
