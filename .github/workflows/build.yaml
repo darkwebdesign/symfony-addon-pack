@@ -38,3 +38,5 @@ jobs:
         uses: 'paambaati/codeclimate-action@v6'
         env:
           CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"
+        with:
+          debug: true
