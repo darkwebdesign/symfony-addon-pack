@@ -40,11 +40,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerValidJson
      */
-    public function testValidate($value): void
+    public function testValidate(mixed $value): void
     {
         $this->validator->validate($value, new Json());
 
@@ -75,11 +73,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoScalar
      */
-    public function testValidateNoScalar($value): void
+    public function testValidateNoScalar(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 

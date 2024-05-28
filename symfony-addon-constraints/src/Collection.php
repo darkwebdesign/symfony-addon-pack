@@ -40,28 +40,19 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 class Collection extends Constraint
 {
     /** @var \Symfony\Component\Validator\Constraint[] */
-    public $constraints;
+    public array $constraints;
 
     /**
      * Constructor.
-     *
-     * @param mixed $options
      */
-    public function __construct($options = null)
+    public function __construct(mixed $options = null)
     {
         parent::__construct($options);
-
-        if (!is_array($this->constraints)) {
-            throw new ConstraintDefinitionException(sprintf(
-                'The option "constraints" is expected to be an array in constraint %s',
-                __CLASS__
-            ));
-        }
 
         foreach ($this->constraints as $constraint) {
             if (!$constraint instanceof Constraint) {
                 throw new ConstraintDefinitionException(
-                    sprintf('The value %s is not an instance of Constraint in constraint %s', $constraint, __CLASS__)
+                    sprintf('The value %s is not an instance of Constraint in constraint %s', $constraint, self::class)
                 );
             }
 
@@ -70,7 +61,7 @@ class Collection extends Constraint
                     sprintf(
                         'The constraint Valid cannot be nested inside constraint %s. ' .
                         'You can only declare the Valid constraint directly on a field or method.',
-                        __CLASS__
+                        self::class
                     )
                 );
             }

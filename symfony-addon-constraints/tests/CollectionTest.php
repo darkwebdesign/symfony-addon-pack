@@ -60,20 +60,6 @@ class CollectionTest extends TestCase
         new Collection();
     }
 
-    /**
-     * @param mixed $constraints
-     *
-     * @dataProvider providerNoArray
-     */
-    public function testConstructConstraintsOptionNoArray($constraints): void
-    {
-        $this->expectException(ConstraintDefinitionException::class);
-
-        new Collection([
-            'constraints' => $constraints,
-        ]);
-    }
-
     public function testConstructNoConstraint(): void
     {
         $this->expectException(ConstraintDefinitionException::class);
@@ -94,18 +80,5 @@ class CollectionTest extends TestCase
                 new Assert\Valid(),
             ],
         ]);
-    }
-
-    public function providerNoArray(): array
-    {
-        return [
-            'bool' => [true],
-            'int' => [1],
-            'float' => [1.2],
-            'string' => ['foo'],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
     }
 }

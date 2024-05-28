@@ -22,30 +22,10 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
-/**
- * @Table(name="city")
- *
- * @Entity
- */
 class City
 {
-    /**
-     * @var int
-     *
-     * @Column(name="id", type="integer", nullable=false)
-     *
-     * @Id
-     *
-     * @GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @Column(name="name", type="string", length=50, nullable=false)
-     */
-    private $name;
+    private ?int $id = null;
+    private ?string $name = null;
 
     public function getId(): ?int
     {

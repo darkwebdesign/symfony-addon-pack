@@ -40,11 +40,9 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerValidBsn
      */
-    public function testValidate($value): void
+    public function testValidate(mixed $value): void
     {
         $this->validator->validate($value, new Bsn());
 
@@ -75,11 +73,9 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoScalar
      */
-    public function testValidateNoScalar($value): void
+    public function testValidateNoScalar(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -89,11 +85,9 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerInvalidBsn
      */
-    public function testValidateViolation($value): void
+    public function testValidateViolation(mixed $value): void
     {
         $constraint = new Bsn();
 

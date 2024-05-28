@@ -35,12 +35,9 @@ use Symfony\Component\Form\FormEvents;
  */
 class JsonSchemaSubscriber implements EventSubscriberInterface
 {
-    /** @var string */
-    private $fieldName;
-
-    public function __construct(string $fieldName = 'schema')
-    {
-        $this->fieldName = $fieldName;
+    public function __construct(
+        private string $fieldName = 'schema'
+    ) {
     }
 
     /**

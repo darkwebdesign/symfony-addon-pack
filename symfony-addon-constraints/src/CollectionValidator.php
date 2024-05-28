@@ -38,11 +38,9 @@ class CollectionValidator extends ConstraintValidator
     /**
      * Checks if the value is valid.
      *
-     * @param mixed $value
-     *
      * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof Collection) {
             throw new UnexpectedTypeException($constraint, Collection::class);
