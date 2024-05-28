@@ -2,7 +2,6 @@ name: 'Build'
 
 on:
   push:
-  pull_request:
 
 jobs:
   phpunit:
@@ -29,4 +28,4 @@ jobs:
       - name: 'Code Climate'
         uses: 'paambaati/codeclimate-action@v6'
         env:
-          CC_TEST_REPORTER_ID: '6e4ee4c44c44119ebc8c68b84726cc5a3ffdfde8fc3f1aaf87e4b92209b4a8fe'
+          CC_TEST_REPORTER_ID: '48efddaa8b8e9926721d2b2fbcb02dd18d70c383aea2a4dc29c6076385ccfd2e'
