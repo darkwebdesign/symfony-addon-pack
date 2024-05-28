@@ -33,4 +33,4 @@ jobs:
       - name: 'Code Climate'
         uses: 'paambaati/codeclimate-action@v6'
         env:
-          CC_TEST_REPORTER_ID: '2ac243263ebf19a72f697a1b48e92f558370642a6a70449818ec25936620943f'
+          CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"
