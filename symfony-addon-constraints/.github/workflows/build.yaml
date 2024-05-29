@@ -22,7 +22,7 @@ jobs:
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'Rector'
-        run: 'vendor/bin/rector process --dry-run --no-progress-bar'
+        run: 'vendor/bin/rector process --dry-run --no-progress-bar --ansi'
 
   phpunit:
     name: 'PHPUnit'
