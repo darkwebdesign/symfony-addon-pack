@@ -22,19 +22,9 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
-/**
- * @Table(name="employee")
- *
- * @Entity
- */
 class Employee extends AbstractPerson
 {
-    /**
-     * @var string
-     *
-     * @Column(name="function", type="string", length=50, nullable=false)
-     */
-    private $function;
+    private string $function;
 
     public function getFunction(): ?string
     {

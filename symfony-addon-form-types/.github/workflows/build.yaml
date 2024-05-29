@@ -1,0 +1,53 @@
+name: 'Build'
+
+on:
+  push:
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.head_ref || github.run_id }}"
+  cancel-in-progress: true
+
+jobs:
+  rector:
+    name: 'Rector'
+    runs-on: 'ubuntu-24.04'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+      - name: 'Setup PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '8.3'
+      - name: 'Composer Install'
+        uses: 'ramsey/composer-install@v3'
+      - name: 'Rector'
+        run: 'vendor/bin/rector process --dry-run --no-progress-bar'
+
+  phpunit:
+    name: 'PHPUnit'
+    runs-on: 'ubuntu-24.04'
+    strategy:
+      matrix:
+        include:
+          - php: '8.0'
+          - php: '8.1'
+          - php: '8.2'
+          - php: '8.3'
+      fail-fast: false
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+      - name: 'Setup PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: "${{ matrix.php }}"
+      - name: 'Composer Install'
+        uses: 'ramsey/composer-install@v3'
+      - name: 'PHPUnit'
+        run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover phpunit-coverage.xml'
+      - name: 'Code Climate'
+        uses: 'paambaati/codeclimate-action@v6'
+        with:
+          coverageLocations: 'phpunit-coverage.xml:clover'
+        env:
+          CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"

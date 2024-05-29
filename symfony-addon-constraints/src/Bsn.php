@@ -37,6 +37,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class Bsn extends Constraint
 {
-    /** @var string */
-    public $message = 'This value is not a valid Dutch social security number (BSN).';
+    public string $message = 'This value is not a valid Dutch social security number (BSN).';
 }
