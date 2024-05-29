@@ -37,6 +37,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class Json extends Constraint
 {
-    /** @var string */
-    public $message = 'This value is not valid JSON.';
+    public string $message = 'This value is not valid JSON.';
 }

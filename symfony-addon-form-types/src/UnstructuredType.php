@@ -39,13 +39,9 @@ class UnstructuredType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $compoundNormalizer = function () {
-            return false;
-        };
+        $compoundNormalizer = fn() => false;
 
-        $multipleNormalizer = function () {
-            return true;
-        };
+        $multipleNormalizer = fn() => true;
 
         $resolver->setDefaults([
             'multiple' => true,
