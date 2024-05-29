@@ -14,7 +14,8 @@
     },
     "require-dev": {
         "doctrine/orm": "^2.7",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.5",
+        "rector/rector": "^1.1"
     },
     "suggest": {
         "darkwebdesign/symfony-addon-pack": "All Symfony add-ons bundled together",
