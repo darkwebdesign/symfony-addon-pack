@@ -27,6 +27,13 @@ jobs:
             echo "Unknown ref type: ${GITHUB_REF}"
             exit 1
           fi
+      - name: 'SSH Agent'
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_CONSTRAINTS }}
+            ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_FORM_TYPES }}
+            ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_TRANSFORMERS }}
       - name: 'Checkout'
         uses: 'actions/checkout@v4'
       - name: 'Git remote add'
