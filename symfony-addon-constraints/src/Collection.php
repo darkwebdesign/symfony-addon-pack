@@ -27,8 +27,6 @@ use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 /**
- * Collection constraint.
- *
  * @Annotation
  *
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
@@ -39,12 +37,9 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
  */
 class Collection extends Constraint
 {
-    /** @var \Symfony\Component\Validator\Constraint[] */
+    /** @var Constraint[] */
     public array $constraints;
 
-    /**
-     * Constructor.
-     */
     public function __construct(mixed $options = null)
     {
         parent::__construct($options);
@@ -68,17 +63,11 @@ class Collection extends Constraint
         }
     }
 
-    /**
-     * Returns the name of the default option.
-     */
     public function getDefaultOption(): string
     {
         return 'constraints';
     }
 
-    /**
-     * Returns the name of the required options.
-     */
     public function getRequiredOptions(): array
     {
         return ['constraints'];

@@ -32,7 +32,6 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class BooleanToValueTransformerTest extends TestCase
 {
     /**
-     *
      * @dataProvider providerTrueFalseValue
      */
     public function testTransform(mixed $trueValue, mixed $falseValue): void
@@ -71,7 +70,6 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     *
      * @dataProvider providerTrueFalseValue
      */
     public function testReverseTransform(mixed $trueValue, mixed $falseValue): void
@@ -98,6 +96,7 @@ class BooleanToValueTransformerTest extends TestCase
 
     public function testReverseTransformEmptyString(): void
     {
+        /** @var BooleanToValueTransformer<string> $transformer */
         $transformer = new BooleanToValueTransformer();
 
         $returnValue = $transformer->reverseTransform('');
@@ -119,7 +118,6 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     *
      * @dataProvider providerTrueFalseValue
      */
     public function testReverseTransformInvalidValue(mixed $trueValue, mixed $falseValue): void
@@ -132,16 +130,24 @@ class BooleanToValueTransformerTest extends TestCase
         $transformer->reverseTransform('foo');
     }
 
+    /**
+     * @return array<string, array{mixed, mixed}>
+     */
     public function providerTrueFalseValue(): array
     {
         return [
             'true/false' => [true, false],
             'yes/no' => ['yes', 'no'],
             'on/off' => ['on', 'off'],
-            '1/0' => [1, 0],
+            '1/0' => ['1', '0'],
+            '1/2' => [1, 2],
+            '1.3/2.7' => [1.3, 2.7],
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoBool(): array
     {
         return [
@@ -155,6 +161,9 @@ class BooleanToValueTransformerTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [

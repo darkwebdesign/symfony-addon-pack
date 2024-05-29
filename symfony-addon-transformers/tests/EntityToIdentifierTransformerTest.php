@@ -26,7 +26,6 @@ use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
-use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
@@ -40,12 +39,17 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class EntityToIdentifierTransformerTest extends TestCase
 {
     private City $entity;
+    /** @var class-string<City|AbstractPerson|Employee> */
     private string $className;
-    private int $identifier;
+    private ?int $identifier;
+    /** @var array<string, mixed> */
     private array $identifierValues;
-    private ObjectManager|MockObject $entityManager;
-    private ObjectRepository|MockObject $repository;
-    private ClassMetadata|MockObject $metadata;
+    /** @var ObjectManager&MockObject */
+    private ObjectManager $entityManager;
+    /** @var ObjectRepository<City>&MockObject */
+    private ObjectRepository $repository;
+    /** @var ClassMetadata&MockObject */
+    private ClassMetadata $metadata;
 
     protected function setUp(): void
     {
@@ -72,6 +76,9 @@ class EntityToIdentifierTransformerTest extends TestCase
         return $this->className;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getIdentifier(): array
     {
         return $this->identifierValues;
@@ -88,7 +95,10 @@ class EntityToIdentifierTransformerTest extends TestCase
 
     public function testTransformAlias(): void
     {
-        $transformer = new EntityToIdentifierTransformer($this->entityManager, 'AppBundle:City');
+        /** @var class-string<City> $className */
+        $className = 'AppBundle:City';
+
+        $transformer = new EntityToIdentifierTransformer($this->entityManager, $className);
 
         $identifier = $transformer->transform($this->entity);
 
@@ -97,7 +107,9 @@ class EntityToIdentifierTransformerTest extends TestCase
 
     public function testTransformDiscriminated(): void
     {
-        $this->className = AbstractPerson::class;
+        /** @var class-string<AbstractPerson> $className */
+        $className = AbstractPerson::class;
+        $this->className = $className;
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -137,7 +149,7 @@ class EntityToIdentifierTransformerTest extends TestCase
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
-        $entity = new PointOfInterest();
+        $entity = new Employee();
 
         $transformer->transform($entity);
     }
@@ -162,6 +174,7 @@ class EntityToIdentifierTransformerTest extends TestCase
 
         $entity = $transformer->reverseTransform($this->identifier);
 
+        $this->assertNotNull($entity);
         $this->assertSame($this->identifier, $entity->getId());
     }
 
@@ -208,6 +221,9 @@ class EntityToIdentifierTransformerTest extends TestCase
         $transformer->reverseTransform($this->identifier);
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoObject(): array
     {
         return [
@@ -221,6 +237,9 @@ class EntityToIdentifierTransformerTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [

@@ -46,9 +46,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class BsnValidator extends ConstraintValidator
 {
     /**
-     * Checks if the value is valid.
-     *
-     * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
     public function validate(mixed $value, Constraint $constraint): void
     {
@@ -67,7 +65,7 @@ class BsnValidator extends ConstraintValidator
         $value = (string) $value;
 
         if ('000000000' !== $value && preg_match('/^\d{9}$/', $value)) {
-            [$a, $b, $c, $d, $e, $f, $g, $h, $i] = str_split($value);
+            [$a, $b, $c, $d, $e, $f, $g, $h, $i] = array_map('intval', str_split($value));
 
             $sum = (9 * $a) + (8 * $b) + (7 * $c) + (6 * $d) + (5 * $e) + (4 * $f) + (3 * $g) + (2 * $h) + (-1 * $i);
 

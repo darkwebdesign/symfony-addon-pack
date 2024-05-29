@@ -27,8 +27,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * Collection validator.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
@@ -36,9 +34,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class CollectionValidator extends ConstraintValidator
 {
     /**
-     * Checks if the value is valid.
-     *
-     * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
     public function validate(mixed $value, Constraint $constraint): void
     {

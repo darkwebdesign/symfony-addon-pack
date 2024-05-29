@@ -30,17 +30,12 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Boolean form field type.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
  */
 class BooleanType extends AbstractType
 {
-    /**
-     * Builds the form.
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (!class_exists(BooleanToValueTransformer::class)) {
@@ -50,9 +45,6 @@ class BooleanType extends AbstractType
         $builder->addModelTransformer(new BooleanToValueTransformer($options['value_true'], $options['value_false']));
     }
 
-    /**
-     * Configures the options for this type.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $labelTrueNormalizer = fn(Options $options, $value) =>
@@ -92,9 +84,6 @@ class BooleanType extends AbstractType
         $resolver->setAllowedValues('widget', ['choice', 'radio']);
     }
 
-    /**
-     * Returns the name of the parent type.
-     */
     public function getParent(): string
     {
         return ChoiceType::class;
@@ -105,6 +94,6 @@ class BooleanType extends AbstractType
      */
     public function humanize(string $text): string
     {
-        return ucfirst(trim(strtolower(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
+        return ucfirst(trim(strtolower((string) preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
     }
 }

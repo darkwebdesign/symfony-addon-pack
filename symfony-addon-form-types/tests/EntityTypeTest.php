@@ -31,6 +31,7 @@ use Doctrine\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Exception\RuntimeException;
+use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
@@ -42,12 +43,17 @@ use Symfony\Component\Form\Test\TypeTestCase;
 class EntityTypeTest extends TypeTestCase
 {
     private City $entity;
+    /** @var class-string<City> */
     private string $className;
-    private int $identifier;
-    private ManagerRegistry|MockObject $registry;
-    private ObjectManager|MockObject $entityManager;
-    private ObjectRepository|MockObject $repository;
-    private ClassMetadata|MockObject $metadata;
+    private ?int $identifier;
+    /** @var ManagerRegistry&MockObject */
+    private ManagerRegistry $registry;
+    /** @var ObjectManager&MockObject */
+    private ObjectManager $entityManager;
+    /** @var ObjectRepository<City>&MockObject */
+    private ObjectRepository $repository;
+    /** @var ClassMetadata&MockObject */
+    private ClassMetadata $metadata;
 
     protected function setUp(): void
     {
@@ -71,6 +77,9 @@ class EntityTypeTest extends TypeTestCase
         parent::setUp();
     }
 
+    /**
+     * @return FormExtensionInterface[]
+     */
     protected function getExtensions(): array
     {
         $type = new EntityType($this->registry);
@@ -91,7 +100,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());
@@ -108,7 +117,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertFalse($form->isSynchronized());
         $this->assertNull($form->getData());
@@ -124,7 +133,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());
@@ -142,7 +151,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());
@@ -163,7 +172,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());

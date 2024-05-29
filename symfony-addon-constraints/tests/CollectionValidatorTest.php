@@ -42,9 +42,11 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
+     * @param string[]|iterable $value
+     *
      * @dataProvider providerValidCollection
      */
-    public function testValidate(mixed $value): void
+    public function testValidate(iterable $value): void
     {
         $constraints = [
             new Assert\Email(),
@@ -96,6 +98,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
+    /**
+     * @return array<string, array{string[]|iterable}>
+     */
     public function providerValidCollection(): array
     {
         return [
@@ -105,6 +110,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoArray(): array
     {
         return [

@@ -26,17 +26,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Unstructured form field type.
- *
  * @author Raymond Schouten
  *
  * @since 3.4
  */
 class UnstructuredType extends AbstractType
 {
-    /**
-     * Configures the options for this type.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $compoundNormalizer = fn() => false;

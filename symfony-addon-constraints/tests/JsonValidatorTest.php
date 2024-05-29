@@ -98,6 +98,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
             ->assertRaised();
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerValidJson(): array
     {
         return [
@@ -111,6 +114,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [
@@ -121,6 +127,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{string}>
+     */
     public function providerInvalidJson(): array
     {
         return [
