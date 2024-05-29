@@ -1,0 +1,44 @@
+name: 'Subtree split'
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '[0-9].[0-9]'
+      - 'subtree-split-test-branch'
+    tags:
+      - '*'
+      - 'subtree-split-test-tag'
+
+jobs:
+  subtree-split:
+    name: 'Subtree split'
+    runs-on: 'ubuntu-24.04'
+    steps:
+      - name: 'Extract ref'
+        run: |
+          if [[ "${GITHUB_REF}" == refs/heads/* ]]; then
+            echo "Branch detected"
+            echo "SHORT_REF=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "Tag detected"
+            echo "SHORT_REF=${GITHUB_REF#refs/tags/}" >> "$GITHUB_ENV"
+          else
+            echo 'Unknown ref type'
+            exit 1
+          fi
+      - name: 'Git remote add'
+        run: |
+          git remote add symfony-addon-constraints git@github.com:darkwebdesign/symfony-addon-constraints.git
+          git remote add symfony-addon-form-types git@github.com:darkwebdesign/symfony-addon-form-types.git
+          git remote add symfony-addon-transformers git@github.com:darkwebdesign/symfony-addon-transformers.git
+      - name: 'Git subtree split'
+        run: |
+          git subtree split --prefix=symfony-addon-constraints --branch symfony-addon-constraints
+          git subtree split --prefix=symfony-addon-form-types --branch symfony-addon-form-types
+          git subtree split --prefix=symfony-addon-transformers --branch symfony-addon-transformers
+      - name: 'Git push'
+        run: |
+          git push symfony-addon-constraints "symfony-addon-constraints:${SHORT_REF}"
+          git push symfony-addon-form-types "symfony-addon-form-types:${SHORT_REF}"
+          git push symfony-addon-transformers "symfony-addon-transformers:${SHORT_REF}"
