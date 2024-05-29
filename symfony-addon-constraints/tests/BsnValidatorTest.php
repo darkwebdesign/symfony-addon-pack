@@ -42,7 +42,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     /**
      * @dataProvider providerValidBsn
      */
-    public function testValidate(mixed $value): void
+    public function testValidate(string|\Stringable $value): void
     {
         $this->validator->validate($value, new Bsn());
 
@@ -87,7 +87,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     /**
      * @dataProvider providerInvalidBsn
      */
-    public function testValidateViolation(mixed $value): void
+    public function testValidateViolation(string|\Stringable $value): void
     {
         $constraint = new Bsn();
 
@@ -98,6 +98,9 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
             ->assertRaised();
     }
 
+    /**
+     * @return array<string, array{string|\Stringable}>
+     */
     public function providerValidBsn(): array
     {
         return [
@@ -107,6 +110,9 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [
@@ -117,6 +123,9 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{string|\Stringable}>
+     */
     public function providerInvalidBsn(): array
     {
         return [

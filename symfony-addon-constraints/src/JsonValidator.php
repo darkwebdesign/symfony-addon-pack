@@ -25,8 +25,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * JSON validator.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
@@ -34,9 +32,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class JsonValidator extends ConstraintValidator
 {
     /**
-     * Checks if the value is valid.
-     *
-     * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
     public function validate(mixed $value, Constraint $constraint): void
     {
@@ -52,7 +48,7 @@ class JsonValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        if (json_decode($value) || json_last_error() === JSON_ERROR_NONE) {
+        if (json_decode((string) $value) || json_last_error() === JSON_ERROR_NONE) {
             return;
         }
 

@@ -26,7 +26,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * Transforms between a boolean and a scalar value.
+ * @template R of string|int|float|bool
+ * @template-implements DataTransformerInterface<bool, R>
  *
  * @author Raymond Schouten
  *
@@ -34,21 +35,20 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class BooleanToValueTransformer implements DataTransformerInterface
 {
-    /**
-     * Constructor.
-     */
     public function __construct(
+        /** @var R */
         private string|int|float|bool $trueValue = true,
+        /** @var R */
         private string|int|float|bool $falseValue = false
     ) {
     }
 
     /**
-     * Transforms a value from the original representation to a transformed representation.
-     *
      * @param bool|null $value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @returns R|null
+     *
+     * @throws TransformationFailedException
      */
     public function transform(mixed $value): string|int|float|bool|null
     {
@@ -64,11 +64,11 @@ class BooleanToValueTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transforms a value from the transformed representation to its original representation.
+     * @param R|null $value
      *
-     * @param string|int|float|bool|null $value
+     * @returns bool|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform(mixed $value): ?bool
     {

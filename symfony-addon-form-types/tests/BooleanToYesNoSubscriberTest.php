@@ -78,6 +78,9 @@ class BooleanToYesNoSubscriberTest extends TypeTestCase
         $this->assertNull($form->get('isActive')->getData());
     }
 
+    /**
+     * @return array<string, array{bool|null}>
+     */
     public function provider(): array
     {
         return [

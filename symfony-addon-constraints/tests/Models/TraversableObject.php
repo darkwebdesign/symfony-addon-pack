@@ -22,13 +22,24 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests\Models;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ * @template-implements \IteratorAggregate<TKey, TValue>
+ */
 class TraversableObject implements \IteratorAggregate
 {
+    /**
+     * @param array<TKey, TValue> $container
+     */
     public function __construct(
         private array $container = []
     ) {
     }
 
+    /**
+     * @return \ArrayIterator<TKey, TValue>
+     */
     public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->container);

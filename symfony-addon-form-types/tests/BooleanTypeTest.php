@@ -33,7 +33,6 @@ use Symfony\Component\Form\Test\TypeTestCase;
 class BooleanTypeTest extends TypeTestCase
 {
     /**
-     *
      * @dataProvider providerValueTrueFalse
      */
     public function test(mixed $valueTrue, mixed $valueFalse): void
@@ -57,7 +56,6 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     *
      * @dataProvider providerValueTrueFalse
      */
     public function testInvalidValue(mixed $valueTrue, mixed $valueFalse): void
@@ -105,6 +103,9 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertSame('A camel cased label', $view->vars['choices'][1]->label);
     }
 
+    /**
+     * @return array<string, array{mixed, mixed}>
+     */
     public function providerValueTrueFalse(): array
     {
         return [
@@ -117,6 +118,9 @@ class BooleanTypeTest extends TypeTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{string, bool}>
+     */
     public function providerWidget(): array
     {
         return [

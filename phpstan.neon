@@ -1,9 +1,15 @@
+includes:
+    - 'vendor/phpstan/phpstan-doctrine/extension.neon'
+    - 'vendor/phpstan/phpstan-phpunit/extension.neon'
+    - 'vendor/phpstan/phpstan-symfony/extension.neon'
+
 parameters:
-    level: 1
+    level: 8
+
     paths:
-        - symfony-addon-constraints/src
-        - symfony-addon-constraints/tests
-        - symfony-addon-form-types/src
-        - symfony-addon-form-types/tests
-        - symfony-addon-transformers/src
-        - symfony-addon-transformers/tests
+        - 'symfony-addon-constraints/src'
+        - 'symfony-addon-constraints/tests'
+        - 'symfony-addon-form-types/src'
+        - 'symfony-addon-form-types/tests'
+        - 'symfony-addon-transformers/src'
+        - 'symfony-addon-transformers/tests'

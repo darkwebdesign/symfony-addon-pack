@@ -27,17 +27,12 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Birthday form field type.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
  */
 class BirthdayType extends AbstractType
 {
-    /**
-     * Configures the options for this type.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -45,9 +40,6 @@ class BirthdayType extends AbstractType
         ]);
     }
 
-    /**
-     * Returns the name of the parent type.
-     */
     public function getParent(): string
     {
         return DateType::class;

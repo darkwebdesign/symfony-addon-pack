@@ -36,7 +36,9 @@ if (!interface_exists(ObjectManager::class)) {
 // @codeCoverageIgnoreEnd
 
 /**
- * Transforms between an identifier and a Doctrine entity.
+ * @template T of object
+ * @template R of mixed
+ * @template-implements DataTransformerInterface<T, R>
  *
  * @author Raymond Schouten
  *
@@ -44,12 +46,14 @@ if (!interface_exists(ObjectManager::class)) {
  */
 class EntityToIdentifierTransformer implements DataTransformerInterface
 {
+    /** @var class-string<T> */
     private string $className;
+    /** @var ObjectRepository<T> */
     private ObjectRepository $repository;
     private ClassMetadata $metadata;
 
     /**
-     * Constructor.
+     * @param class-string<T> $className
      */
     public function __construct(
         private ObjectManager $entityManager,
@@ -61,11 +65,11 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transforms a value from the original representation to a transformed representation.
+     * @param T|null $value
      *
-     * @param object $value
+     * @returns R|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform(mixed $value): mixed
     {
@@ -97,9 +101,11 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transforms a value from the transformed representation to its original representation.
+     * @param R|null $value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @returns T|null
+     *
+     * @throws TransformationFailedException
      */
     public function reverseTransform(mixed $value): ?object
     {

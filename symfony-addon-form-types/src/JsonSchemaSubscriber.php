@@ -27,8 +27,6 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 /**
- * JSON Schema form event subscriber.
- *
  * @author Raymond Schouten
  *
  * @since 5.2.1
@@ -57,9 +55,6 @@ class JsonSchemaSubscriber implements EventSubscriberInterface
         $event->setData($data);
     }
 
-    /**
-     * Returns an array of event names this subscriber wants to listen to.
-     */
     public static function getSubscribedEvents(): array
     {
         return [

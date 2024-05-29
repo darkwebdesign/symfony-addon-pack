@@ -38,8 +38,6 @@ if (!interface_exists(ManagerRegistry::class)) {
 // @codeCoverageIgnoreEnd
 
 /**
- * Entity form field type.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
@@ -51,9 +49,6 @@ class EntityType extends AbstractType
     ) {
     }
 
-    /**
-     * Builds the form.
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (!class_exists(EntityToIdentifierTransformer::class)) {
@@ -63,9 +58,6 @@ class EntityType extends AbstractType
         $builder->addViewTransformer(new EntityToIdentifierTransformer($options['entity_manager'], $options['class']));
     }
 
-    /**
-     * Configures the options for this type.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         if (!interface_exists(ObjectManager::class)) {

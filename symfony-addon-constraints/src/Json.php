@@ -25,8 +25,6 @@ namespace DarkWebDesign\SymfonyAddonConstraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * JSON constraint.
- *
  * @Annotation
  *
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})

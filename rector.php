@@ -20,6 +20,5 @@ return RectorConfig::configure()
         SymfonySetList::SYMFONY_60,
     ])
     ->withImportNames(
-        importDocBlockNames: false,
         importShortClasses: false,
     );
