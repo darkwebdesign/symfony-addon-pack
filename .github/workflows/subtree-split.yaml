@@ -5,28 +5,21 @@ on:
     branches:
       - 'main'
       - '[0-9].[0-9]'
-      - 'subtree-split-test-branch'
-    tags:
-      - '*'
-      - 'subtree-split-test-tag'
 
 jobs:
   subtree-split:
     name: 'Subtree split'
     runs-on: 'ubuntu-24.04'
     steps:
-      - name: 'Extract ref'
-        run: |
-          if [[ "${GITHUB_REF}" == refs/heads/* ]]; then
-            echo "Branch detected"
-            echo "SHORT_REF=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
-          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "Tag detected"
-            echo "SHORT_REF=${GITHUB_REF#refs/tags/}" >> "$GITHUB_ENV"
-          else
-            echo 'Unknown ref type'
-            exit 1
-          fi
+      - name: 'SSH Agent'
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_CONSTRAINTS }}
+            ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_FORM_TYPES }}
+            ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_TRANSFORMERS }}
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
       - name: 'Git remote add'
         run: |
           git remote add symfony-addon-constraints git@github.com:darkwebdesign/symfony-addon-constraints.git
@@ -39,6 +32,6 @@ jobs:
           git subtree split --prefix=symfony-addon-transformers --branch symfony-addon-transformers
       - name: 'Git push'
         run: |
-          git push symfony-addon-constraints "symfony-addon-constraints:${SHORT_REF}"
-          git push symfony-addon-form-types "symfony-addon-form-types:${SHORT_REF}"
-          git push symfony-addon-transformers "symfony-addon-transformers:${SHORT_REF}"
+          git push symfony-addon-constraints "symfony-addon-constraints:${GITHUB_REF#refs/heads/}"
+          git push symfony-addon-form-types "symfony-addon-form-types:${GITHUB_REF#refs/heads/}"
+          git push symfony-addon-transformers "symfony-addon-transformers:${GITHUB_REF#refs/heads/}"
