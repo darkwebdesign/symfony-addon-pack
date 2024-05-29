@@ -24,9 +24,11 @@ jobs:
             echo "Tag detected"
             echo "SHORT_REF=${GITHUB_REF#refs/tags/}" >> "$GITHUB_ENV"
           else
-            echo 'Unknown ref type'
+            echo "Unknown ref type: ${GITHUB_REF}"
             exit 1
           fi
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
       - name: 'Git remote add'
         run: |
           git remote add symfony-addon-constraints git@github.com:darkwebdesign/symfony-addon-constraints.git
