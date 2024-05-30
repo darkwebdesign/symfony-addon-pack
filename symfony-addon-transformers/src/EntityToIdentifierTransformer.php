@@ -48,16 +48,16 @@ if (!interface_exists(ObjectManager::class)) {
 class EntityToIdentifierTransformer implements DataTransformerInterface
 {
     /** @var class-string<T> */
-    private string $className;
+    private readonly string $className;
     /** @var ObjectRepository<T> */
-    private ObjectRepository $repository;
-    private ClassMetadata $metadata;
+    private readonly ObjectRepository $repository;
+    private readonly ClassMetadata $metadata;
 
     /**
      * @param class-string<T> $className
      */
     public function __construct(
-        private ObjectManager $entityManager,
+        private readonly ObjectManager $entityManager,
         string $className
     ) {
         $this->repository = $this->entityManager->getRepository($className);

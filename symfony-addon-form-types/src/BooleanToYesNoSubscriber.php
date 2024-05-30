@@ -35,7 +35,7 @@ class BooleanToYesNoSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         /** @var string[] */
-        private array $fieldNames
+        private readonly array $fieldNames
     ) {
     }
 

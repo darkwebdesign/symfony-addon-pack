@@ -69,8 +69,8 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->entityManager->method('getRepository')->willReturn($this->repository);
         $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
 
-        $this->metadata->method('getName')->willReturnCallback([$this, 'getClassName']);
-        $this->metadata->method('getIdentifierValues')->willReturnCallback([$this, 'getIdentifier']);
+        $this->metadata->method('getName')->willReturnCallback($this->getClassName(...));
+        $this->metadata->method('getIdentifierValues')->willReturnCallback($this->getIdentifier(...));
     }
 
     public function getClassName(): string
