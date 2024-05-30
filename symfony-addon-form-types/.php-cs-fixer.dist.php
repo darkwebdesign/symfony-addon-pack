@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-$finder = (new PhpCsFixer\Finder())
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
+
+$finder = (new Finder())
     ->in(__DIR__);
 
-return (new PhpCsFixer\Config())
+return (new Config())
     ->setRules([
         '@PhpCsFixer' => true,
         '@PSR1' => true,
@@ -19,4 +23,5 @@ return (new PhpCsFixer\Config())
         'phpdoc_align' => ['tags' => ['method', 'param', 'property', 'return', 'throws', 'type', 'var'], 'align' => 'left'], // overrules @Symfony
         'yoda_style' => false, // overrules @Symfony
     ])
-    ->setFinder($finder);
+    ->setFinder($finder)
+    ->setParallelConfig(ParallelConfigFactory::detect());
