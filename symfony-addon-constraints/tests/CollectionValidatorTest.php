@@ -30,6 +30,8 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
+ * @template-extends ConstraintValidatorTestCase<CollectionValidator>
+ *
  * @covers \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
  *
  * @uses \DarkWebDesign\SymfonyAddonConstraints\Collection
