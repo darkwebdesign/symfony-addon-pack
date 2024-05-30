@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "symfony/form": "6.2.*"
+        "symfony/form": "6.4.*"
     },
     "require-dev": {
         "doctrine/orm": "^2.7",

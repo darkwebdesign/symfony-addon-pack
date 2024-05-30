@@ -25,13 +25,11 @@ namespace DarkWebDesign\SymfonyAddonConstraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- *
  * @author Raymond Schouten
  *
  * @since 2.3
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD)]
 class Bsn extends Constraint
 {
     public string $message = 'This value is not a valid Dutch social security number (BSN).';

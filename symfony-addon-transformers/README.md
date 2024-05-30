@@ -4,15 +4,15 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-transformers/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-transformers)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-transformers/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-transformers)
 
-[![Build Status](https://github.com/darkwebdesign/symfony-addon-transformers/actions/workflows/build.yaml/badge.svg?branch=6.2)](https://github.com/darkwebdesign/symfony-addon-transformers/actions/workflows/build.yaml)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers/branch/6.2/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers)
+[![Build Status](https://github.com/darkwebdesign/symfony-addon-transformers/actions/workflows/build.yaml/badge.svg?branch=6.4)](https://github.com/darkwebdesign/symfony-addon-transformers/actions/workflows/build.yaml)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers/branch/6.4/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-transformers)
 [![PHP Version](https://img.shields.io/badge/php-8.1%2B-777BB3.svg)](https://php.net/)
-[![Symfony Version](https://img.shields.io/badge/symfony-6.2-93C74B.svg)](https://symfony.com/)
+[![Symfony Version](https://img.shields.io/badge/symfony-6.4-93C74B.svg)](https://symfony.com/)
 
 Symfony Add-on Transformers is a collection of extra Symfony data transformers that you can use in your Symfony
 applications.
 
-Learn more about it in its [documentation](https://darkwebdesign.github.io/symfony-addon-pack/docs/6.2).
+Learn more about it in its [documentation](https://darkwebdesign.github.io/symfony-addon-pack/docs/6.4).
 
 ## Features
 

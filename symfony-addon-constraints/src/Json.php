@@ -25,13 +25,11 @@ namespace DarkWebDesign\SymfonyAddonConstraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- *
  * @author Raymond Schouten
  *
  * @since 2.3
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD)]
 class Json extends Constraint
 {
     public string $message = 'This value is not valid JSON.';
