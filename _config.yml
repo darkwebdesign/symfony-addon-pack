@@ -6,6 +6,9 @@ aux_links:
   Visit repository on GitHub: https://github.com/darkwebdesign/symfony-addon-pack
 
 collections:
+  v6_3:
+    permalink: "/docs/6.3/:path:output_ext"
+    output: true
   v6_2:
     permalink: "/docs/6.2/:path:output_ext"
     output: true
@@ -33,11 +36,16 @@ collections:
 
 just_the_docs:
   collections:
-    v6_2:
-      name: v6.2 (latest)
+    v6_3:
+      name: v6.3 (latest)
       nav_exclude: false
       nav_fold: true
       search_exclude: false
+    v6_2:
+      name: v6.2
+      nav_exclude: false
+      nav_fold: true
+      search_exclude: true
     v6_1:
       name: v6.1
       nav_exclude: false
@@ -55,7 +63,7 @@ just_the_docs:
       search_exclude: true
     v5_3:
       name: v5.3
-      nav_exclude: false
+      nav_exclude: true
       nav_fold: true
       search_exclude: true
     v5_2:

@@ -1,19 +1,19 @@
 ---
 layout: default
-title: Json
+title: Bsn
 parent: Validation Constraints
 redirect_from:
-  - /docs/latest/constraints/json
+  - /docs/latest/constraints/bsn
 ---
 
-# Json
+# Bsn
 
-This constraint is used to ensure that a value has the proper format of a JSON-encoded string.
+This constraint is used to ensure that a value has the proper format of a Dutch social security number.
 
 Applies to:
 
-* [properties](http://symfony.com/doc/6.2/validation.html#properties)
-* [methods](http://symfony.com/doc/6.2/validation.html#getters)
+* [properties](http://symfony.com/doc/6.3/validation.html#properties)
+* [methods](http://symfony.com/doc/6.3/validation.html#getters)
 
 Options:
 
@@ -24,17 +24,17 @@ Options:
 ### Annotations
 
 ```php
-// src/AppBundle/Entity/Transaction.php
+// src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
 use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 
-class Transaction
+class Person
 {
     /**
-     * @AddonAssert\Json()
+     * @AddonAssert\Bsn()
      */
-    protected $data;
+    protected $socialSecurityNumber;
 }
 ```
 
@@ -42,10 +42,10 @@ class Transaction
 
 ```yaml
 # src/AppBundle/Resources/config/validation.yml
-AppBundle\Entity\Transaction:
+AppBundle\Entity\Person:
     properties:
-        data:
-            - DarkWebDesign\SymfonyAddonConstraints\Json: ~
+        socialSecurityNumber:
+            - DarkWebDesign\SymfonyAddonConstraints\Bsn: ~
 ```
 
 ### XML
@@ -57,9 +57,9 @@ AppBundle\Entity\Transaction:
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="AppBundle\Entity\Transaction">
-        <property name="data">
-            <constraint name="DarkWebDesign\SymfonyAddonConstraints\Json" />
+    <class name="AppBundle\Entity\Person">
+        <property name="socialSecurityNumber">
+            <constraint name="DarkWebDesign\SymfonyAddonConstraints\Bsn" />
         </property>
     </class>
 </constraint-mapping>
@@ -68,19 +68,19 @@ AppBundle\Entity\Transaction:
 ### PHP
 
 ```php
-// src/AppBundle/Entity/Transaction.php
+// src/AppBundle/Entity/Person.php
 namespace AppBundle\Entity;
 
 use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
-class Transaction
+class Person
 {
-    protected $data;
+    protected $socialSecurityNumber;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('data', new AddonAssert\Json());
+        $metadata->addPropertyConstraint('socialSecurityNumber', new AddonAssert\Bsn());
     }
 }
 ```
@@ -89,6 +89,6 @@ class Transaction
 
 ### message
 
-**type**: `string` **default**: `This value is not valid JSON.`
+**type**: `string` **default**: `This value is not a valid Dutch social security number (BSN).`
 
-The default message supplied when the value does not pass the JSON check.
+The default message supplied when the value does not pass the BSN check.
