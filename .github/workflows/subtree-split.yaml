@@ -20,6 +20,8 @@ jobs:
             ${{ secrets.DEPLOY_KEY_SYMFONY_ADDON_TRANSFORMERS }}
       - name: 'Checkout'
         uses: 'actions/checkout@v4'
+        with:
+          fetch-depth: 0
       - name: 'Git remote add'
         run: |
           git remote add symfony-addon-constraints git@github.com:darkwebdesign/symfony-addon-constraints.git
