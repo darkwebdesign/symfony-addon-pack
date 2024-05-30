@@ -17,7 +17,7 @@ jobs:
       - name: 'Setup PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'Rector'
@@ -32,7 +32,7 @@ jobs:
       - name: 'Setup PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'PHPStan'
@@ -47,7 +47,7 @@ jobs:
       - name: 'Setup PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'PHP CS Fixer'
@@ -59,7 +59,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - php: '8.0'
           - php: '8.1'
           - php: '8.2'
           - php: '8.3'

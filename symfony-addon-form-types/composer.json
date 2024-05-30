@@ -9,13 +9,13 @@
         {"name": "Raymond Schouten"}
     ],
     "require": {
-        "php": "^8.0",
-        "symfony/event-dispatcher": "6.0.*",
-        "symfony/form": "6.0.*",
-        "symfony/options-resolver": "6.0.*"
+        "php": "^8.1",
+        "symfony/event-dispatcher": "6.1.*",
+        "symfony/form": "6.1.*",
+        "symfony/options-resolver": "6.1.*"
     },
     "require-dev": {
-        "darkwebdesign/symfony-addon-transformers": "6.0.*",
+        "darkwebdesign/symfony-addon-transformers": "6.1.*",
         "doctrine/orm": "^2.7",
         "friendsofphp/php-cs-fixer": "^3.58",
         "phpstan/extension-installer": "^1.3",
