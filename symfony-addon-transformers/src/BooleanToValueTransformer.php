@@ -38,9 +38,9 @@ class BooleanToValueTransformer implements DataTransformerInterface
 {
     public function __construct(
         /** @var R */
-        private string|int|float|bool $trueValue = true,
+        private readonly string|int|float|bool $trueValue = true,
         /** @var R */
-        private string|int|float|bool $falseValue = false
+        private readonly string|int|float|bool $falseValue = false
     ) {
     }
 

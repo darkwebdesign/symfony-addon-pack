@@ -34,7 +34,7 @@ class TraversableObject implements \IteratorAggregate
      * @param array<TKey, TValue> $container
      */
     public function __construct(
-        private array $container = []
+        private readonly array $container = []
     ) {
     }
 
