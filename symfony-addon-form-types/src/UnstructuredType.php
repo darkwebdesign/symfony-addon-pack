@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2019 DarkWeb Design
+ * Copyright (c) 2019 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,9 +34,9 @@ class UnstructuredType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $compoundNormalizer = fn() => false;
+        $compoundNormalizer = fn () => false;
 
-        $multipleNormalizer = fn() => true;
+        $multipleNormalizer = fn () => true;
 
         $resolver->setDefaults([
             'multiple' => true,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,20 +47,17 @@ class BooleanType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $labelTrueNormalizer = fn(Options $options, $value) =>
-            !is_null($value) ? (string) $value : $this->humanize((string) $options['value_true']);
+        $labelTrueNormalizer = fn (Options $options, $value) => !is_null($value) ? (string) $value : $this->humanize((string) $options['value_true']);
+        $labelFalseNormalizer = fn (Options $options, $value) => !is_null($value) ? (string) $value : $this->humanize((string) $options['value_false']);
 
-        $labelFalseNormalizer = fn(Options $options, $value) =>
-            !is_null($value) ? (string) $value : $this->humanize((string) $options['value_false']);
-
-        $choicesNormalizer = fn(Options $options) => [
+        $choicesNormalizer = fn (Options $options) => [
             $options['label_true'] => $options['value_true'],
             $options['label_false'] => $options['value_false'],
         ];
 
-        $expandedNormalizer = fn(Options $options) => 'choice' !== $options['widget'];
+        $expandedNormalizer = fn (Options $options) => 'choice' !== $options['widget'];
 
-        $multipleNormalizer = fn() => false;
+        $multipleNormalizer = fn () => false;
 
         $resolver->setDefaults([
             'label_true' => null,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @covers \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
  *
  * @uses \DarkWebDesign\SymfonyAddonConstraints\Collection
+ *
+ * @internal
  */
 class CollectionValidatorTest extends ConstraintValidatorTestCase
 {

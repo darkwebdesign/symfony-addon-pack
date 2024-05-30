@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -78,16 +78,13 @@ class EntityType extends AbstractType
             $entityManager = $registry->getManagerForClass($options['class']);
 
             if (null === $entityManager) {
-                throw new RuntimeException(sprintf(
-                    'Class "%s" seems not to be a managed Doctrine entity. Did you forget to map it?',
-                    $options['class']
-                ));
+                throw new RuntimeException(sprintf('Class "%s" seems not to be a managed Doctrine entity. Did you forget to map it?', $options['class']));
             }
 
             return $entityManager;
         };
 
-        $compoundNormalizer = fn() => false;
+        $compoundNormalizer = fn () => false;
 
         $resolver->setDefaults([
             'entity_manager' => null,

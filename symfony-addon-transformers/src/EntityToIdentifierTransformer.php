@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,7 @@ if (!interface_exists(ObjectManager::class)) {
 /**
  * @template T of object
  * @template R of mixed
+ *
  * @template-implements DataTransformerInterface<T, R>
  *
  * @author Raymond Schouten
@@ -120,9 +121,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
         $entity = $this->repository->find($value);
 
         if (null === $entity) {
-            throw new TransformationFailedException(
-                sprintf('Entity %s with identifier "%s" not found.', $this->className, $value)
-            );
+            throw new TransformationFailedException(sprintf('Entity %s with identifier "%s" not found.', $this->className, $value));
         }
 
         return $entity;
