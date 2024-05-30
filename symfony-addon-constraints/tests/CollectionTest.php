@@ -23,16 +23,16 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonConstraints\Collection
- *
  * @internal
  */
+#[CoversClass(Collection::class)]
 class CollectionTest extends TestCase
 {
     public function testConstruct(): void

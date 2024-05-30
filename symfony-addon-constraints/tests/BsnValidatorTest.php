@@ -25,6 +25,8 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 use DarkWebDesign\SymfonyAddonConstraints\Bsn;
 use DarkWebDesign\SymfonyAddonConstraints\BsnValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
@@ -32,10 +34,9 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 /**
  * @template-extends ConstraintValidatorTestCase<BsnValidator>
  *
- * @covers \DarkWebDesign\SymfonyAddonConstraints\BsnValidator
- *
  * @internal
  */
+#[CoversClass(BsnValidator::class)]
 class BsnValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): BsnValidator
@@ -43,9 +44,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         return new BsnValidator();
     }
 
-    /**
-     * @dataProvider providerValidBsn
-     */
+    #[DataProvider('providerValidBsn')]
     public function testValidate(string|\Stringable $value): void
     {
         $this->validator->validate($value, new Bsn());
@@ -76,9 +75,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @dataProvider providerNoScalar
-     */
+    #[DataProvider('providerNoScalar')]
     public function testValidateNoScalar(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -88,9 +85,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @dataProvider providerInvalidBsn
-     */
+    #[DataProvider('providerInvalidBsn')]
     public function testValidateViolation(string|\Stringable $value): void
     {
         $constraint = new Bsn();
@@ -105,7 +100,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{string|\Stringable}>
      */
-    public function providerValidBsn(): array
+    public static function providerValidBsn(): array
     {
         return [
             'valid1' => ['111222333'],
@@ -117,7 +112,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoScalar(): array
+    public static function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
@@ -130,7 +125,7 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{string|\Stringable}>
      */
-    public function providerInvalidBsn(): array
+    public static function providerInvalidBsn(): array
     {
         return [
             'zeros' => ['000000000'],
