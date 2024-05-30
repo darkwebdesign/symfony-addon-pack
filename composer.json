@@ -11,10 +11,10 @@
     "require": {
         "ext-json": "*",
         "php": "^8.1",
-        "symfony/event-dispatcher": "6.1.*",
-        "symfony/form": "6.1.*",
-        "symfony/options-resolver": "6.1.*",
-        "symfony/validator": "6.1.*"
+        "symfony/event-dispatcher": "6.2.*",
+        "symfony/form": "6.2.*",
+        "symfony/options-resolver": "6.2.*",
+        "symfony/validator": "6.2.*"
     },
     "require-dev": {
         "doctrine/orm": "^2.7",
