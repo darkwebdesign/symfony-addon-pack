@@ -18,6 +18,12 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.1'
+      - name: 'Fix dependencies'
+        uses: 'php-actions/composer@v6'
+        with:
+          command: 'require'
+          args: 'darkwebdesign/symfony-addon-transformers:6.2.x-dev --dev --no-install'
+          php_version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'Rector'
@@ -33,6 +39,12 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.1'
+      - name: 'Fix dependencies'
+        uses: 'php-actions/composer@v6'
+        with:
+          command: 'require'
+          args: 'darkwebdesign/symfony-addon-transformers:6.2.x-dev --dev --no-install'
+          php_version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'PHPStan'
@@ -48,6 +60,12 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.1'
+      - name: 'Fix dependencies'
+        uses: 'php-actions/composer@v6'
+        with:
+          command: 'require'
+          args: 'darkwebdesign/symfony-addon-transformers:6.2.x-dev --dev --no-install'
+          php_version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'PHP CS Fixer'
@@ -70,6 +88,12 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: "${{ matrix.php }}"
+      - name: 'Fix dependencies'
+        uses: 'php-actions/composer@v6'
+        with:
+          command: 'require'
+          args: 'darkwebdesign/symfony-addon-transformers:6.2.x-dev --dev --no-install'
+          php_version: "${{ matrix.php }}"
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
       - name: 'PHPUnit'
