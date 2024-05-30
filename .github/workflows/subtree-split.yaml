@@ -34,6 +34,6 @@ jobs:
           git subtree split --prefix=symfony-addon-transformers --branch symfony-addon-transformers
       - name: 'Git push'
         run: |
-          git push --force symfony-addon-constraints "symfony-addon-constraints:${GITHUB_REF#refs/heads/}"
-          git push --force symfony-addon-form-types "symfony-addon-form-types:${GITHUB_REF#refs/heads/}"
-          git push --force symfony-addon-transformers "symfony-addon-transformers:${GITHUB_REF#refs/heads/}"
+          git push symfony-addon-constraints "symfony-addon-constraints:${GITHUB_REF#refs/heads/}"
+          git push symfony-addon-form-types "symfony-addon-form-types:${GITHUB_REF#refs/heads/}"
+          git push symfony-addon-transformers "symfony-addon-transformers:${GITHUB_REF#refs/heads/}"
