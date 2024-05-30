@@ -25,5 +25,5 @@ Multiple form fields can be rewritten by specifying multiple field names:
 $builder
     ->add('isActive', BooleanType::class)
     ->add('isFeatured', BooleanType::class)
-    ->addEventSubscriber(new BooleanToYesNoSubscriber('isActive', 'isFeatured'));
+    ->addEventSubscriber(new BooleanToYesNoSubscriber(['isActive', 'isFeatured']));
 ```
