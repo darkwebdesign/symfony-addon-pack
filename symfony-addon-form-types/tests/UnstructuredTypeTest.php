@@ -23,13 +23,13 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\UnstructuredType;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonFormTypes\UnstructuredType
- *
  * @internal
  */
+#[CoversClass(UnstructuredType::class)]
 class UnstructuredTypeTest extends TypeTestCase
 {
     public function testArray(): void

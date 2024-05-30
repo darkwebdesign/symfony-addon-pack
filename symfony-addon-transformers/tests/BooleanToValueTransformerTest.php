@@ -23,19 +23,18 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests;
 
 use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
- *
  * @internal
  */
+#[CoversClass(BooleanToValueTransformer::class)]
 class BooleanToValueTransformerTest extends TestCase
 {
-    /**
-     * @dataProvider providerTrueFalseValue
-     */
+    #[DataProvider('providerTrueFalseValue')]
     public function testTransform(mixed $trueValue, mixed $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
@@ -58,9 +57,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertNull($returnValue);
     }
 
-    /**
-     * @dataProvider providerNoBool
-     */
+    #[DataProvider('providerNoBool')]
     public function testTransformNoBool(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
@@ -71,9 +68,7 @@ class BooleanToValueTransformerTest extends TestCase
         $transformer->transform($value);
     }
 
-    /**
-     * @dataProvider providerTrueFalseValue
-     */
+    #[DataProvider('providerTrueFalseValue')]
     public function testReverseTransform(mixed $trueValue, mixed $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
@@ -106,9 +101,7 @@ class BooleanToValueTransformerTest extends TestCase
         $this->assertNull($returnValue);
     }
 
-    /**
-     * @dataProvider providerNoScalar
-     */
+    #[DataProvider('providerNoScalar')]
     public function testReverseTransformNoScalar(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
@@ -119,9 +112,7 @@ class BooleanToValueTransformerTest extends TestCase
         $transformer->reverseTransform($value);
     }
 
-    /**
-     * @dataProvider providerTrueFalseValue
-     */
+    #[DataProvider('providerTrueFalseValue')]
     public function testReverseTransformInvalidValue(mixed $trueValue, mixed $falseValue): void
     {
         $this->expectException(TransformationFailedException::class);
@@ -135,7 +126,7 @@ class BooleanToValueTransformerTest extends TestCase
     /**
      * @return array<string, array{mixed, mixed}>
      */
-    public function providerTrueFalseValue(): array
+    public static function providerTrueFalseValue(): array
     {
         return [
             'true/false' => [true, false],
@@ -150,7 +141,7 @@ class BooleanToValueTransformerTest extends TestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoBool(): array
+    public static function providerNoBool(): array
     {
         return [
             'int' => [1],
@@ -166,7 +157,7 @@ class BooleanToValueTransformerTest extends TestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoScalar(): array
+    public static function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],

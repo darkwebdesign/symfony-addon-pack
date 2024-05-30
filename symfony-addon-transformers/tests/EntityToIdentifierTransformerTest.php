@@ -29,15 +29,16 @@ use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
- *
  * @internal
  */
+#[CoversClass(EntityToIdentifierTransformer::class)]
 class EntityToIdentifierTransformerTest extends TestCase
 {
     private City $entity;
@@ -131,9 +132,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertNull($identifier);
     }
 
-    /**
-     * @dataProvider providerNoObject
-     */
+    #[DataProvider('providerNoObject')]
     public function testTransformNoObject(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
@@ -198,9 +197,7 @@ class EntityToIdentifierTransformerTest extends TestCase
         $this->assertNull($entity);
     }
 
-    /**
-     * @dataProvider providerNoScalar
-     */
+    #[DataProvider('providerNoScalar')]
     public function testReverseTransformNoScalar(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
@@ -226,7 +223,7 @@ class EntityToIdentifierTransformerTest extends TestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoObject(): array
+    public static function providerNoObject(): array
     {
         return [
             'bool' => [true],
@@ -242,7 +239,7 @@ class EntityToIdentifierTransformerTest extends TestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoScalar(): array
+    public static function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],

@@ -24,21 +24,21 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\BooleanToYesNoSubscriber;
 use DarkWebDesign\SymfonyAddonFormTypes\BooleanType;
+use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonFormTypes\BooleanToYesNoSubscriber
- *
- * @uses \DarkWebDesign\SymfonyAddonFormTypes\BooleanType
- * @uses \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
- *
  * @internal
  */
+#[CoversClass(BooleanToYesNoSubscriber::class)]
+#[UsesClass(BooleanType::class)]
+#[UsesClass(BooleanToValueTransformer::class)]
 class BooleanToYesNoSubscriberTest extends TypeTestCase
 {
-    /**
-     * @dataProvider provider
-     */
+    #[DataProvider('provider')]
     public function test(?bool $value): void
     {
         $form = $this->factory->createBuilder()
@@ -83,7 +83,7 @@ class BooleanToYesNoSubscriberTest extends TypeTestCase
     /**
      * @return array<string, array{bool|null}>
      */
-    public function provider(): array
+    public static function provider(): array
     {
         return [
             'true' => [true],

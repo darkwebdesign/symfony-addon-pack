@@ -23,13 +23,13 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\BirthdayType;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonFormTypes\BirthdayType
- *
  * @internal
  */
+#[CoversClass(BirthdayType::class)]
 class BirthdayTypeTest extends TypeTestCase
 {
     public function test(): void

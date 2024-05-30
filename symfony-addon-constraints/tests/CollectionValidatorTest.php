@@ -25,6 +25,9 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use DarkWebDesign\SymfonyAddonConstraints\CollectionValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\TraversableObject;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
@@ -32,12 +35,10 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 /**
  * @template-extends ConstraintValidatorTestCase<CollectionValidator>
  *
- * @covers \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
- *
- * @uses \DarkWebDesign\SymfonyAddonConstraints\Collection
- *
  * @internal
  */
+#[CoversClass(CollectionValidator::class)]
+#[UsesClass(Collection::class)]
 class CollectionValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): CollectionValidator
@@ -47,9 +48,8 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
 
     /**
      * @param string[]|iterable $value
-     *
-     * @dataProvider providerValidCollection
      */
+    #[DataProvider('providerValidCollection')]
     public function testValidate(iterable $value): void
     {
         $constraints = [
@@ -88,9 +88,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @dataProvider providerNoArray
-     */
+    #[DataProvider('providerNoArray')]
     public function testValidateNoArray(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -105,7 +103,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{string[]|iterable}>
      */
-    public function providerValidCollection(): array
+    public static function providerValidCollection(): array
     {
         return [
             'empty' => [[]],
@@ -117,7 +115,7 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoArray(): array
+    public static function providerNoArray(): array
     {
         return [
             'bool' => [true],

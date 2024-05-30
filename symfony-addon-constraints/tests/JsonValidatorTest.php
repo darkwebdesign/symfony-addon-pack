@@ -25,6 +25,8 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 use DarkWebDesign\SymfonyAddonConstraints\Json;
 use DarkWebDesign\SymfonyAddonConstraints\JsonValidator;
 use DarkWebDesign\SymfonyAddonConstraints\Tests\Models\ToStringObject;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
@@ -32,10 +34,9 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 /**
  * @template-extends ConstraintValidatorTestCase<JsonValidator>
  *
- * @covers \DarkWebDesign\SymfonyAddonConstraints\JsonValidator
- *
  * @internal
  */
+#[CoversClass(JsonValidator::class)]
 class JsonValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): JsonValidator
@@ -43,9 +44,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         return new JsonValidator();
     }
 
-    /**
-     * @dataProvider providerValidJson
-     */
+    #[DataProvider('providerValidJson')]
     public function testValidate(mixed $value): void
     {
         $this->validator->validate($value, new Json());
@@ -76,9 +75,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @dataProvider providerNoScalar
-     */
+    #[DataProvider('providerNoScalar')]
     public function testValidateNoScalar(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -88,9 +85,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @dataProvider providerInvalidJson
-     */
+    #[DataProvider('providerInvalidJson')]
     public function testValidateViolation(string $value): void
     {
         $constraint = new Json();
@@ -105,7 +100,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerValidJson(): array
+    public static function providerValidJson(): array
     {
         return [
             'bool' => [true],
@@ -121,7 +116,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{mixed}>
      */
-    public function providerNoScalar(): array
+    public static function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
@@ -134,7 +129,7 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     /**
      * @return array<string, array{string}>
      */
-    public function providerInvalidJson(): array
+    public static function providerInvalidJson(): array
     {
         return [
             'string' => ['json'],

@@ -23,20 +23,20 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\BooleanType;
+use DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonFormTypes\BooleanType
- *
- * @uses \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
- *
  * @internal
  */
+#[CoversClass(BooleanType::class)]
+#[UsesClass(BooleanToValueTransformer::class)]
 class BooleanTypeTest extends TypeTestCase
 {
-    /**
-     * @dataProvider providerValueTrueFalse
-     */
+    #[DataProvider('providerValueTrueFalse')]
     public function test(mixed $valueTrue, mixed $valueFalse): void
     {
         $options = [
@@ -57,9 +57,7 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertFalse($form->getData());
     }
 
-    /**
-     * @dataProvider providerValueTrueFalse
-     */
+    #[DataProvider('providerValueTrueFalse')]
     public function testInvalidValue(mixed $valueTrue, mixed $valueFalse): void
     {
         $options = [
@@ -74,9 +72,7 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertNull($form->getData());
     }
 
-    /**
-     * @dataProvider providerWidget
-     */
+    #[DataProvider('providerWidget')]
     public function testWidget(string $widget, bool $expanded): void
     {
         $options = [
@@ -108,7 +104,7 @@ class BooleanTypeTest extends TypeTestCase
     /**
      * @return array<string, array{mixed, mixed}>
      */
-    public function providerValueTrueFalse(): array
+    public static function providerValueTrueFalse(): array
     {
         return [
             'true/false' => ['true', 'false'],
@@ -123,7 +119,7 @@ class BooleanTypeTest extends TypeTestCase
     /**
      * @return array<string, array{string, bool}>
      */
-    public function providerWidget(): array
+    public static function providerWidget(): array
     {
         return [
             'choice' => ['choice', false],
