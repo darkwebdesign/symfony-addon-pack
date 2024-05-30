@@ -19,8 +19,8 @@ every item in a collection against the same set of constraints.
 
 Applies to:
 
-* [properties](http://symfony.com/doc/6.2/validation.html#properties)
-* [methods](http://symfony.com/doc/6.2/validation.html#getters)
+* [properties](http://symfony.com/doc/6.1/validation.html#properties)
+* [methods](http://symfony.com/doc/6.1/validation.html#getters)
 
 Options:
 
