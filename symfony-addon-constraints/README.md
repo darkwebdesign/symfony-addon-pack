@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/downloads?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-constraints/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-constraints)
 
-[![Build Status](https://app.travis-ci.com/darkwebdesign/symfony-addon-constraints.svg?branch=6.0)](https://app.travis-ci.com/darkwebdesign/symfony-addon-constraints)
+[![Build Status](https://github.com/darkwebdesign/symfony-addon-constraints/actions/workflows/build.yaml/badge.svg?branch=6.0)](https://github.com/darkwebdesign/symfony-addon-constraints/actions/workflows/build.yaml)
 [![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints/branch/6.0/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-constraints)
 [![PHP Version](https://img.shields.io/badge/php-8.0%2B-777BB3.svg)](https://php.net/)
 [![Symfony Version](https://img.shields.io/badge/symfony-6.0-93C74B.svg)](https://symfony.com/)

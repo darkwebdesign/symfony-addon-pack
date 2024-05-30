@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +24,11 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
 use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
-use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\FormExtensionInterface;
@@ -39,6 +39,8 @@ use Symfony\Component\Form\Test\TypeTestCase;
  * @covers \DarkWebDesign\SymfonyAddonFormTypes\EntityType
  *
  * @uses \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
+ *
+ * @internal
  */
 class EntityTypeTest extends TypeTestCase
 {

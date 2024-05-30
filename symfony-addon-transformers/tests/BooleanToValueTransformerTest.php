@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,8 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
+ *
+ * @internal
  */
 class BooleanToValueTransformerTest extends TestCase
 {
@@ -155,7 +157,7 @@ class BooleanToValueTransformerTest extends TestCase
             'float' => [1.2],
             'string' => ['foo'],
             'array' => [['foo', 'bar']],
-            'object' => [new \stdClass],
+            'object' => [new \stdClass()],
             'resource' => [tmpfile()],
             'callable' => [function () {}],
         ];
@@ -168,7 +170,7 @@ class BooleanToValueTransformerTest extends TestCase
     {
         return [
             'array' => [['foo', 'bar']],
-            'object' => [new \stdClass],
+            'object' => [new \stdClass()],
             'resource' => [tmpfile()],
             'callable' => [function () {}],
         ];
