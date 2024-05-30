@@ -22,7 +22,7 @@ jobs:
         uses: 'php-actions/composer@v6'
         with:
           command: 'require'
-          args: 'darkwebdesign/symfony-addon-transformers:6.3.x-dev --dev --no-install'
+          args: 'darkwebdesign/symfony-addon-transformers:6.4.x-dev --dev --no-install'
           php_version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
@@ -43,7 +43,7 @@ jobs:
         uses: 'php-actions/composer@v6'
         with:
           command: 'require'
-          args: 'darkwebdesign/symfony-addon-transformers:6.3.x-dev --dev --no-install'
+          args: 'darkwebdesign/symfony-addon-transformers:6.4.x-dev --dev --no-install'
           php_version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
@@ -64,7 +64,7 @@ jobs:
         uses: 'php-actions/composer@v6'
         with:
           command: 'require'
-          args: 'darkwebdesign/symfony-addon-transformers:6.3.x-dev --dev --no-install'
+          args: 'darkwebdesign/symfony-addon-transformers:6.4.x-dev --dev --no-install'
           php_version: '8.1'
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
@@ -92,7 +92,7 @@ jobs:
         uses: 'php-actions/composer@v6'
         with:
           command: 'require'
-          args: 'darkwebdesign/symfony-addon-transformers:6.3.x-dev --dev --no-install'
+          args: 'darkwebdesign/symfony-addon-transformers:6.4.x-dev --dev --no-install'
           php_version: "${{ matrix.php }}"
       - name: 'Composer Install'
         uses: 'ramsey/composer-install@v3'
