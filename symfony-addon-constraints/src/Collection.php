@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,7 @@ use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 /**
- * Collection constraint.
- *
  * @Annotation
- *
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  *
  * @author Raymond Schouten
@@ -39,55 +36,29 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
  */
 class Collection extends Constraint
 {
-    /** @var \Symfony\Component\Validator\Constraint[] */
-    public $constraints;
+    /** @var Constraint[] */
+    public array $constraints;
 
-    /**
-     * Constructor.
-     *
-     * @param mixed $options
-     */
-    public function __construct($options = null)
+    public function __construct(mixed $options = null)
     {
         parent::__construct($options);
 
-        if (!is_array($this->constraints)) {
-            throw new ConstraintDefinitionException(sprintf(
-                'The option "constraints" is expected to be an array in constraint %s',
-                __CLASS__
-            ));
-        }
-
         foreach ($this->constraints as $constraint) {
             if (!$constraint instanceof Constraint) {
-                throw new ConstraintDefinitionException(
-                    sprintf('The value %s is not an instance of Constraint in constraint %s', $constraint, __CLASS__)
-                );
+                throw new ConstraintDefinitionException(sprintf('The value %s is not an instance of Constraint in constraint %s', $constraint, self::class));
             }
 
             if ($constraint instanceof Valid) {
-                throw new ConstraintDefinitionException(
-                    sprintf(
-                        'The constraint Valid cannot be nested inside constraint %s. ' .
-                        'You can only declare the Valid constraint directly on a field or method.',
-                        __CLASS__
-                    )
-                );
+                throw new ConstraintDefinitionException(sprintf('The constraint Valid cannot be nested inside constraint %s. You can only declare the Valid constraint directly on a field or method.', self::class));
             }
         }
     }
 
-    /**
-     * Returns the name of the default option.
-     */
     public function getDefaultOption(): string
     {
         return 'constraints';
     }
 
-    /**
-     * Returns the name of the required options.
-     */
     public function getRequiredOptions(): array
     {
         return ['constraints'];

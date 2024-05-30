@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * JSON validator.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
@@ -34,13 +32,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class JsonValidator extends ConstraintValidator
 {
     /**
-     * Checks if the value is valid.
-     *
-     * @param mixed $value
-     *
-     * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof Json) {
             throw new UnexpectedTypeException($constraint, Json::class);
@@ -54,7 +48,7 @@ class JsonValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        if (json_decode($value) || json_last_error() === JSON_ERROR_NONE) {
+        if (json_decode((string) $value) || json_last_error() === JSON_ERROR_NONE) {
             return;
         }
 

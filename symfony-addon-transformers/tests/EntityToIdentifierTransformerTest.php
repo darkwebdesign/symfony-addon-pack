@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,44 +26,41 @@ use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\AbstractPerson;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City;
 use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\Employee;
-use DarkWebDesign\SymfonyAddonTransformers\Tests\Models\PointOfInterest;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
+ *
+ * @internal
  */
 class EntityToIdentifierTransformerTest extends TestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddonTransformers\Tests\Models\City */
-    private $entity;
-
-    /** @var string */
-    private $className;
-
-    /** @var int */
-    private $identifier;
-
-    /** @var \Doctrine\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $entityManager;
-
-    /** @var \Doctrine\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
-    private $repository;
-
-    /** @var \Doctrine\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
-    private $metadata;
+    private City $entity;
+    /** @var class-string<City|AbstractPerson|Employee> */
+    private string $className;
+    private ?int $identifier;
+    /** @var array<string, mixed> */
+    private array $identifierValues;
+    /** @var ObjectManager&MockObject */
+    private ObjectManager $entityManager;
+    /** @var ObjectRepository<City>&MockObject */
+    private ObjectRepository $repository;
+    /** @var ClassMetadata&MockObject */
+    private ClassMetadata $metadata;
 
     protected function setUp(): void
     {
         $this->entity = new City();
         $this->entity->setId(123);
 
-        $this->className = get_class($this->entity);
+        $this->className = $this->entity::class;
         $this->identifier = $this->entity->getId();
+        $this->identifierValues = ['id' => $this->identifier];
 
         $this->entityManager = $this->createMock(ObjectManager::class);
         $this->repository = $this->createMock(ObjectRepository::class);
@@ -74,8 +71,6 @@ class EntityToIdentifierTransformerTest extends TestCase
 
         $this->metadata->method('getName')->willReturnCallback([$this, 'getClassName']);
         $this->metadata->method('getIdentifierValues')->willReturnCallback([$this, 'getIdentifier']);
-
-        $this->metadata->isIdentifierComposite = false;
     }
 
     public function getClassName(): string
@@ -83,19 +78,12 @@ class EntityToIdentifierTransformerTest extends TestCase
         return $this->className;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getIdentifier(): array
     {
-        return ['id' => $this->identifier];
-    }
-
-    public function testConstructIdentifierComposite(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected an entity with a single identifier.');
-
-        $this->metadata->isIdentifierComposite = true;
-
-        new EntityToIdentifierTransformer($this->entityManager, $this->className);
+        return $this->identifierValues;
     }
 
     public function testTransform(): void
@@ -109,7 +97,10 @@ class EntityToIdentifierTransformerTest extends TestCase
 
     public function testTransformAlias(): void
     {
-        $transformer = new EntityToIdentifierTransformer($this->entityManager, 'AppBundle:City');
+        /** @var class-string<City> $className */
+        $className = 'AppBundle:City';
+
+        $transformer = new EntityToIdentifierTransformer($this->entityManager, $className);
 
         $identifier = $transformer->transform($this->entity);
 
@@ -118,7 +109,9 @@ class EntityToIdentifierTransformerTest extends TestCase
 
     public function testTransformDiscriminated(): void
     {
-        $this->className = AbstractPerson::class;
+        /** @var class-string<AbstractPerson> $className */
+        $className = AbstractPerson::class;
+        $this->className = $className;
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
@@ -139,11 +132,9 @@ class EntityToIdentifierTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoObject
      */
-    public function testTransformNoObject($value): void
+    public function testTransformNoObject(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected an object.');
@@ -160,9 +151,21 @@ class EntityToIdentifierTransformerTest extends TestCase
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
 
-        $entity = new PointOfInterest();
+        $entity = new Employee();
 
         $transformer->transform($entity);
+    }
+
+    public function testTransformIdentifierComposite(): void
+    {
+        $this->expectException(TransformationFailedException::class);
+        $this->expectExceptionMessage('Expected an entity with a single identifier.');
+
+        $this->identifierValues = ['latitude' => 61, 'longitude' => 147];
+
+        $transformer = new EntityToIdentifierTransformer($this->entityManager, $this->className);
+
+        $transformer->transform($this->entity);
     }
 
     public function testReverseTransform(): void
@@ -173,6 +176,7 @@ class EntityToIdentifierTransformerTest extends TestCase
 
         $entity = $transformer->reverseTransform($this->identifier);
 
+        $this->assertNotNull($entity);
         $this->assertSame($this->identifier, $entity->getId());
     }
 
@@ -195,11 +199,9 @@ class EntityToIdentifierTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoScalar
      */
-    public function testReverseTransformNoScalar($value): void
+    public function testReverseTransformNoScalar(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a scalar.');
@@ -221,6 +223,9 @@ class EntityToIdentifierTransformerTest extends TestCase
         $transformer->reverseTransform($this->identifier);
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoObject(): array
     {
         return [
@@ -234,6 +239,9 @@ class EntityToIdentifierTransformerTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [

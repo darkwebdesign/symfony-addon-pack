@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2018 DarkWeb Design
+ * Copyright (c) 2018 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +22,10 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
-/**
- * @Table(name="person")
- *
- * @Entity
- *
- * @InheritanceType("SINGLE_TABLE")
- *
- * @DiscriminatorColumn(name="type", type="string")
- * @DiscriminatorMap({"person" = "Person", "employee" = "Employee"}) */
 abstract class AbstractPerson
 {
-    /**
-     * @var int
-     *
-     * @Column(name="id", type="integer", nullable=false)
-     *
-     * @Id
-     *
-     * @GeneratedValue(strategy="IDENTITY")
-     */
-    protected $id;
-
-    /**
-     * @var string
-     *
-     * @Column(name="name", type="string", length=50, nullable=false)
-     */
-    protected $name;
+    protected ?int $id = null;
+    protected ?string $name = null;
 
     public function getId(): ?int
     {

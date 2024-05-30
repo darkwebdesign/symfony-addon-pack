@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,13 +46,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class BsnValidator extends ConstraintValidator
 {
     /**
-     * Checks if the value is valid.
-     *
-     * @param mixed $value
-     *
-     * @throws \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof Bsn) {
             throw new UnexpectedTypeException($constraint, Bsn::class);
@@ -69,7 +65,7 @@ class BsnValidator extends ConstraintValidator
         $value = (string) $value;
 
         if ('000000000' !== $value && preg_match('/^\d{9}$/', $value)) {
-            list($a, $b, $c, $d, $e, $f, $g, $h, $i) = str_split($value);
+            [$a, $b, $c, $d, $e, $f, $g, $h, $i] = array_map('intval', str_split($value));
 
             $sum = (9 * $a) + (8 * $b) + (7 * $c) + (6 * $d) + (5 * $e) + (4 * $f) + (3 * $g) + (2 * $h) + (-1 * $i);
 

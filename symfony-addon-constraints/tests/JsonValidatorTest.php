@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonConstraints\JsonValidator
+ *
+ * @internal
  */
 class JsonValidatorTest extends ConstraintValidatorTestCase
 {
@@ -40,11 +42,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerValidJson
      */
-    public function testValidate($value): void
+    public function testValidate(mixed $value): void
     {
         $this->validator->validate($value, new Json());
 
@@ -75,11 +75,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoScalar
      */
-    public function testValidateNoScalar($value): void
+    public function testValidateNoScalar(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -102,6 +100,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
             ->assertRaised();
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerValidJson(): array
     {
         return [
@@ -115,6 +116,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [
@@ -125,6 +129,9 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{string}>
+     */
     public function providerInvalidJson(): array
     {
         return [

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,53 +30,34 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Boolean form field type.
- *
  * @author Raymond Schouten
  *
  * @since 2.3
  */
 class BooleanType extends AbstractType
 {
-    /**
-     * Builds the form.
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (!class_exists(BooleanToValueTransformer::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "darkwebdesign/symfony-addon-transformers" package is not installed. Try running "composer require darkwebdesign/symfony-addon-transformers".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "darkwebdesign/symfony-addon-transformers" package is not installed. Try running "composer require darkwebdesign/symfony-addon-transformers".', self::class));
         }
 
         $builder->addModelTransformer(new BooleanToValueTransformer($options['value_true'], $options['value_false']));
     }
 
-    /**
-     * Configures the options for this type.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $labelTrueNormalizer = function (Options $options, $value) {
-            return !is_null($value) ? (string) $value : $this->humanize((string) $options['value_true']);
-        };
+        $labelTrueNormalizer = fn (Options $options, $value) => !is_null($value) ? (string) $value : $this->humanize((string) $options['value_true']);
+        $labelFalseNormalizer = fn (Options $options, $value) => !is_null($value) ? (string) $value : $this->humanize((string) $options['value_false']);
 
-        $labelFalseNormalizer = function (Options $options, $value) {
-            return !is_null($value) ? (string) $value : $this->humanize((string) $options['value_false']);
-        };
+        $choicesNormalizer = fn (Options $options) => [
+            $options['label_true'] => $options['value_true'],
+            $options['label_false'] => $options['value_false'],
+        ];
 
-        $choicesNormalizer = function (Options $options) {
-            return [
-                $options['label_true'] => $options['value_true'],
-                $options['label_false'] => $options['value_false'],
-            ];
-        };
+        $expandedNormalizer = fn (Options $options) => 'choice' !== $options['widget'];
 
-        $expandedNormalizer = function (Options $options) {
-            return 'choice' !== $options['widget'];
-        };
-
-        $multipleNormalizer = function () {
-            return false;
-        };
+        $multipleNormalizer = fn () => false;
 
         $resolver->setDefaults([
             'label_true' => null,
@@ -100,19 +81,16 @@ class BooleanType extends AbstractType
         $resolver->setAllowedValues('widget', ['choice', 'radio']);
     }
 
-    /**
-     * Returns the name of the parent type.
-     */
     public function getParent(): string
     {
         return ChoiceType::class;
     }
 
     /**
-     * Makes a technical name human readable.
+     * Makes a technical name human-readable.
      */
     public function humanize(string $text): string
     {
-        return ucfirst(trim(strtolower(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
+        return ucfirst(trim(strtolower((string) preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,8 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonFormTypes\BirthdayType
+ *
+ * @internal
  */
 class BirthdayTypeTest extends TypeTestCase
 {
@@ -38,6 +40,6 @@ class BirthdayTypeTest extends TypeTestCase
 
         $this->assertCount(121, $choices);
         $this->assertSame((int) date('Y'), reset($choices));
-        $this->assertSame((date('Y') - 120), end($choices));
+        $this->assertSame(date('Y') - 120, end($choices));
     }
 }

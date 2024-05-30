@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2019 DarkWeb Design
+ * Copyright (c) 2019 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,26 +26,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Unstructured form field type.
- *
  * @author Raymond Schouten
  *
  * @since 3.4
  */
 class UnstructuredType extends AbstractType
 {
-    /**
-     * Configures the options for this type.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $compoundNormalizer = function () {
-            return false;
-        };
+        $compoundNormalizer = fn () => false;
 
-        $multipleNormalizer = function () {
-            return true;
-        };
+        $multipleNormalizer = fn () => true;
 
         $resolver->setDefaults([
             'multiple' => true,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2018 DarkWeb Design
+ * Copyright (c) 2018 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,9 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonTransformers\Tests\Models;
 
-/**
- * @Table(name="employee")
- *
- * @Entity
- */
 class Employee extends AbstractPerson
 {
-    /**
-     * @var string
-     *
-     * @Column(name="function", type="string", length=50, nullable=false)
-     */
-    private $function;
+    private string $function;
 
     public function getFunction(): ?string
     {

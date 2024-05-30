@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @covers \DarkWebDesign\SymfonyAddonConstraints\CollectionValidator
  *
  * @uses \DarkWebDesign\SymfonyAddonConstraints\Collection
+ *
+ * @internal
  */
 class CollectionValidatorTest extends ConstraintValidatorTestCase
 {
@@ -42,11 +44,11 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
+     * @param string[]|iterable $value
      *
      * @dataProvider providerValidCollection
      */
-    public function testValidate($value): void
+    public function testValidate(iterable $value): void
     {
         $constraints = [
             new Assert\Email(),
@@ -85,11 +87,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoArray
      */
-    public function testValidateNoArray($value): void
+    public function testValidateNoArray(mixed $value): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -100,6 +100,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
+    /**
+     * @return array<string, array{string[]|iterable}>
+     */
     public function providerValidCollection(): array
     {
         return [
@@ -109,6 +112,9 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoArray(): array
     {
         return [

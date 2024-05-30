@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2021 DarkWeb Design
+ * Copyright (c) 2021 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,20 +27,15 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 /**
- * JSON Schema form event subscriber.
- *
  * @author Raymond Schouten
  *
  * @since 5.2.1
  */
 class JsonSchemaSubscriber implements EventSubscriberInterface
 {
-    /** @var string */
-    private $fieldName;
-
-    public function __construct(string $fieldName = 'schema')
-    {
-        $this->fieldName = $fieldName;
+    public function __construct(
+        private string $fieldName = 'schema'
+    ) {
     }
 
     /**
@@ -60,9 +55,6 @@ class JsonSchemaSubscriber implements EventSubscriberInterface
         $event->setData($data);
     }
 
-    /**
-     * Returns an array of event names this subscriber wants to listen to.
-     */
     public static function getSubscribedEvents(): array
     {
         return [

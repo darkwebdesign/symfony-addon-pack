@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,16 +29,15 @@ use Symfony\Component\Form\Test\TypeTestCase;
  * @covers \DarkWebDesign\SymfonyAddonFormTypes\BooleanType
  *
  * @uses \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
+ *
+ * @internal
  */
 class BooleanTypeTest extends TypeTestCase
 {
     /**
-     * @param mixed $valueTrue
-     * @param mixed $valueFalse
-     *
      * @dataProvider providerValueTrueFalse
      */
-    public function test($valueTrue, $valueFalse): void
+    public function test(mixed $valueTrue, mixed $valueFalse): void
     {
         $options = [
             'value_true' => $valueTrue,
@@ -59,12 +58,9 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * @param mixed $valueTrue
-     * @param mixed $valueFalse
-     *
      * @dataProvider providerValueTrueFalse
      */
-    public function testInvalidValue($valueTrue, $valueFalse): void
+    public function testInvalidValue(mixed $valueTrue, mixed $valueFalse): void
     {
         $options = [
             'value_true' => $valueTrue,
@@ -109,6 +105,9 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertSame('A camel cased label', $view->vars['choices'][1]->label);
     }
 
+    /**
+     * @return array<string, array{mixed, mixed}>
+     */
     public function providerValueTrueFalse(): array
     {
         return [
@@ -121,6 +120,9 @@ class BooleanTypeTest extends TypeTestCase
         ];
     }
 
+    /**
+     * @return array<string, array{string, bool}>
+     */
     public function providerWidget(): array
     {
         return [

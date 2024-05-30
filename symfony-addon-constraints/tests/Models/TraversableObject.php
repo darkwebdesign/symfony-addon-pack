@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,25 @@ declare(strict_types=1);
 
 namespace DarkWebDesign\SymfonyAddonConstraints\Tests\Models;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @template-implements \IteratorAggregate<TKey, TValue>
+ */
 class TraversableObject implements \IteratorAggregate
 {
-    /** @var array */
-    private $container;
-
-    public function __construct(array $data = [])
-    {
-        $this->container = $data;
+    /**
+     * @param array<TKey, TValue> $container
+     */
+    public function __construct(
+        private array $container = []
+    ) {
     }
 
+    /**
+     * @return \ArrayIterator<TKey, TValue>
+     */
     public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->container);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2021 DarkWeb Design
+ * Copyright (c) 2021 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,8 @@ use Symfony\Component\Form\Test\TypeTestCase;
  *
  * @uses \DarkWebDesign\SymfonyAddonFormTypes\BooleanType
  * @uses \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
+ *
+ * @internal
  */
 class BooleanToYesNoSubscriberTest extends TypeTestCase
 {
@@ -78,6 +80,9 @@ class BooleanToYesNoSubscriberTest extends TypeTestCase
         $this->assertNull($form->get('isActive')->getData());
     }
 
+    /**
+     * @return array<string, array{bool|null}>
+     */
     public function provider(): array
     {
         return [

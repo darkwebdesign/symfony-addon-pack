@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,8 @@ use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonConstraints\Collection
+ *
+ * @internal
  */
 class CollectionTest extends TestCase
 {
@@ -60,20 +62,6 @@ class CollectionTest extends TestCase
         new Collection();
     }
 
-    /**
-     * @param mixed $constraints
-     *
-     * @dataProvider providerNoArray
-     */
-    public function testConstructConstraintsOptionNoArray($constraints): void
-    {
-        $this->expectException(ConstraintDefinitionException::class);
-
-        new Collection([
-            'constraints' => $constraints,
-        ]);
-    }
-
     public function testConstructNoConstraint(): void
     {
         $this->expectException(ConstraintDefinitionException::class);
@@ -94,18 +82,5 @@ class CollectionTest extends TestCase
                 new Assert\Valid(),
             ],
         ]);
-    }
-
-    public function providerNoArray(): array
-    {
-        return [
-            'bool' => [true],
-            'int' => [1],
-            'float' => [1.2],
-            'string' => ['foo'],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
     }
 }

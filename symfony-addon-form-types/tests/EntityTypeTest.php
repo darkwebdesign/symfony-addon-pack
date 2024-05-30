@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +24,14 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
 use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
-use Doctrine\ORM\EntityManager;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Exception\RuntimeException;
+use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
@@ -37,36 +39,30 @@ use Symfony\Component\Form\Test\TypeTestCase;
  * @covers \DarkWebDesign\SymfonyAddonFormTypes\EntityType
  *
  * @uses \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
+ *
+ * @internal
  */
 class EntityTypeTest extends TypeTestCase
 {
-    /** @var \DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City */
-    private $entity;
-
-    /** @var string */
-    private $className;
-
-    /** @var int */
-    private $identifier;
-
-    /** @var \Doctrine\Persistence\ManagerRegistry|\PHPUnit\Framework\MockObject\MockObject */
-    private $registry;
-
-    /** @var \Doctrine\Persistence\ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $entityManager;
-
-    /** @var \Doctrine\Persistence\ObjectRepository|\PHPUnit\Framework\MockObject\MockObject */
-    private $repository;
-
-    /** @var \Doctrine\Persistence\Mapping\ClassMetadata|\PHPUnit\Framework\MockObject\MockObject */
-    private $metadata;
+    private City $entity;
+    /** @var class-string<City> */
+    private string $className;
+    private ?int $identifier;
+    /** @var ManagerRegistry&MockObject */
+    private ManagerRegistry $registry;
+    /** @var ObjectManager&MockObject */
+    private ObjectManager $entityManager;
+    /** @var ObjectRepository<City>&MockObject */
+    private ObjectRepository $repository;
+    /** @var ClassMetadata&MockObject */
+    private ClassMetadata $metadata;
 
     protected function setUp(): void
     {
         $this->entity = new City();
         $this->entity->setId(123);
 
-        $this->className = get_class($this->entity);
+        $this->className = $this->entity::class;
         $this->identifier = $this->entity->getId();
 
         $this->registry = $this->createMock(ManagerRegistry::class);
@@ -80,11 +76,12 @@ class EntityTypeTest extends TypeTestCase
         $this->metadata->method('getName')->willReturn($this->className);
         $this->metadata->method('getIdentifierValues')->willReturn(['id' => $this->identifier]);
 
-        $this->metadata->isIdentifierComposite = false;
-
         parent::setUp();
     }
 
+    /**
+     * @return FormExtensionInterface[]
+     */
     protected function getExtensions(): array
     {
         $type = new EntityType($this->registry);
@@ -105,7 +102,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());
@@ -122,7 +119,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertFalse($form->isSynchronized());
         $this->assertNull($form->getData());
@@ -138,7 +135,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());
@@ -156,7 +153,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());
@@ -177,7 +174,7 @@ class EntityTypeTest extends TypeTestCase
         ];
 
         $form = $this->factory->create(EntityType::class, null, $options);
-        $form->submit($this->identifier);
+        $form->submit((string) $this->identifier);
 
         $this->assertTrue($form->isSynchronized());
         $this->assertSame($this->entity, $form->getData());

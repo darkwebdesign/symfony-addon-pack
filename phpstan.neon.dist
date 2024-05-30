@@ -1,0 +1,10 @@
+parameters:
+    level: 8
+
+    paths:
+        - 'symfony-addon-constraints/src'
+        - 'symfony-addon-constraints/tests'
+        - 'symfony-addon-form-types/src'
+        - 'symfony-addon-form-types/tests'
+        - 'symfony-addon-transformers/src'
+        - 'symfony-addon-transformers/tests'

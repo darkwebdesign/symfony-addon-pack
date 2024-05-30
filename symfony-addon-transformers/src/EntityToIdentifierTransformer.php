@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,23 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonTransformers;
 
 use Doctrine\Common\Util\ClassUtils;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+// @codeCoverageIgnoreStart
 if (!interface_exists(ObjectManager::class)) {
     throw new \LogicException('You cannot use "DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".');
 }
+// @codeCoverageIgnoreEnd
 
 /**
- * Transforms between an identifier and a Doctrine entity.
+ * @template T of object
+ * @template R of mixed
+ *
+ * @template-implements DataTransformerInterface<T, R>
  *
  * @author Raymond Schouten
  *
@@ -41,45 +47,32 @@ if (!interface_exists(ObjectManager::class)) {
  */
 class EntityToIdentifierTransformer implements DataTransformerInterface
 {
-    /** @var \Doctrine\Common\Persistence\ObjectManager */
-    private $entityManager;
-
-    /** @var string */
-    private $className;
-
-    /** @var \Doctrine\Common\Persistence\ObjectRepository */
-    private $repository;
-
-    /** @var \Doctrine\Common\Persistence\Mapping\ClassMetadata */
-    private $metadata;
+    /** @var class-string<T> */
+    private string $className;
+    /** @var ObjectRepository<T> */
+    private ObjectRepository $repository;
+    private ClassMetadata $metadata;
 
     /**
-     * Constructor.
-     *
-     * @throws \Symfony\Component\Form\Exception\InvalidArgumentException
+     * @param class-string<T> $className
      */
-    public function __construct(ObjectManager $entityManager, string $className)
-    {
-        $this->entityManager = $entityManager;
+    public function __construct(
+        private ObjectManager $entityManager,
+        string $className
+    ) {
         $this->repository = $this->entityManager->getRepository($className);
         $this->metadata = $this->entityManager->getClassMetadata($className);
         $this->className = $this->metadata->getName();
-
-        if ($this->metadata->isIdentifierComposite) {
-            throw new InvalidArgumentException('Expected an entity with a single identifier.');
-        }
     }
 
     /**
-     * Transforms a value from the original representation to a transformed representation.
+     * @param T|null $value
      *
-     * @param object $value
+     * @returns R|null
      *
-     * @return mixed
-     *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
-    public function transform($value)
+    public function transform(mixed $value): mixed
     {
         if (null === $value) {
             return null;
@@ -90,7 +83,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
         }
 
         if (!class_exists(ClassUtils::class)) {
-            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', __CLASS__));
+            throw new \LogicException(sprintf('You cannot use "%s" as the "doctrine/orm" package is not installed. Try running "composer require doctrine/orm".', self::class));
         }
 
         $className = ClassUtils::getClass($value);
@@ -101,19 +94,21 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
 
         $identifierValues = $this->metadata->getIdentifierValues($value);
 
+        if (count($identifierValues) > 1) {
+            throw new TransformationFailedException('Expected an entity with a single identifier.');
+        }
+
         return reset($identifierValues);
     }
 
     /**
-     * Transforms a value from the transformed representation to its original representation.
+     * @param R|null $value
      *
-     * @param mixed $value
+     * @returns T|null
      *
-     * @return object|null
-     *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
-    public function reverseTransform($value): ?object
+    public function reverseTransform(mixed $value): ?object
     {
         if (null === $value || '' === $value) {
             return null;
@@ -126,9 +121,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
         $entity = $this->repository->find($value);
 
         if (null === $entity) {
-            throw new TransformationFailedException(
-                sprintf('Entity %s with identifier "%s" not found.', $this->className, $value)
-            );
+            throw new TransformationFailedException(sprintf('Entity %s with identifier "%s" not found.', $this->className, $value));
         }
 
         return $entity;

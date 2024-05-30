@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,10 +25,7 @@ namespace DarkWebDesign\SymfonyAddonConstraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * BSN constraint.
- *
  * @Annotation
- *
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  *
  * @author Raymond Schouten
@@ -37,6 +34,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class Bsn extends Constraint
 {
-    /** @var string */
-    public $message = 'This value is not a valid Dutch social security number (BSN).';
+    public string $message = 'This value is not a valid Dutch social security number (BSN).';
 }

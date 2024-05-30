@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 DarkWeb Design
+ * Copyright (c) 2017 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,16 +28,15 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
+ *
+ * @internal
  */
 class BooleanToValueTransformerTest extends TestCase
 {
     /**
-     * @param mixed $trueValue
-     * @param mixed $falseValue
-     *
      * @dataProvider providerTrueFalseValue
      */
-    public function testTransform($trueValue, $falseValue): void
+    public function testTransform(mixed $trueValue, mixed $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -60,11 +59,9 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoBool
      */
-    public function testTransformNoBool($value): void
+    public function testTransformNoBool(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a boolean.');
@@ -75,12 +72,9 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $trueValue
-     * @param mixed $falseValue
-     *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransform($trueValue, $falseValue): void
+    public function testReverseTransform(mixed $trueValue, mixed $falseValue): void
     {
         $transformer = new BooleanToValueTransformer($trueValue, $falseValue);
 
@@ -104,6 +98,7 @@ class BooleanToValueTransformerTest extends TestCase
 
     public function testReverseTransformEmptyString(): void
     {
+        /** @var BooleanToValueTransformer<string> $transformer */
         $transformer = new BooleanToValueTransformer();
 
         $returnValue = $transformer->reverseTransform('');
@@ -112,11 +107,9 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @dataProvider providerNoScalar
      */
-    public function testReverseTransformNoScalar($value): void
+    public function testReverseTransformNoScalar(mixed $value): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected a scalar.');
@@ -127,12 +120,9 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @param mixed $trueValue
-     * @param mixed $falseValue
-     *
      * @dataProvider providerTrueFalseValue
      */
-    public function testReverseTransformInvalidValue($trueValue, $falseValue): void
+    public function testReverseTransformInvalidValue(mixed $trueValue, mixed $falseValue): void
     {
         $this->expectException(TransformationFailedException::class);
         $this->expectExceptionMessage('Expected true/false boolean value.');
@@ -142,16 +132,24 @@ class BooleanToValueTransformerTest extends TestCase
         $transformer->reverseTransform('foo');
     }
 
+    /**
+     * @return array<string, array{mixed, mixed}>
+     */
     public function providerTrueFalseValue(): array
     {
         return [
             'true/false' => [true, false],
             'yes/no' => ['yes', 'no'],
             'on/off' => ['on', 'off'],
-            '1/0' => [1, 0],
+            '1/0' => ['1', '0'],
+            '1/2' => [1, 2],
+            '1.3/2.7' => [1.3, 2.7],
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoBool(): array
     {
         return [
@@ -159,17 +157,20 @@ class BooleanToValueTransformerTest extends TestCase
             'float' => [1.2],
             'string' => ['foo'],
             'array' => [['foo', 'bar']],
-            'object' => [new \stdClass],
+            'object' => [new \stdClass()],
             'resource' => [tmpfile()],
             'callable' => [function () {}],
         ];
     }
 
+    /**
+     * @return array<string, array{mixed}>
+     */
     public function providerNoScalar(): array
     {
         return [
             'array' => [['foo', 'bar']],
-            'object' => [new \stdClass],
+            'object' => [new \stdClass()],
             'resource' => [tmpfile()],
             'callable' => [function () {}],
         ];

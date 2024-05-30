@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2021 DarkWeb Design
+ * Copyright (c) 2021 DarkWeb Design.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,8 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
  * @covers \DarkWebDesign\SymfonyAddonFormTypes\JsonSchemaSubscriber
+ *
+ * @internal
  */
 class JsonSchemaSubscriberTest extends TypeTestCase
 {
