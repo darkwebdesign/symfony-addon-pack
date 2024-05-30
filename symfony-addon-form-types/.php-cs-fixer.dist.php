@@ -23,5 +23,4 @@ return (new Config())
         'phpdoc_align' => ['tags' => ['method', 'param', 'property', 'return', 'throws', 'type', 'var'], 'align' => 'left'], // overrules @Symfony
         'yoda_style' => false, // overrules @Symfony
     ])
-    ->setFinder($finder)
-    ->setParallelConfig(ParallelConfigFactory::detect());
+    ->setFinder($finder);
