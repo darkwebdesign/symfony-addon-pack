@@ -23,14 +23,14 @@ declare(strict_types=1);
 namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\JsonSchemaSubscriber;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonFormTypes\JsonSchemaSubscriber
- *
  * @internal
  */
+#[CoversClass(JsonSchemaSubscriber::class)]
 class JsonSchemaSubscriberTest extends TypeTestCase
 {
     public function test(): void

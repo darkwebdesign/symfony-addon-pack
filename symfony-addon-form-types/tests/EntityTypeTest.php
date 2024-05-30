@@ -24,11 +24,14 @@ namespace DarkWebDesign\SymfonyAddonFormTypes\Tests;
 
 use DarkWebDesign\SymfonyAddonFormTypes\EntityType;
 use DarkWebDesign\SymfonyAddonFormTypes\Tests\Models\City;
+use DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\Form\FormExtensionInterface;
@@ -36,12 +39,10 @@ use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * @covers \DarkWebDesign\SymfonyAddonFormTypes\EntityType
- *
- * @uses \DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
- *
  * @internal
  */
+#[CoversClass(EntityType::class)]
+#[UsesClass(EntityToIdentifierTransformer::class)]
 class EntityTypeTest extends TypeTestCase
 {
     private City $entity;
