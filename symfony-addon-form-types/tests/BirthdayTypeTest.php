@@ -34,7 +34,7 @@ class BirthdayTypeTest extends TypeTestCase
 {
     public function test(): void
     {
-        $form = $this->factory->create(BirthdayType::class);
+        $form = $this->factory->create(BirthdayType::class, options: ['widget' => 'choice']);
 
         $choices = $form->get('year')->getConfig()->getOption('choices');
 
