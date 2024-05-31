@@ -18,7 +18,7 @@ The following constraints are available:
 
 ### String Constraints
 
-* [Json](constraints/json.html)
+* [Json](constraints/json.html) (deprecated)
 
 ### Number Constraints
 

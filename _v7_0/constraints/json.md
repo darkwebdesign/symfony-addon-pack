@@ -10,6 +10,10 @@ redirect_from:
 
 This constraint is used to ensure that a value has the proper format of a JSON-encoded string.
 
+{: .warning }
+This validation constraint is deprecated and will be removed in v8.0. Use Symfony's own [Json](https://symfony.com/doc/6.0/reference/constraints/Json.html) validation
+constraint instead, which is introduced in Symfony 4.3.
+
 Applies to:
 
 * [properties](http://symfony.com/doc/7.0/validation.html#properties)
@@ -21,7 +25,7 @@ Options:
 
 ## Basic Usage
 
-### Annotations
+### Attributes
 
 ```php
 // src/AppBundle/Entity/Transaction.php
@@ -31,9 +35,7 @@ use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 
 class Transaction
 {
-    /**
-     * @AddonAssert\Json()
-     */
+    #[AddonAssert\Json]
     protected $data;
 }
 ```

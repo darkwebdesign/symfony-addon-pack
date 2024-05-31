@@ -32,7 +32,7 @@ Parent type:
 ## Basic Usage
 
 ```php
-$builder->add('birthday', BirthdayType::class);
+$builder->add('birthday', BirthdayType::class, ['widget' => 'choice']);
 ```
 
 ## Overridden Options

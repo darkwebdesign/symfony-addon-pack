@@ -13,7 +13,7 @@ This transformer is used to transform an identifier into a Doctrine entity and v
 ## Basic Usage
 
 ```php
-$taskToIdentifierTransformer = new EntityToIdentifierTransformer($entityManager, 'AppBundle:Task');
+$taskToIdentifierTransformer = new EntityToIdentifierTransformer($entityManager, Task::class);
 
 // transform an entity to an identifier
 $identifier = $taskToIdentifierTransformer->transform($task);
@@ -29,7 +29,7 @@ $task = $taskToIdentifierTransformer->reverseTransform($identifier);
 ```yml
 task_to_identifier_transformer:
     class: DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
-    arguments: ["@doctrine.orm.entity_manager", "AppBundle:Task"]
+    arguments: ["@doctrine.orm.entity_manager", "AppBundle\Entity\Task"]
 ```
 
 ### XML
@@ -38,6 +38,6 @@ task_to_identifier_transformer:
 <service id="task_to_identifier_transformer"
          class="DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer">
     <argument type="service" id="doctrine.orm.entity_manager" />
-    <argument type="string">AppBundle:Task</argument>
+    <argument type="string">AppBundle\Entity\Task</argument>
 </service>
 ```

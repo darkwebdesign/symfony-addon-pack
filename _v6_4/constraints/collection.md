@@ -28,7 +28,7 @@ Options:
 
 ## Basic Usage
 
-### Annotations
+### Attributes
 
 ```php
 // src/AppBundle/Entity/Person.php
@@ -39,14 +39,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Person
 {
-    /**
-     * @AddonAssert\Collection(
-     *     constraints = {
-     *         @Assert\Email,
-     *         @Assert\NotBlank
-     *     }
-     * )
-     */
+    #[AddonAssert\Collection(
+        constraints: [
+            new Assert\Email,
+            new Assert\NotBlank
+        ]
+    )]
     protected $emails;
 }
 ```

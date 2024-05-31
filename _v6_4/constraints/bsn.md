@@ -21,7 +21,7 @@ Options:
 
 ## Basic Usage
 
-### Annotations
+### Attributes
 
 ```php
 // src/AppBundle/Entity/Person.php
@@ -31,9 +31,7 @@ use DarkWebDesign\SymfonyAddonConstraints as AddonAssert;
 
 class Person
 {
-    /**
-     * @AddonAssert\Bsn()
-     */
+    #[AddonAssert\Bsn]
     protected $socialSecurityNumber;
 }
 ```

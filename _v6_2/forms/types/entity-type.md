@@ -37,7 +37,7 @@ Parent type:
 
 ```php
 $builder->add('task', EntityType::class, [
-    'class' => 'AppBundle:Task',
+    'class' => Task::class,
 ]);
 ```
 
