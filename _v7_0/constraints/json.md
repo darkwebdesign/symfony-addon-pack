@@ -11,7 +11,7 @@ redirect_from:
 This constraint is used to ensure that a value has the proper format of a JSON-encoded string.
 
 {: .warning }
-This validation constraint is deprecated and will be removed in v8.0. Use Symfony's own [Json](https://symfony.com/doc/6.0/reference/constraints/Json.html) validation
+This validation constraint is deprecated and will be removed in v8.0. Use Symfony's own [Json](https://symfony.com/doc/7.0/reference/constraints/Json.html) validation
 constraint instead, which is introduced in Symfony 4.3.
 
 Applies to:

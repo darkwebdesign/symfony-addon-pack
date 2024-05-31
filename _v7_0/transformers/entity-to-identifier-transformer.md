@@ -29,7 +29,7 @@ $task = $taskToIdentifierTransformer->reverseTransform($identifier);
 ```yml
 task_to_identifier_transformer:
     class: DarkWebDesign\SymfonyAddonTransformers\EntityToIdentifierTransformer
-    arguments: ["@doctrine.orm.entity_manager", "AppBundle\Entity\Task"]
+    arguments: ['@doctrine.orm.entity_manager', 'AppBundle\Entity\Task']
 ```
 
 ### XML

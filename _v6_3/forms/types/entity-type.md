@@ -47,8 +47,8 @@ $builder->add('task', EntityType::class, [
 
 ```yml
 DarkWebDesign\SymfonyAddonFormTypes\EntityType:
-    arguments: ["@doctrine"]
-    tags: [{ name: form.type }]
+    arguments: ['@doctrine']
+    tags: [{ name: 'form.type' }]
 ```
 
 ### XML

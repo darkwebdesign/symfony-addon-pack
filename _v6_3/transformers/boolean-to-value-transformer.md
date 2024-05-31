@@ -29,7 +29,7 @@ $boolean = $booleanToYesnoTransformer->reverseTransform($yesno);
 ```yml
 boolean_to_yesno_transformer:
     class: DarkWebDesign\SymfonyAddonTransformers\BooleanToValueTransformer
-    arguments: ["yes", "no"]
+    arguments: ['yes', 'no']
 ```
 
 ### XML
