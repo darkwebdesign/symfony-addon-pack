@@ -39,29 +39,34 @@ collections:
 
 just_the_docs:
   collections:
-    v6_4:
-      name: v6.4 (latest)
+    v7_0:
+      name: v7.0 (latest)
       nav_exclude: false
       nav_fold: true
       search_exclude: false
+    v6_4:
+      name: v6.4
+      nav_exclude: false
+      nav_fold: true
+      search_exclude: true
     v6_3:
       name: v6.3
-      nav_exclude: false
+      nav_exclude: true
       nav_fold: true
       search_exclude: true
     v6_2:
       name: v6.2
-      nav_exclude: false
+      nav_exclude: true
       nav_fold: true
       search_exclude: true
     v6_1:
       name: v6.1
-      nav_exclude: false
+      nav_exclude: true
       nav_fold: true
       search_exclude: true
     v6_0:
       name: v6.0
-      nav_exclude: false
+      nav_exclude: true
       nav_fold: true
       search_exclude: true
     v5_4:

@@ -35,7 +35,7 @@ Overridden options:
 
 Parent type:
 
-* [ChoiceType](http://symfony.com/doc/7.0/reference/forms/types/choice.html)
+* [ChoiceType](http://symfony.com/doc/6.4/reference/forms/types/choice.html)
 
 ## Basic Usage
 
