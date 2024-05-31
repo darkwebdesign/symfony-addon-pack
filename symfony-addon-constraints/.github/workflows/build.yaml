@@ -17,9 +17,9 @@ jobs:
       - name: 'Setup PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.1'
-      - name: 'Composer Install'
-        uses: 'ramsey/composer-install@v3'
+          php-version: '8.2'
+      - name: 'Install dependencies'
+        run: 'composer install --no-progress --prefer-dist --optimize-autoloader'
       - name: 'Rector'
         run: 'vendor/bin/rector process --dry-run --no-progress-bar --ansi'
 
@@ -32,9 +32,9 @@ jobs:
       - name: 'Setup PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.1'
-      - name: 'Composer Install'
-        uses: 'ramsey/composer-install@v3'
+          php-version: '8.2'
+      - name: 'Install dependencies'
+        run: 'composer install --no-progress --prefer-dist --optimize-autoloader'
       - name: 'PHPStan'
         run: 'vendor/bin/phpstan analyze --no-progress --ansi'
 
@@ -47,9 +47,9 @@ jobs:
       - name: 'Setup PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.1'
-      - name: 'Composer Install'
-        uses: 'ramsey/composer-install@v3'
+          php-version: '8.2'
+      - name: 'Install dependencies'
+        run: 'composer install --no-progress --prefer-dist --optimize-autoloader'
       - name: 'PHP CS Fixer'
         run: 'vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=none --ansi'
 
@@ -58,10 +58,7 @@ jobs:
     runs-on: 'ubuntu-24.04'
     strategy:
       matrix:
-        include:
-          - php: '8.1'
-          - php: '8.2'
-          - php: '8.3'
+        php: ['8.2', '8.3']
       fail-fast: false
     steps:
       - name: 'Checkout'
@@ -70,8 +67,8 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: "${{ matrix.php }}"
-      - name: 'Composer Install'
-        uses: 'ramsey/composer-install@v3'
+      - name: 'Install dependencies'
+        run: 'composer install --no-progress --prefer-dist --optimize-autoloader'
       - name: 'PHPUnit'
         run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover phpunit-coverage.xml'
       - name: 'Code Climate'
