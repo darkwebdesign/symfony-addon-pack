@@ -6,6 +6,9 @@ aux_links:
   Visit repository on GitHub: https://github.com/darkwebdesign/symfony-addon-pack
 
 collections:
+  v7_0:
+    permalink: "/docs/7.0/:path:output_ext"
+    output: true
   v6_4:
     permalink: "/docs/6.4/:path:output_ext"
     output: true
