@@ -12,8 +12,8 @@ This constraint is used to ensure that a value has the proper format of a Dutch 
 
 Applies to:
 
-* [properties](http://symfony.com/doc/7.0/validation.html#properties)
-* [methods](http://symfony.com/doc/7.0/validation.html#getters)
+* [properties](http://symfony.com/doc/6.4/validation.html#properties)
+* [methods](http://symfony.com/doc/6.4/validation.html#getters)
 
 Options:
 
