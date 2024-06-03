@@ -10,12 +10,12 @@
     ],
     "require": {
         "php": "^8.2",
-        "symfony/event-dispatcher": "7.0.*",
-        "symfony/form": "7.0.*",
-        "symfony/options-resolver": "7.0.*"
+        "symfony/event-dispatcher": "7.1.*",
+        "symfony/form": "7.1.*",
+        "symfony/options-resolver": "7.1.*"
     },
     "require-dev": {
-        "darkwebdesign/symfony-addon-transformers": "7.0.*",
+        "darkwebdesign/symfony-addon-transformers": "7.1.*",
         "doctrine/orm": "^2.7",
         "friendsofphp/php-cs-fixer": "^3.58",
         "phpstan/extension-installer": "^1.3",

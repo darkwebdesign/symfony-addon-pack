@@ -20,7 +20,7 @@ jobs:
           php-version: '8.2'
       - name: 'Install dependencies'
         run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.0.x-dev
+          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.1.x-dev
           composer install --no-progress --prefer-dist --optimize-autoloader
       - name: 'Rector'
         run: 'vendor/bin/rector process --dry-run --no-progress-bar --ansi'
@@ -37,7 +37,7 @@ jobs:
           php-version: '8.2'
       - name: 'Install dependencies'
         run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.0.x-dev
+          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.1.x-dev
           composer install --no-progress --prefer-dist --optimize-autoloader
       - name: 'PHPStan'
         run: 'vendor/bin/phpstan analyze --no-progress --ansi'
@@ -54,7 +54,7 @@ jobs:
           php-version: '8.2'
       - name: 'Install dependencies'
         run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.0.x-dev
+          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.1.x-dev
           composer install --no-progress --prefer-dist --optimize-autoloader
       - name: 'PHP CS Fixer'
         run: 'vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=none --ansi'
@@ -75,7 +75,7 @@ jobs:
           php-version: "${{ matrix.php }}"
       - name: 'Install dependencies'
         run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.0.x-dev
+          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.1.x-dev
           composer install --no-progress --prefer-dist --optimize-autoloader
       - name: 'PHPUnit'
         run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover phpunit-coverage.xml'
