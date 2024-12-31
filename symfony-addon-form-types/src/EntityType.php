@@ -46,7 +46,7 @@ if (!interface_exists(ManagerRegistry::class)) {
 class EntityType extends AbstractType
 {
     public function __construct(
-        private ManagerRegistry $registry,
+        private readonly ManagerRegistry $registry,
     ) {
     }
 
