@@ -3,15 +3,21 @@ layout: default
 title: Welcome
 nav_order: 1
 redirect_from:
-  - /docs/7.1/
+  - /
+  - /docs
+  - /docs/
+  - /docs/7.2/
+  - /docs/latest
+  - /docs/latest/
+  - /docs/latest/welcome
 ---
 
 # Symfony Add-on Pack
 
-[![Build Status](https://github.com/darkwebdesign/symfony-addon-pack/actions/workflows/build.yaml/badge.svg?branch=7.1)](https://github.com/darkwebdesign/symfony-addon-pack/actions/workflows/build.yaml)
-[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-pack/branch/7.1/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-pack)
+[![Build Status](https://github.com/darkwebdesign/symfony-addon-pack/actions/workflows/build.yaml/badge.svg?branch=7.2)](https://github.com/darkwebdesign/symfony-addon-pack/actions/workflows/build.yaml)
+[![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-pack/branch/7.2/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-pack)
 [![PHP Version](https://img.shields.io/badge/php-8.1%2B-777BB3.svg)](https://php.net/)
-[![Symfony Version](https://img.shields.io/badge/symfony-7.1-93C74B.svg)](https://symfony.com/)
+[![Symfony Version](https://img.shields.io/badge/symfony-7.2-93C74B.svg)](https://symfony.com/)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-pack/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-pack)
 
 Symfony Add-on Pack is a collection of extra Symfony components that you can use in your Symfony applications.
