@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 DarkWeb Design.
  *
@@ -25,7 +26,7 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests\Models;
 class ToStringObject implements \Stringable
 {
     public function __construct(
-        private readonly string $value
+        private readonly string $value,
     ) {
     }
 

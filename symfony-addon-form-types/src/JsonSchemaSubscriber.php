@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2021 DarkWeb Design.
  *
@@ -34,7 +35,7 @@ use Symfony\Component\Form\FormEvents;
 class JsonSchemaSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly string $fieldName = 'schema'
+        private readonly string $fieldName = 'schema',
     ) {
     }
 

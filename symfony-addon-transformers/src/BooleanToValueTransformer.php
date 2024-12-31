@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 DarkWeb Design.
  *
@@ -40,7 +41,7 @@ class BooleanToValueTransformer implements DataTransformerInterface
         /** @var R */
         private readonly string|int|float|bool $trueValue = true,
         /** @var R */
-        private readonly string|int|float|bool $falseValue = false
+        private readonly string|int|float|bool $falseValue = false,
     ) {
     }
 

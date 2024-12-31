@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2021 DarkWeb Design.
  *
@@ -35,7 +36,7 @@ class BooleanToYesNoSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         /** @var string[] */
-        private readonly array $fieldNames
+        private readonly array $fieldNames,
     ) {
     }
 
