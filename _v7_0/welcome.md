@@ -10,7 +10,7 @@ redirect_from:
 
 [![Build Status](https://github.com/darkwebdesign/symfony-addon-pack/actions/workflows/build.yaml/badge.svg?branch=7.0)](https://github.com/darkwebdesign/symfony-addon-pack/actions/workflows/build.yaml)
 [![Coverage Status](https://codecov.io/gh/darkwebdesign/symfony-addon-pack/branch/7.0/graph/badge.svg)](https://codecov.io/gh/darkwebdesign/symfony-addon-pack)
-[![PHP Version](https://img.shields.io/badge/php-8.1%2B-777BB3.svg)](https://php.net/)
+[![PHP Version](https://img.shields.io/badge/php-8.2%2B-777BB3.svg)](https://php.net/)
 [![Symfony Version](https://img.shields.io/badge/symfony-7.0-93C74B.svg)](https://symfony.com/)
 [![License](https://poser.pugx.org/darkwebdesign/symfony-addon-pack/license?format=flat)](https://packagist.org/packages/darkwebdesign/symfony-addon-pack)
 
