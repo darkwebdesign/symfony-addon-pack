@@ -3,19 +3,19 @@
     "type": "library",
     "description": "Symfony Add-on Form Types",
     "keywords": ["form", "symfony", "types"],
-    "homepage": "http://www.darkwebdesign.nl/",
+    "homepage": "https://www.darkwebdesign.nl/",
     "license": "MIT",
     "authors": [
         {"name": "Raymond Schouten"}
     ],
     "require": {
         "php": "^8.2",
-        "symfony/event-dispatcher": "7.0.*",
-        "symfony/form": "7.0.*",
-        "symfony/options-resolver": "7.0.*"
+        "symfony/event-dispatcher": "7.2.*",
+        "symfony/form": "7.2.*",
+        "symfony/options-resolver": "7.2.*"
     },
     "require-dev": {
-        "darkwebdesign/symfony-addon-transformers": "7.0.*",
+        "darkwebdesign/symfony-addon-transformers": "7.2.*",
         "doctrine/orm": "^2.7",
         "friendsofphp/php-cs-fixer": "^3.58",
         "phpstan/extension-installer": "^1.3",

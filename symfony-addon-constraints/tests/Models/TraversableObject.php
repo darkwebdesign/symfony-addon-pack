@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 DarkWeb Design.
  *
@@ -34,7 +35,7 @@ class TraversableObject implements \IteratorAggregate
      * @param array<TKey, TValue> $container
      */
     public function __construct(
-        private readonly array $container = []
+        private readonly array $container = [],
     ) {
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 DarkWeb Design.
  *
@@ -58,7 +59,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
      */
     public function __construct(
         private readonly ObjectManager $entityManager,
-        string $className
+        string $className,
     ) {
         $this->repository = $this->entityManager->getRepository($className);
         $this->metadata = $this->entityManager->getClassMetadata($className);
