@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 DarkWeb Design.
  *
@@ -45,7 +46,7 @@ if (!interface_exists(ManagerRegistry::class)) {
 class EntityType extends AbstractType
 {
     public function __construct(
-        private ManagerRegistry $registry
+        private ManagerRegistry $registry,
     ) {
     }
 
