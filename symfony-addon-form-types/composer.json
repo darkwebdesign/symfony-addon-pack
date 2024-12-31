@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Symfony Add-on Form Types",
     "keywords": ["form", "symfony", "types"],
-    "homepage": "http://www.darkwebdesign.nl/",
+    "homepage": "https://www.darkwebdesign.nl/",
     "license": "MIT",
     "authors": [
         {"name": "Raymond Schouten"}
