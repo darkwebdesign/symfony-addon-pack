@@ -2,8 +2,6 @@
 layout: default
 title: Json
 parent: Validation Constraints
-redirect_from:
-  - /docs/latest/constraints/json
 ---
 
 # Json

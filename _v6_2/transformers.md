@@ -2,8 +2,6 @@
 layout: default
 title: Data Transformers
 has_children: true
-redirect_from:
-  - /docs/latest/transformers
 ---
 
 # Data Transformers

@@ -2,8 +2,6 @@
 layout: default
 title: Validation Constraints
 has_children: true
-redirect_from:
-  - /docs/latest/constraints
 ---
 
 # Validation Constraints

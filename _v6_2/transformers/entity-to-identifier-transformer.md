@@ -2,8 +2,6 @@
 layout: default
 title: EntityToIdentifierTransformer
 parent: Data Transformers
-redirect_from:
-  - /docs/latest/transformers/entity-to-identifier-transformer
 ---
 
 # EntityToIdentifierTransformer

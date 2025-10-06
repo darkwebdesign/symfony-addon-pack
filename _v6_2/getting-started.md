@@ -2,8 +2,6 @@
 layout: default
 title: Getting Started
 nav_order: 2
-redirect_from:
-  - /docs/latest/getting-started
 ---
 
 # Getting Started
