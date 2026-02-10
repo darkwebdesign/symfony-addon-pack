@@ -1,0 +1,8 @@
+{
+  "symbol-whitelist" : [
+    "Doctrine\\Common\\Util\\ClassUtils",
+    "Doctrine\\Persistence\\Mapping\\ClassMetadata",
+    "Doctrine\\Persistence\\ObjectManager",
+    "Doctrine\\Persistence\\ObjectRepository"
+  ]
+}
