@@ -79,9 +79,9 @@ jobs:
           composer install --no-progress --prefer-dist --optimize-autoloader
       - name: 'PHPUnit'
         run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover phpunit-coverage.xml'
-      - name: 'Code Climate'
-        uses: 'paambaati/codeclimate-action@v6'
+      - name: 'Qlty'
+        uses: 'qltysh/qlty-action/coverage@v2'
         with:
-          coverageLocations: 'phpunit-coverage.xml:clover'
-        env:
-          CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"
+          token: "${{ secrets.QLTY_COVERAGE_TOKEN }}"
+          files: 'phpunit-coverage.xml'
+          format: 'clover'
