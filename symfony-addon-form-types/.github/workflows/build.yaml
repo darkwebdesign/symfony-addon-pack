@@ -55,8 +55,8 @@ jobs:
       - uses: 'ramsey/composer-install@v3'
       - run: 'vendor/bin/composer-require-checker --ansi'
 
-  composer:
-    name: 'Validate composer.json'
+  composer-validate:
+    name: 'Run Composer Validate'
     runs-on: 'ubuntu-24.04'
     steps:
       - uses: 'actions/checkout@v4'
