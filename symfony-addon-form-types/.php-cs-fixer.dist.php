@@ -19,6 +19,7 @@ return (new Config())
         'global_namespace_import' => ['import_classes' => false],
         'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'], // overrules @PhpCsFixer
         'no_superfluous_elseif' => false, // overrules @PhpCsFixer
+        'php_unit_data_provider_method_order' => false, // overrules @PhpCsFixer
         'phpdoc_align' => ['tags' => ['method', 'param', 'property', 'return', 'throws', 'type', 'var'], 'align' => 'left'], // overrules @Symfony
         'yoda_style' => false, // overrules @Symfony
     ])
