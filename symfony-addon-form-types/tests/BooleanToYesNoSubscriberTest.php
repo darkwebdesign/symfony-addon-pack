@@ -37,7 +37,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 #[CoversClass(BooleanToYesNoSubscriber::class)]
 #[UsesClass(BooleanType::class)]
 #[UsesClass(BooleanToValueTransformer::class)]
-class BooleanToYesNoSubscriberTest extends TypeTestCase
+final class BooleanToYesNoSubscriberTest extends TypeTestCase
 {
     #[DataProvider('provider')]
     public function test(?bool $value): void
@@ -82,14 +82,12 @@ class BooleanToYesNoSubscriberTest extends TypeTestCase
     }
 
     /**
-     * @return array<string, array{bool|null}>
+     * @return \Iterator<string, array{bool|null}>
      */
-    public static function provider(): array
+    public static function provider(): \Iterator
     {
-        return [
-            'true' => [true],
-            'false' => [false],
-            'null' => [null],
-        ];
+        yield 'true' => [true];
+        yield 'false' => [false];
+        yield 'null' => [null];
     }
 }

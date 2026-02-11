@@ -30,6 +30,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Raymond Schouten
  *
  * @since 3.4
+ *
+ * @extends AbstractType<array>
  */
 class UnstructuredType extends AbstractType
 {

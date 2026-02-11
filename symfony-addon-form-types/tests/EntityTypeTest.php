@@ -44,7 +44,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 #[CoversClass(EntityType::class)]
 #[UsesClass(EntityToIdentifierTransformer::class)]
-class EntityTypeTest extends TypeTestCase
+final class EntityTypeTest extends TypeTestCase
 {
     private City $entity;
     /** @var class-string<City> */
@@ -56,8 +56,6 @@ class EntityTypeTest extends TypeTestCase
     private ObjectManager $entityManager;
     /** @var ObjectRepository<City>&MockObject */
     private ObjectRepository $repository;
-    /** @var ClassMetadata&MockObject */
-    private ClassMetadata $metadata;
 
     protected function setUp(): void
     {
@@ -70,13 +68,13 @@ class EntityTypeTest extends TypeTestCase
         $this->registry = $this->createMock(ManagerRegistry::class);
         $this->entityManager = $this->createMock(ObjectManager::class);
         $this->repository = $this->createMock(ObjectRepository::class);
-        $this->metadata = $this->createMock(ClassMetadata::class);
+        $metadata = $this->createMock(ClassMetadata::class);
 
         $this->entityManager->method('getRepository')->willReturn($this->repository);
-        $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
+        $this->entityManager->method('getClassMetadata')->willReturn($metadata);
 
-        $this->metadata->method('getName')->willReturn($this->className);
-        $this->metadata->method('getIdentifierValues')->willReturn(['id' => $this->identifier]);
+        $metadata->method('getName')->willReturn($this->className);
+        $metadata->method('getIdentifierValues')->willReturn(['id' => $this->identifier]);
 
         parent::setUp();
     }

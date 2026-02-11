@@ -33,7 +33,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  * @internal
  */
 #[CoversClass(BooleanToValueTransformer::class)]
-class BooleanToValueTransformerTest extends TestCase
+final class BooleanToValueTransformerTest extends TestCase
 {
     #[DataProvider('providerTrueFalseValue')]
     public function testTransform(mixed $trueValue, mixed $falseValue): void
@@ -125,46 +125,40 @@ class BooleanToValueTransformerTest extends TestCase
     }
 
     /**
-     * @return array<string, array{mixed, mixed}>
+     * @return \Iterator<string, array{mixed, mixed}>
      */
-    public static function providerTrueFalseValue(): array
+    public static function providerTrueFalseValue(): \Iterator
     {
-        return [
-            'true/false' => [true, false],
-            'yes/no' => ['yes', 'no'],
-            'on/off' => ['on', 'off'],
-            '1/0' => ['1', '0'],
-            '1/2' => [1, 2],
-            '1.3/2.7' => [1.3, 2.7],
-        ];
+        yield 'true/false' => [true, false];
+        yield 'yes/no' => ['yes', 'no'];
+        yield 'on/off' => ['on', 'off'];
+        yield '1/0' => ['1', '0'];
+        yield '1/2' => [1, 2];
+        yield '1.3/2.7' => [1.3, 2.7];
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoBool(): array
+    public static function providerNoBool(): \Iterator
     {
-        return [
-            'int' => [1],
-            'float' => [1.2],
-            'string' => ['foo'],
-            'array' => [['foo', 'bar']],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'int' => [1];
+        yield 'float' => [1.2];
+        yield 'string' => ['foo'];
+        yield 'array' => [['foo', 'bar']];
+        yield 'object' => [new \stdClass()];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoScalar(): array
+    public static function providerNoScalar(): \Iterator
     {
-        return [
-            'array' => [['foo', 'bar']],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'array' => [['foo', 'bar']];
+        yield 'object' => [new \stdClass()];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 }
