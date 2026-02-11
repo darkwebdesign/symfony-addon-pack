@@ -34,6 +34,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Raymond Schouten
  *
  * @since 2.3
+ *
+ * @template TData as array
+ *
+ * @extends AbstractType<TData>
  */
 class BooleanType extends AbstractType
 {

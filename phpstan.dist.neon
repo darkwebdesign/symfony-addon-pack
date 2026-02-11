@@ -8,3 +8,5 @@ parameters:
         - 'symfony-addon-form-types/tests'
         - 'symfony-addon-transformers/src'
         - 'symfony-addon-transformers/tests'
+
+    treatPhpDocTypesAsCertain: false

@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @internal
  */
 #[CoversClass(BsnValidator::class)]
-class BsnValidatorTest extends ConstraintValidatorTestCase
+final class BsnValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): BsnValidator
     {
@@ -99,40 +99,34 @@ class BsnValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @return array<string, array{string|\Stringable}>
+     * @return \Iterator<string, array{string|\Stringable}>
      */
-    public static function providerValidBsn(): array
+    public static function providerValidBsn(): \Iterator
     {
-        return [
-            'valid1' => ['111222333'],
-            'valid2' => ['123456782'],
-            'objectToString' => [new ToStringObject('270590791')],
-        ];
+        yield 'valid1' => ['111222333'];
+        yield 'valid2' => ['123456782'];
+        yield 'objectToString' => [new ToStringObject('270590791')];
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoScalar(): array
+    public static function providerNoScalar(): \Iterator
     {
-        return [
-            'array' => [['foo', 'bar']],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'array' => [['foo', 'bar']];
+        yield 'object' => [new \stdClass()];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 
     /**
-     * @return array<string, array{string|\Stringable}>
+     * @return \Iterator<string, array{string|\Stringable}>
      */
-    public static function providerInvalidBsn(): array
+    public static function providerInvalidBsn(): \Iterator
     {
-        return [
-            'zeros' => ['000000000'],
-            'invalid1' => ['999999999'],
-            'invalid2' => ['876543242'],
-            'toStringObject' => [new ToStringObject('597944111')],
-        ];
+        yield 'zeros' => ['000000000'];
+        yield 'invalid1' => ['999999999'];
+        yield 'invalid2' => ['876543242'];
+        yield 'toStringObject' => [new ToStringObject('597944111')];
     }
 }

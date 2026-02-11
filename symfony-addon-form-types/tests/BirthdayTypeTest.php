@@ -31,7 +31,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
  * @internal
  */
 #[CoversClass(BirthdayType::class)]
-class BirthdayTypeTest extends TypeTestCase
+final class BirthdayTypeTest extends TypeTestCase
 {
     public function test(): void
     {
