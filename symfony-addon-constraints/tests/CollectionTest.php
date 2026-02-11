@@ -25,6 +25,7 @@ namespace DarkWebDesign\SymfonyAddonConstraints\Tests;
 
 use DarkWebDesign\SymfonyAddonConstraints\Collection;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
@@ -34,8 +35,9 @@ use Symfony\Component\Validator\Exception\MissingOptionsException;
  * @internal
  */
 #[CoversClass(Collection::class)]
-class CollectionTest extends TestCase
+final class CollectionTest extends TestCase
 {
+    #[DoesNotPerformAssertions]
     public function testConstruct(): void
     {
         new Collection([
@@ -43,17 +45,14 @@ class CollectionTest extends TestCase
                 new Assert\NotBlank(),
             ],
         ]);
-
-        $this->assertTrue(true);
     }
 
+    #[DoesNotPerformAssertions]
     public function testConstructDefaultOption(): void
     {
         new Collection([
             new Assert\NotBlank(),
         ]);
-
-        $this->assertTrue(true);
     }
 
     public function testConstructMissingRequiredConstraintsOption(): void

@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  * @internal
  */
 #[CoversClass(JsonValidator::class)]
-class JsonValidatorTest extends ConstraintValidatorTestCase
+final class JsonValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): JsonValidator
     {
@@ -99,43 +99,37 @@ class JsonValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerValidJson(): array
+    public static function providerValidJson(): \Iterator
     {
-        return [
-            'bool' => [true],
-            'int' => [123],
-            'float' => [10.99],
-            'stringInt' => ['123'],
-            'stringArray' => ['[1, 2, 3]'],
-            'stringObject' => ['{"a": 1, "b": 2}'],
-            'objectToString' => [new ToStringObject('123')],
-        ];
+        yield 'bool' => [true];
+        yield 'int' => [123];
+        yield 'float' => [10.99];
+        yield 'stringInt' => ['123'];
+        yield 'stringArray' => ['[1, 2, 3]'];
+        yield 'stringObject' => ['{"a": 1, "b": 2}'];
+        yield 'objectToString' => [new ToStringObject('123')];
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoScalar(): array
+    public static function providerNoScalar(): \Iterator
     {
-        return [
-            'array' => [['foo', 'bar']],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'array' => [['foo', 'bar']];
+        yield 'object' => [new \stdClass()];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 
     /**
-     * @return array<string, array{string}>
+     * @return \Iterator<string, array{string}>
      */
-    public static function providerInvalidJson(): array
+    public static function providerInvalidJson(): \Iterator
     {
-        return [
-            'string' => ['json'],
-            'stringArray' => ['[1, 2, 3'],
-            'stringObject' => ['{"a": 1, "b": 2'],
-        ];
+        yield 'string' => ['json'];
+        yield 'stringArray' => ['[1, 2, 3'];
+        yield 'stringObject' => ['{"a": 1, "b": 2'];
     }
 }
