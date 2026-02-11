@@ -10,8 +10,8 @@ This constraint is used to ensure that a value has the proper format of a Dutch 
 
 Applies to:
 
-* [properties](http://symfony.com/doc/7.2/validation.html#properties)
-* [methods](http://symfony.com/doc/7.2/validation.html#getters)
+* [properties](http://symfony.com/doc/7.3/validation.html#properties)
+* [methods](http://symfony.com/doc/7.3/validation.html#getters)
 
 Options:
 

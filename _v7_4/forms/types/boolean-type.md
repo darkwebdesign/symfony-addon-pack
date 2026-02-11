@@ -2,6 +2,8 @@
 layout: default
 title: BooleanType
 parent: Form Field Types
+redirect_from:
+  - /docs/latest/forms/types/birthday-type
 ---
 
 # BooleanType
@@ -33,7 +35,7 @@ Overridden options:
 
 Parent type:
 
-* [ChoiceType](http://symfony.com/doc/7.2/reference/forms/types/choice.html)
+* [ChoiceType](http://symfony.com/doc/7.4/reference/forms/types/choice.html)
 
 ## Basic Usage
 

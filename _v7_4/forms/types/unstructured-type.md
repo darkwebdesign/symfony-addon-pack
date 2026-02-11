@@ -2,6 +2,8 @@
 layout: default
 title: UnstructuredType
 parent: Form Field Types
+redirect_from:
+  - /docs/latest/forms/types/birthday-type
 ---
 
 # UnstructuredType
@@ -21,7 +23,7 @@ Overridden options:
 
 Parent type:
 
-* [FormType](http://symfony.com/doc/7.2/reference/forms/types/form.html)
+* [FormType](http://symfony.com/doc/7.4/reference/forms/types/form.html)
 
 ## Basic Usage
 

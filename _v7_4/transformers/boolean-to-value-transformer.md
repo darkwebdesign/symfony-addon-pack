@@ -2,6 +2,8 @@
 layout: default
 title: BooleanToValueTransformer
 parent: Data Transformers
+redirect_from:
+  - /docs/latest/transformers/boolean-to-value-transformer
 ---
 
 # BooleanToValueTransformer

@@ -2,6 +2,8 @@
 layout: default
 title: BirthdayType
 parent: Form Field Types
+redirect_from:
+  - /docs/latest/forms/types/birthday-type
 ---
 
 # BirthdayType
@@ -25,7 +27,7 @@ Overridden options:
 
 Parent type:
 
-* [DateType](http://symfony.com/doc/7.2/reference/forms/types/choice.html)
+* [DateType](http://symfony.com/doc/7.4/reference/forms/types/choice.html)
 
 ## Basic Usage
 

@@ -2,6 +2,8 @@
 layout: default
 title: BooleanToYesNoSubscriber
 parent: Form Field Event Subscribers
+redirect_from:
+  - /docs/latest/forms/subscribers/boolean-to-yes-no-subscriber
 ---
 
 # BooleanToYesNoSubscriber
