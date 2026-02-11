@@ -31,6 +31,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Raymond Schouten
  *
  * @since 2.3
+ *
+ * @extends AbstractType<array>
  */
 class BirthdayType extends AbstractType
 {

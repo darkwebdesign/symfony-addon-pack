@@ -29,7 +29,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 /**
  * @template R of string|int|float|bool
  *
- * @template-implements DataTransformerInterface<bool, R>
+ * @implements DataTransformerInterface<bool, R>
  *
  * @author Raymond Schouten
  *

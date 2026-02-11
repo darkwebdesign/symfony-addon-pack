@@ -40,7 +40,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  */
 #[CoversClass(CollectionValidator::class)]
 #[UsesClass(Collection::class)]
-class CollectionValidatorTest extends ConstraintValidatorTestCase
+final class CollectionValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator(): CollectionValidator
     {
@@ -102,30 +102,26 @@ class CollectionValidatorTest extends ConstraintValidatorTestCase
     }
 
     /**
-     * @return array<string, array{string[]|iterable}>
+     * @return \Iterator<string, array{iterable<string>}>
      */
-    public static function providerValidCollection(): array
+    public static function providerValidCollection(): \Iterator
     {
-        return [
-            'empty' => [[]],
-            'array' => [['my.email@address.com']],
-            'traversableObject' => [new TraversableObject(['my.email@address.com'])],
-        ];
+        yield 'empty' => [[]];
+        yield 'array' => [['my.email@address.com']];
+        yield 'traversableObject' => [new TraversableObject(['my.email@address.com'])];
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoArray(): array
+    public static function providerNoArray(): \Iterator
     {
-        return [
-            'bool' => [true],
-            'int' => [1],
-            'float' => [1.2],
-            'string' => ['foo'],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'bool' => [true];
+        yield 'int' => [1];
+        yield 'float' => [1.2];
+        yield 'string' => ['foo'];
+        yield 'object' => [new \stdClass()];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 }
