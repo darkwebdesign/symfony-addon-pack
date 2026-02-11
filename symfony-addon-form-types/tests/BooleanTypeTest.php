@@ -35,7 +35,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 #[CoversClass(BooleanType::class)]
 #[UsesClass(BooleanToValueTransformer::class)]
-class BooleanTypeTest extends TypeTestCase
+final class BooleanTypeTest extends TypeTestCase
 {
     #[DataProvider('providerValueTrueFalse')]
     public function test(mixed $valueTrue, mixed $valueFalse): void
@@ -103,28 +103,24 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * @return array<string, array{mixed, mixed}>
+     * @return \Iterator<string, array{mixed, mixed}>
      */
-    public static function providerValueTrueFalse(): array
+    public static function providerValueTrueFalse(): \Iterator
     {
-        return [
-            'true/false' => ['true', 'false'],
-            'yes/no' => ['yes', 'no'],
-            'on/off' => ['on', 'off'],
-            '1/0' => ['1', '0'],
-            '1/2' => [1, 2],
-            '1.3/2.7' => [1.3, 2.7],
-        ];
+        yield 'true/false' => ['true', 'false'];
+        yield 'yes/no' => ['yes', 'no'];
+        yield 'on/off' => ['on', 'off'];
+        yield '1/0' => ['1', '0'];
+        yield '1/2' => [1, 2];
+        yield '1.3/2.7' => [1.3, 2.7];
     }
 
     /**
-     * @return array<string, array{string, bool}>
+     * @return \Iterator<string, array{string, bool}>
      */
-    public static function providerWidget(): array
+    public static function providerWidget(): \Iterator
     {
-        return [
-            'choice' => ['choice', false],
-            'radio' => ['radio', true],
-        ];
+        yield 'choice' => ['choice', false];
+        yield 'radio' => ['radio', true];
     }
 }

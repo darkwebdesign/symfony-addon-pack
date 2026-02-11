@@ -1,0 +1,8 @@
+{
+  "symbol-whitelist" : [
+    "DarkWebDesign\\SymfonyAddonTransformers\\BooleanToValueTransformer",
+    "DarkWebDesign\\SymfonyAddonTransformers\\EntityToIdentifierTransformer",
+    "Doctrine\\Persistence\\ManagerRegistry",
+    "Doctrine\\Persistence\\ObjectManager"
+  ]
+}

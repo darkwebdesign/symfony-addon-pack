@@ -42,6 +42,10 @@ if (!interface_exists(ManagerRegistry::class)) {
  * @author Raymond Schouten
  *
  * @since 2.3
+ *
+ * @template TData as array
+ *
+ * @extends AbstractType<TData>
  */
 class EntityType extends AbstractType
 {

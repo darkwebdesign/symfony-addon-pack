@@ -8,80 +8,81 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  rector:
-    name: 'Rector'
+  php-cs-fixer:
+    name: 'Run PHP CS Fixer'
     runs-on: 'ubuntu-24.04'
     steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-      - name: 'Setup PHP'
-        uses: 'shivammathur/setup-php@v2'
+      - uses: 'actions/checkout@v4'
+      - uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.2'
-      - name: 'Install dependencies'
-        run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.2.x-dev
-          composer install --no-progress --prefer-dist --optimize-autoloader
-      - name: 'Rector'
-        run: 'vendor/bin/rector process --dry-run --no-progress-bar --ansi'
+      - run: 'composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.4.x-dev'
+      - uses: 'ramsey/composer-install@v3'
+      - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=none --ansi'
 
   phpstan:
-    name: 'PHPStan'
+    name: 'Run PHPStan'
     runs-on: 'ubuntu-24.04'
     steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-      - name: 'Setup PHP'
-        uses: 'shivammathur/setup-php@v2'
+      - uses: 'actions/checkout@v4'
+      - uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.2'
-      - name: 'Install dependencies'
-        run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.2.x-dev
-          composer install --no-progress --prefer-dist --optimize-autoloader
-      - name: 'PHPStan'
-        run: 'vendor/bin/phpstan analyze --no-progress --ansi'
+      - run: 'composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.4.x-dev'
+      - uses: 'ramsey/composer-install@v3'
+      - run: 'vendor/bin/phpstan analyze --no-progress --ansi'
 
-  php-cs-fixer:
-    name: 'PHP CS Fixer'
+  rector:
+    name: 'Run Rector'
     runs-on: 'ubuntu-24.04'
     steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-      - name: 'Setup PHP'
-        uses: 'shivammathur/setup-php@v2'
+      - uses: 'actions/checkout@v4'
+      - uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.2'
-      - name: 'Install dependencies'
-        run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.2.x-dev
-          composer install --no-progress --prefer-dist --optimize-autoloader
-      - name: 'PHP CS Fixer'
-        run: 'vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=none --ansi'
+      - run: 'composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.4.x-dev'
+      - uses: 'ramsey/composer-install@v3'
+      - run: 'vendor/bin/rector process --dry-run --no-progress-bar --ansi'
+
+  composer-require-checker:
+    name: 'Run Composer Require Checker'
+    runs-on: 'ubuntu-24.04'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '8.2'
+      - run: 'composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.4.x-dev'
+      - uses: 'ramsey/composer-install@v3'
+      - run: 'vendor/bin/composer-require-checker --ansi'
+
+  composer-validate:
+    name: 'Run Composer Validate'
+    runs-on: 'ubuntu-24.04'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '8.2'
+      - run: 'composer validate'
 
   phpunit:
-    name: 'PHPUnit'
+    name: 'Run PHPUnit'
     runs-on: 'ubuntu-24.04'
     strategy:
       matrix:
-        php: ['8.2', '8.3', '8.4']
+        php: ['8.2', '8.3', '8.4', '8.5']
       fail-fast: false
     steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-      - name: 'Setup PHP'
-        uses: 'shivammathur/setup-php@v2'
+      - uses: 'actions/checkout@v4'
+      - uses: 'shivammathur/setup-php@v2'
         with:
           php-version: "${{ matrix.php }}"
-      - name: 'Install dependencies'
-        run: |
-          composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.2.x-dev
-          composer install --no-progress --prefer-dist --optimize-autoloader
-      - name: 'PHPUnit'
-        run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover phpunit-coverage.xml'
-      - name: 'Code Climate'
-        uses: 'paambaati/codeclimate-action@v6'
+      - run: 'composer require --dev --no-install darkwebdesign/symfony-addon-transformers:7.4.x-dev'
+      - uses: 'ramsey/composer-install@v3'
+      - run: 'XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover=phpunit-coverage.xml'
+      - uses: 'qltysh/qlty-action/coverage@v2'
         with:
-          coverageLocations: 'phpunit-coverage.xml:clover'
-        env:
-          CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_REPORTER_ID }}"
+          token: "${{ secrets.QLTY_COVERAGE_TOKEN }}"
+          files: 'phpunit-coverage.xml'
+          format: 'clover'

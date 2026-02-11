@@ -32,7 +32,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
  * @internal
  */
 #[CoversClass(JsonSchemaSubscriber::class)]
-class JsonSchemaSubscriberTest extends TypeTestCase
+final class JsonSchemaSubscriberTest extends TypeTestCase
 {
     public function test(): void
     {

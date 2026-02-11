@@ -40,7 +40,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  * @internal
  */
 #[CoversClass(EntityToIdentifierTransformer::class)]
-class EntityToIdentifierTransformerTest extends TestCase
+final class EntityToIdentifierTransformerTest extends TestCase
 {
     private City $entity;
     /** @var class-string<City|AbstractPerson|Employee> */
@@ -52,8 +52,6 @@ class EntityToIdentifierTransformerTest extends TestCase
     private ObjectManager $entityManager;
     /** @var ObjectRepository<City>&MockObject */
     private ObjectRepository $repository;
-    /** @var ClassMetadata&MockObject */
-    private ClassMetadata $metadata;
 
     protected function setUp(): void
     {
@@ -66,13 +64,13 @@ class EntityToIdentifierTransformerTest extends TestCase
 
         $this->entityManager = $this->createMock(ObjectManager::class);
         $this->repository = $this->createMock(ObjectRepository::class);
-        $this->metadata = $this->createMock(ClassMetadata::class);
+        $metadata = $this->createMock(ClassMetadata::class);
 
         $this->entityManager->method('getRepository')->willReturn($this->repository);
-        $this->entityManager->method('getClassMetadata')->willReturn($this->metadata);
+        $this->entityManager->method('getClassMetadata')->willReturn($metadata);
 
-        $this->metadata->method('getName')->willReturnCallback($this->getClassName(...));
-        $this->metadata->method('getIdentifierValues')->willReturnCallback($this->getIdentifier(...));
+        $metadata->method('getName')->willReturnCallback($this->getClassName(...));
+        $metadata->method('getIdentifierValues')->willReturnCallback($this->getIdentifier(...));
     }
 
     public function getClassName(): string
@@ -100,7 +98,7 @@ class EntityToIdentifierTransformerTest extends TestCase
     public function testTransformAlias(): void
     {
         /** @var class-string<City> $className */
-        $className = 'AppBundle:City';
+        $className = 'AppBundle:City'; // @phpstan-ignore varTag.nativeType
 
         $transformer = new EntityToIdentifierTransformer($this->entityManager, $className);
 
@@ -222,31 +220,27 @@ class EntityToIdentifierTransformerTest extends TestCase
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoObject(): array
+    public static function providerNoObject(): \Iterator
     {
-        return [
-            'bool' => [true],
-            'int' => [1],
-            'float' => [1.2],
-            'string' => ['foo'],
-            'array' => [['foo', 'bar']],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'bool' => [true];
+        yield 'int' => [1];
+        yield 'float' => [1.2];
+        yield 'string' => ['foo'];
+        yield 'array' => [['foo', 'bar']];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 
     /**
-     * @return array<string, array{mixed}>
+     * @return \Iterator<string, array{mixed}>
      */
-    public static function providerNoScalar(): array
+    public static function providerNoScalar(): \Iterator
     {
-        return [
-            'array' => [['foo', 'bar']],
-            'object' => [new \stdClass()],
-            'resource' => [tmpfile()],
-            'callable' => [function () {}],
-        ];
+        yield 'array' => [['foo', 'bar']];
+        yield 'object' => [new \stdClass()];
+        yield 'resource' => [tmpfile()];
+        yield 'callable' => [function (): void {}];
     }
 }

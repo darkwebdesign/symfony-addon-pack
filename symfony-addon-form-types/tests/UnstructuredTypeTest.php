@@ -31,7 +31,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
  * @internal
  */
 #[CoversClass(UnstructuredType::class)]
-class UnstructuredTypeTest extends TypeTestCase
+final class UnstructuredTypeTest extends TypeTestCase
 {
     public function testArray(): void
     {

@@ -40,7 +40,7 @@ if (!interface_exists(ObjectManager::class)) {
  * @template T of object
  * @template R of mixed
  *
- * @template-implements DataTransformerInterface<T, R>
+ * @implements DataTransformerInterface<T, R>
  *
  * @author Raymond Schouten
  *
@@ -52,6 +52,7 @@ class EntityToIdentifierTransformer implements DataTransformerInterface
     private readonly string $className;
     /** @var ObjectRepository<T> */
     private readonly ObjectRepository $repository;
+    /** @var ClassMetadata<T> */
     private readonly ClassMetadata $metadata;
 
     /**
