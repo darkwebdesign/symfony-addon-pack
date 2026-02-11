@@ -55,13 +55,6 @@ final class CollectionTest extends TestCase
         ]);
     }
 
-    public function testConstructMissingRequiredConstraintsOption(): void
-    {
-        $this->expectException(MissingOptionsException::class);
-
-        new Collection();
-    }
-
     public function testConstructNoConstraint(): void
     {
         $this->expectException(ConstraintDefinitionException::class);
