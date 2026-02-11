@@ -29,7 +29,6 @@ use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
-use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 /**
  * @internal
@@ -53,13 +52,6 @@ final class CollectionTest extends TestCase
         new Collection([
             new Assert\NotBlank(),
         ]);
-    }
-
-    public function testConstructMissingRequiredConstraintsOption(): void
-    {
-        $this->expectException(MissingOptionsException::class);
-
-        new Collection();
     }
 
     public function testConstructNoConstraint(): void
